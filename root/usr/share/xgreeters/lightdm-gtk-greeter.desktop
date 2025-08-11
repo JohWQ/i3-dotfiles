@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=LightDM GTK+ Greeter
+Comment=This runs the GTK+ greeter, it should only be run from LightDM
+Exec=sh -c 'env QT_QPA_PLATFORMTHEME=qt6ct lightdm-gtk-greeter'
+Type=Application
+X-Ubuntu-Gettext-Domain=lightdm
