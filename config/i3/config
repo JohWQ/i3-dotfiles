@@ -26,17 +26,23 @@ client.background       #ffffff
 # Autostarting applications/tasks
 
 # Desktop wallpaper with feh
-exec_always --no-startup-id feh --bg-fill ~/Pictures/default.jxl
+exec_always --no-startup-id sleep 1; feh --bg-fill ~/Pictures/default.jxl
 
 # picom compositor start
 exec --no-startup-id picom --daemon --config ~/.config/picom/picom.conf
 
-# Resolution for monitor 1 & 2 (turn off freesync)
-exec_always --no-startup-id xrandr --output DP-2 --primary --mode 1920x1080 --rate 144.00 --pos 0x420 --output DP-4 --mode 1920x1080 --rate 144.00 --pos 1920x0 --rotate left
+# i3-refresh & Resolution for monitor 1 & 2 (turn off freesync)
+exec --no-startup-id xrandr --output DP-2 --primary --mode 1920x1080 --rate 144.00 --pos 0x420 --output DP-4 --mode 1920x1080 --rate 144.00 --pos 1920x0 --rotate left
+
+# Reset Display Graphics
+bindsym $mod+Shift+Control+r exec xrandr --output DP-2 --primary --mode 1920x1080 --rate 144.00 --pos 0x420 --output DP-4 --mode 1920x1080 --rate 144.00 --pos 1920x0 --rotate left
 
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
 exec --no-startup-id dex-autostart --autostart --environment i3
+
+# OpenTabletDriver daemon i3
+exec --no-startup-id otd-daemon
 
 # Greenclip daemon for bindsym
 exec --no-startup-id $greenclip daemon
@@ -58,8 +64,10 @@ gaps inner 10
 #gaps outer 6
 smart_gaps on
 # Toggle gaps mode
-bindsym $mod+b exec --no-startup-id i3-msg bar mode toggle
-bindsym $mod+Shift+b exec --no-startup-id i3-msg "gaps inner all toggle 10"
+bindsym $mod+b exec --no-startup-id i3-msg "bar mode toggle" && notify-send -t 1000 "i3 bar: Toggled"
+bindsym $mod+Shift+b exec --no-startup-id i3-msg "gaps inner all toggle 10" && notify-send -t 1000 "i3 gaps: Toggled"
+bindsym $mod+Control+b exec --no-startup-id ~/.config/i3/scripts/cycle_border_style.sh && notify-send -t 1000 "i3 borders: Cycle"
+#bindsym $mod+Control+b exec --no-startup-id i3-msg '[class=".*"] border toggle 4'
 
 
 # Scratchpads
@@ -90,11 +98,6 @@ for_window [class="^Alacritty$"] [title="alaterm"] resize set 1000 700
 exec_always --no-startup-id pgrep -f '^alacritty -t yaziaterm -e yazi' || alacritty -t yaziaterm -e yazi
 for_window [class="^Alacritty$"] [title="yaziaterm"] move scratchpad
 for_window [class="^Alacritty$"] [title="yaziaterm"] resize set 1000 700
-
-
-# Rofi Power menu
-bindsym $mod+bar exec --no-startup-id ~/.config/rofi/powermenu/type-1/powermenu.sh
-bindsym $mod+Shift+Escape exec --no-startup-id ~/.config/rofi/powermenu/type-1/powermenu.sh
 
 
 # Use Super + Mouse to move window
@@ -319,6 +322,10 @@ bindsym Control+Mod1+Left exec --no-startup-id playerctl previous
 bindsym Control+Mod1+Right exec --no-startup-id playerctl next
 
 
+# Rofi Power menu
+bindsym $mod+bar exec --no-startup-id ~/.config/rofi/powermenu/type-1/powermenu.sh
+bindsym $mod+Shift+Escape exec --no-startup-id ~/.config/rofi/powermenu/type-1/powermenu.sh
+
 # Rofi recently modified files
 bindsym $mod+d exec --no-startup-id "fd -t f . -E Games/ -E i3status-rust/ --exec-batch ls -t . ~ | rofi -dmenu -i -p recent_home | xargs -I {} ~/.config/rofi/file_actions.sh {}"
 
@@ -348,31 +355,83 @@ bindsym $mod+Control+Down exec --no-startup-id ~/.config/i3/scripts/i3resize.sh 
 
 # resize window (you can also use the mouse for that)
 mode "Resize mode" {
-        # These bindings trigger as soon as you enter the resize mode
 
+# PORTED FUNCTIONALITY FROM CONFIG, make Resize mode less useless. #
 	# move focused window in resize mode
 	bindsym $mod+Shift+Home move position center
 	bindsym $mod+Shift+End resize set 800 540, move position center
+	bindsym $mod+Shift+space floating toggle; [tiling con_id=__focused__] border pixel 4; [floating con_id=__focused__] border normal
+	bindsym $mod+space focus mode_toggle
+
 	# Vim keys
-#	bindsym $mod+Shift+h move left
-#	bindsym $mod+Shift+j move down
-#	bindsym $mod+Shift+k move up
-#	bindsym $mod+Shift+l move right
-	# larger distances
+	bindsym $mod+Mod1+h focus left
+	bindsym $mod+Mod1+j focus down
+	bindsym $mod+Mod1+k focus up
+	bindsym $mod+Mod1+l focus right
+
+	bindsym $mod+Shift+h move left
+	bindsym $mod+Shift+j move down
+	bindsym $mod+Shift+k move up
+	bindsym $mod+Shift+l move right
+	# larger move distances
 	bindsym $mod+Control+Shift+h move left 200 px
 	bindsym $mod+Control+Shift+j move down 200 px
 	bindsym $mod+Control+Shift+k move up 200 px
 	bindsym $mod+Control+Shift+l move right 200 px
-	# Same binds, but for arrow keys
+        # Almost same binds, for arrow keys - change focus arrow keys
+	bindsym $mod+Mod1+Left focus left
+	bindsym $mod+Mod1+Down focus down
+	bindsym $mod+Mod1+Up focus up
+	bindsym $mod+Mod1+Right focus right
+
 	bindsym $mod+Shift+Left move left
 	bindsym $mod+Shift+Down move down
 	bindsym $mod+Shift+Up move up
 	bindsym $mod+Shift+Right move right
-	#larger distances
+	# larger distances
 	bindsym $mod+Control+Shift+Left move left 200 px
 	bindsym $mod+Control+Shift+Down move down 200 px
 	bindsym $mod+Control+Shift+Up move up 200 px
 	bindsym $mod+Control+Shift+Right move right 200 px
+
+	# Go to workspace
+	bindsym $mod+1 workspace $ws1
+	bindsym $mod+2 workspace $ws2
+	bindsym $mod+3 workspace $ws3
+	bindsym $mod+4 workspace $ws4
+	bindsym $mod+5 workspace $ws5
+	bindsym $mod+6 workspace $ws6
+	bindsym $mod+F1 workspace $ws7
+	bindsym $mod+F2 workspace $ws8
+	bindsym $mod+F3 workspace $ws9
+	bindsym $mod+F4 workspace $ws10
+
+	# move focused container to workspace and go to workspace
+	bindsym $mod+Shift+1 move container to workspace $ws1, workspace $ws1
+	bindsym $mod+Shift+2 move container to workspace $ws2, workspace $ws2
+	bindsym $mod+Shift+3 move container to workspace $ws3, workspace $ws3
+	bindsym $mod+Shift+4 move container to workspace $ws4, workspace $ws4
+	bindsym $mod+Shift+5 move container to workspace $ws5, workspace $ws5
+	bindsym $mod+Shift+6 move container to workspace $ws6, workspace $ws6
+	bindsym $mod+Shift+F1 move container to workspace $ws7, workspace $ws7
+	bindsym $mod+Shift+F2 move container to workspace $ws8, workspace $ws8
+	bindsym $mod+Shift+F3 move container to workspace $ws9, workspace $ws9
+	bindsym $mod+Shift+F4 move container to workspace $ws10, workspace $ws10
+
+	# move focused container to workspace
+	bindsym $mod+Control+1 move container to workspace $ws1
+	bindsym $mod+Control+2 move container to workspace $ws2
+	bindsym $mod+Control+3 move container to workspace $ws3
+	bindsym $mod+Control+4 move container to workspace $ws4
+	bindsym $mod+Control+5 move container to workspace $ws5
+	bindsym $mod+Control+6 move container to workspace $ws6
+	bindsym $mod+Control+F1 move container to workspace $ws7
+	bindsym $mod+Control+F2 move container to workspace $ws8
+	bindsym $mod+Control+F3 move container to workspace $ws9
+	bindsym $mod+Control+F4 move container to workspace $ws10
+
+
+# RESIZE MODE FUNCTIONALITY #
 
         # inverted resize binds
         bindsym l resize shrink width 5 px or 5 ppt
@@ -410,43 +469,43 @@ mode "Resize mode" {
         bindsym $mod+Control+j resize shrink height 600 px or 600 ppt
         bindsym $mod+Control+h resize grow width 600 px or 600 ppt
 
-        # same bindings, but for the arrow keys
-        bindsym Right resize shrink width 5 px or 5 ppt
-        bindsym Up resize grow height 5 px or 5 ppt
-        bindsym Down resize shrink height 5 px or 5 ppt
-        bindsym Left resize grow width 5 px or 5 ppt
+        # "Non-inverted" bindings, for the arrow keys
+        bindsym Left resize shrink width 5 px or 5 ppt
+        bindsym Down resize grow height 5 px or 5 ppt
+        bindsym Up resize shrink height 5 px or 5 ppt
+        bindsym Right resize grow width 5 px or 5 ppt
 
         # small resize
-        bindsym Mod1+Right resize shrink width 1 px or 1 ppt
-        bindsym Mod1+Up resize grow height 1 px or 1 ppt
-        bindsym Mod1+Down resize shrink height 1 px or 1 ppt
-        bindsym Mod1+Left resize grow width 1 px or 1 ppt
+        bindsym Mod1+Left resize shrink width 1 px or 1 ppt
+        bindsym Mod1+Down resize grow height 1 px or 1 ppt
+        bindsym Mod1+Up resize shrink height 1 px or 1 ppt
+        bindsym Mod1+Right resize grow width 1 px or 1 ppt
 
         # medium resize
-        bindsym Shift+Right resize shrink width 40 px or 40 ppt
-        bindsym Shift+Up resize grow height 40 px or 40 ppt
-        bindsym Shift+Down resize shrink height 40 px or 40 ppt
-        bindsym Shift+Left resize grow width 40 px or 40 ppt
+        bindsym Shift+Left resize shrink width 40 px or 40 ppt
+        bindsym Shift+Down resize grow height 40 px or 40 ppt
+        bindsym Shift+Up resize shrink height 40 px or 40 ppt
+        bindsym Shift+Right resize grow width 40 px or 40 ppt
 
         # large resize
-        bindsym $mod+Right resize shrink width 80 px or 80 ppt
-        bindsym $mod+Up resize grow height 80 px or 80 ppt
-        bindsym $mod+Down resize shrink height 80 px or 80 ppt
-        bindsym $mod+Left resize grow width 80 px or 80 ppt
+        bindsym $mod+Left resize shrink width 80 px or 80 ppt
+        bindsym $mod+Down resize grow height 80 px or 80 ppt
+        bindsym $mod+Up resize shrink height 80 px or 80 ppt
+        bindsym $mod+Right resize grow width 80 px or 80 ppt
 
         # very large resize
-        bindsym Control+Right resize shrink width 300 px or 300 ppt
-        bindsym Control+Up resize grow height 300 px or 300 ppt
-        bindsym Control+Down resize shrink height 300 px or 300 ppt
-        bindsym Control+Left resize grow width 300 px or 300 ppt
+        bindsym Control+Left resize shrink width 300 px or 300 ppt
+        bindsym Control+Down resize grow height 300 px or 300 ppt
+        bindsym Control+Up resize shrink height 300 px or 300 ppt
+        bindsym Control+Right resize grow width 300 px or 300 ppt
 
         # mega resize
-        bindsym $mod+Control+Right resize shrink width 600 px or 600 ppt
-        bindsym $mod+Control+Up resize grow height 600 px or 600 ppt
-        bindsym $mod+Control+Down resize shrink height 600 px or 600 ppt
-        bindsym $mod+Control+Left resize grow width 600 px or 600 ppt
+        bindsym $mod+Control+Left resize shrink width 600 px or 600 ppt
+        bindsym $mod+Control+Down resize grow height 600 px or 600 ppt
+        bindsym $mod+Control+Up resize shrink height 600 px or 600 ppt
+        bindsym $mod+Control+Right resize grow width 600 px or 600 ppt
 
-        # back to normal: Enter or Escape or $mod+r
+        # back to normal:
         bindsym Return mode "default"
         bindsym Escape mode "default"
         bindsym $mod+r mode "default"
@@ -461,7 +520,7 @@ bindsym $mod+r mode "Resize mode"
 # --------------- horizontal monitor bar --------------- #
 bar {
     output primary
-    font pango: CaskaydiaCove Nerd Font 16
+    font pango:CaskaydiaCove Nerd Font 16
     position top
     tray_output none
     strip_workspace_numbers yes
