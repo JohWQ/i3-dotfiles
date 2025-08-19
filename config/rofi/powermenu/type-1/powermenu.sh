@@ -18,7 +18,7 @@ uptime="`uptime -p | sed -e 's/up //g'`"
 host=`hostname`
 
 # Options
-shutdown=' Power off'
+shutdown=' Shutdown'
 reboot=' Reboot'
 lock=' Lock'
 suspend=' Suspend'
@@ -62,26 +62,19 @@ run_cmd() {
 	selected="$(confirm_exit)"
 	if [[ "$selected" == "$yes" ]]; then
 		if [[ $1 == '--shutdown' ]]; then
+			amixer set Master mute
 			pkill picom
-			systemctl poweroff -i
+			systemctl poweroff
 		elif [[ $1 == '--reboot' ]]; then
+			amixer set Master mute
 			pkill picom
 			systemctl reboot
 		elif [[ $1 == '--suspend' ]]; then
-			mpc -q pause
 			amixer set Master mute
 			i3lock -t -i ~/Pictures/img103.png && sleep 1
 			systemctl suspend
 		elif [[ $1 == '--logout' ]]; then
-			if [[ "$DESKTOP_SESSION" == 'openbox' ]]; then
-				openbox --exit
-			elif [[ "$DESKTOP_SESSION" == 'bspwm' ]]; then
-				bspc quit
-			elif [[ "$DESKTOP_SESSION" == 'i3' ]]; then
-				i3-msg exit
-			elif [[ "$DESKTOP_SESSION" == 'plasma' ]]; then
-				qdbus org.kde.ksmserver /KSMServer logout 0 0 0
-			fi
+			i3-msg exit
 		fi
 	else
 		exit 0
@@ -98,11 +91,7 @@ case ${chosen} in
 		run_cmd --reboot
         ;;
     $lock)
-		if [[ -x '/usr/local/sbin/betterlockscreen' ]]; then
-			betterlockscreen -l
-		elif [[ -x '/usr/bin/i3lock' ]]; then
-			i3lock
-		fi
+		betterlockscreen -l
         ;;
     $suspend)
 		run_cmd --suspend
