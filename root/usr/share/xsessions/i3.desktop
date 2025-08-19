@@ -1,7 +1,7 @@
 [Desktop Entry]
 Name=i3
 Comment=improved dynamic tiling window manager
-Exec=sh -c 'env QT_QPA_PLATFORMTHEME=qt6ct i3'
+Exec=sh -c 'env QT_QPA_PLATFORMTHEME=gtk3 i3'
 TryExec=i3
 Type=Application
 X-LightDM-DesktopName=i3
