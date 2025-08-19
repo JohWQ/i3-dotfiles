@@ -15,27 +15,26 @@ bindsym $mod+Shift+r restart
 
 # type:                 layout  layout  invisi. bug_li. border
 # status:               nah     nah     nah     clone   hmm
-client.focused          #0a76c7 #0a76c7 #ffffff #0a76c7 #0a76c7
-client.focused_inactive #495e73 #495e73 #ffffff #495e73 #495e73
-client.unfocused        #343434 #343434 #ffffff #343434 #343434
+client.focused          #0377ce #0377ce #ffffff #0377ce #0377ce
+client.focused_inactive #313f4e #313f4e #ffffff #313f4e #313f4e
+client.unfocused        #252525 #252525 #ffffff #252525 #252525
 client.urgent           #87ceeb #87ceeb #104b63 #87ceeb #87ceeb
 client.placeholder      #000000 #0c0c0c #ffffff #000000 #0c0c0c
 client.background       #ffffff
 
 
 # Autostarting applications/tasks
-
 # Desktop wallpaper with feh
 exec_always --no-startup-id sleep 1; feh --bg-fill ~/Pictures/default.jxl
 
 # picom compositor start
 exec --no-startup-id picom --daemon --config ~/.config/picom/picom.conf
 
-# i3-refresh & Resolution for monitor 1 & 2 (turn off freesync)
+# Resolution for monitor 1 & 2 (turn off freesync)
 exec --no-startup-id xrandr --output DP-2 --primary --mode 1920x1080 --rate 144.00 --pos 0x420 --output DP-4 --mode 1920x1080 --rate 144.00 --pos 1920x0 --rotate left
 
 # Reset Display Graphics
-bindsym $mod+Shift+Control+r exec xrandr --output DP-2 --primary --mode 1920x1080 --rate 144.00 --pos 0x420 --output DP-4 --mode 1920x1080 --rate 144.00 --pos 1920x0 --rotate left
+bindsym $mod+Shift+Control+r exec --no-startup-id xrandr --output DP-2 --primary --mode 1920x1080 --rate 144.00 --pos 0x420 --output DP-4 --mode 1920x1080 --rate 144.00 --pos 1920x0 --rotate left && sleep 2 && notify-send -t 2000 "Resolution reset"
 
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
@@ -133,9 +132,9 @@ bindsym $mod+Right focus right
 
 
 # split in horizontal orientation
-bindsym $mod+g split h
+bindsym $mod+g exec --no-startup-id i3-msg split h && notify-send -t 1000 "Horizontal →"
 # split in vertical orientation
-bindsym $mod+v split v
+bindsym $mod+v exec --no-startup-id i3-msg split v && notify-send -t 1000 "Vertical ↑"
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
 # change container layout (stacked, tabbed, toggle split)
@@ -277,19 +276,19 @@ for_window [class="^steam$"] [title="^Portal$"] floating enable
 for_window [class="^org.gnome.FileRoller$"] [title="Pakk ut"] floating disable
 
 # start a terminal
-bindsym $mod+Return exec alacritty --config-file ~/.config/alacritty/alacritty.toml
+bindsym $mod+Return exec --no-startup-id alacritty --config-file ~/.config/alacritty/alacritty.toml
 # Start without config (Nvidia bug on update)
 bindsym $mod+Control+Return exec alacritty --config-file /dev/null
 
 # application shortcuts
-bindsym $mod+Mod1+f exec firefox
-bindsym $mod+Mod1+m exec fooyin
-bindsym $mod+Mod1+d exec vesktop
-bindsym $mod+Mod1+y exec youtube-music
-bindsym $mod+Mod1+n exec thunar
-bindsym $mod+Mod1+o exec obs
-bindsym $mod+Mod1+t exec subl
-bindsym $mod+Mod1+g exec gimp
+bindsym $mod+Mod1+f exec --no-startup-id firefox
+bindsym $mod+Mod1+m exec --no-startup-id fooyin
+bindsym $mod+Mod1+d exec --no-startup-id vesktop
+bindsym $mod+Mod1+y exec --no-startup-id youtube-music
+bindsym $mod+Mod1+n exec --no-startup-id thunar
+bindsym $mod+Mod1+o exec --no-startup-id obs
+bindsym $mod+Mod1+t exec --no-startup-id subl
+bindsym $mod+Mod1+g exec --no-startup-id gimp
 # Gimp bind for wacom tablet:
 bindsym Control+Mod1+Shift+Home workspace $ws11; exec gimp
 
@@ -519,7 +518,7 @@ bindsym $mod+r mode "Resize mode"
 
 # --------------- horizontal monitor bar --------------- #
 bar {
-    output primary
+    output DP-2
     font pango:CaskaydiaCove Nerd Font 16
     position top
     tray_output none
@@ -530,9 +529,9 @@ bar {
         background #1f2633
 #                          outline fill    text
     	urgent_workspace   #87ceeb #87ceeb #104b63
-        focused_workspace  #0a76c7 #0a76c7 #ffffff
+        focused_workspace  #0377ce #0377ce #ffffff
 #       inactive but active:
-        active_workspace   #495e73 #495e73 #999999
+        active_workspace   #313f4e #313f4e #999999
         inactive_workspace #1f2633 #1f2633 #777777
     }
 }
@@ -540,7 +539,7 @@ bar {
 # --------------- vertical monitor bar --------------- #
 bar {
     output DP-4
-    font pango: CaskaydiaCove Nerd Font 13
+    font pango:CaskaydiaCove Nerd Font 13
     position top
     tray_output DP-4
     tray_padding 2
@@ -551,9 +550,9 @@ bar {
         background #1f2633
 #                          outline fill    text
     	urgent_workspace   #87ceeb #87ceeb #104b63
-        focused_workspace  #0a76c7 #0a76c7 #ffffff
+        focused_workspace  #0377ce #0377ce #ffffff
 #       inactive but active:
-        active_workspace   #495e73 #495e73 #999999
+        active_workspace   #313f4e #313f4e #999999
         inactive_workspace #1f2633 #1f2633 #777777
     }
 }
