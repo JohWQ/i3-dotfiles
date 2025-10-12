@@ -1,0 +1,12 @@
+[mgr]
+show_hidden = true
+linemode    = "mtime"
+
+[preview]
+wrap            = "yes"
+image_quality   = 60
+
+[opener]
+edit = [
+	{ run = '$EDITOR "$@"', desc = "$EDITOR", block = true, for = "unix" },
+]

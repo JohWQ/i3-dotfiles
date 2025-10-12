@@ -1,0 +1,33 @@
+[Default Applications]
+application/x-trash=org.xfce.mousepad.desktop
+x-scheme-handler/discord=vesktop.desktop
+application/pdf=org.mozilla.firefox.desktop
+application/x.systemd-hwdb=org.xfce.mousepad.desktop
+image/png=org.nomacs.ImageLounge.desktop
+video/mp4=mpv.desktop
+application/x-executable=Alacritty.desktop
+application/octet-stream=sublime_text.desktop
+text/plain=sublime_text.desktop
+application/x-shellscript=Alacritty.desktop
+text/html=org.mozilla.firefox.desktop
+text/x-lua=nvim.desktop
+your-mimetype=your-desired-application.desktop
+inode/directory=thunar.desktop
+
+[Added Associations]
+application/x-trash=sublime_text.desktop;org.xfce.mousepad.desktop;
+application/toml=sublime_text.desktop;org.xfce.mousepad.desktop;
+text/plain=nvim.desktop;sublime_text.desktop;org.xfce.mousepad.desktop;Alacritty.desktop;
+application/x-desktop=sublime_text.desktop;org.xfce.mousepad.desktop;
+application/pdf=org.mozilla.firefox.desktop;
+application/x.systemd-hwdb=org.xfce.mousepad.desktop;
+application/x-shellscript=sublime_text.desktop;org.xfce.mousepad.desktop;Alacritty.desktop;
+image/png=feh.desktop;
+video/mp4=smartcode-stremio.desktop;mpv.desktop;
+application/x-executable=sublime_text.desktop;Alacritty.desktop;
+text/x-csrc=sublime_text.desktop;
+application/octet-stream=sublime_text.desktop;
+inode/directory=yazi.desktop;thunar.desktop;
+text/html=org.mozilla.firefox.desktop;
+text/x-lua=nvim.desktop;Alacritty.desktop;
+application/gzip=yazi.desktop;

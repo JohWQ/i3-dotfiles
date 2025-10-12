@@ -1,0 +1,145 @@
+icons_format = "{icon}"
+
+[theme]
+theme = "nord-dark"
+#theme = "modern"
+#theme = "solarized-dark"
+#theme = "slick"
+#[theme.overrides]
+#separator = ""
+#idle_bg = "#222222" #bar color
+#idle_fg = "#abcdef" #text color
+
+[icons]
+icons = "awesome6"
+#[icons.overrides]
+#cpu = " "
+#memory = ""
+
+[[block]]
+block = "music"
+player = ["YoutubeMusic", "strawberry", "fooyin"]
+interface_name_exclude = ["kdeconnect", "mpd"]
+[block.format]
+full = " $icon {$combo.str(max_w:24) $play $next |}"
+short = "  $icon {$combo.str(max_w:12) $play $next |}"
+#[[block.click]]
+#button = "left"
+#update = true
+[block.theme_overrides]
+idle_bg = "#3f4d64"
+
+[[block]]
+block = "focused_window"
+[block.format]
+short = " $title.str(max_w:18) |"
+full = " $title.str(max_w:38) |"
+[block.theme_overrides]
+idle_bg = "#39465b"
+
+[[block]]
+block = "sound"
+driver = "auto"
+format = " $icon {$volume.eng(w:2) |}"
+#format = " $icon { $volume|} "
+max_vol = 250
+[block.mappings]
+"alsa_output.pci-0000_00_1f.3.pro-output-0" = "Speakers"
+[[block.click]]
+button = "left"
+cmd = "pavucontrol"
+#cmd="/usr/bin/pulsemixer"
+[block.theme_overrides]
+idle_bg = "#354155"
+
+[[block]]
+block = "net"
+interval = 5
+format = " $icon ↓:$speed_down.eng(prefix:K)↑:$speed_up.eng(prefix:K) "
+#format = "$graph_up"
+[[block.click]]
+button = "left"
+cmd = "nm-connection-editor"
+[block.theme_overrides]
+idle_bg = "#2d3749"
+
+[[block]]
+block = "weather"
+#format = "$icon  $temp "
+format = " $icon  $temp $wind m/s "
+#format = ""
+format_alt = "$icon  om 12 timer: {$temp_favg ({$temp_fmin}-{$temp_fmax})|Unavailable} "
+[block.service]
+name = "metno"
+coordinates = ["59.9125115", "10.747012"] # Oslo
+lang = "nb"
+[block.theme_overrides]
+idle_bg = "#272f40"
+
+[[block]]
+block = "time"
+interval = 60
+format = " $icon $timestamp.datetime(f:'%d/%m - %R') "
+#[[block.click]]
+#button = "left"
+#cmd=""
+[block.theme_overrides]
+idle_bg = "#212837"
+#idle_bg = "#323e53"
+
+[[block]]
+block = "menu"
+text = " 󰵆 "
+[[block.items]]
+display = " &gt; Apps &lt;"
+cmd = "rofi -config ~/.config/rofi/launchers/type-1/style-5.rasi -show drun"
+[[block.items]]
+display = " &gt; Windows &lt;"
+cmd = "rofi -config ~/.config/rofi/launchers/type-1/style-005.rasi -show window"
+[[block.items]]
+display = " &gt; Clipboard &lt;"
+cmd = "rofi -config ~/.config/rofi/launchers/type-1/style-05.rasi -modi 'clipboard:greenclip print' -show clipboard -run-command '{cmd}'"
+[[block.items]]
+display = " &gt; Calculator &lt;"
+cmd = "rofi -config ~/.config/rofi/launchers/type-1/style-5.rasi -show calc"
+[block.theme_overrides]
+idle_bg = "#191f2a"
+
+[[block]]
+block = "menu"
+text = " "
+[[block.items]]
+display = " &gt; 󰂳 BTH &lt;"
+cmd = ":"
+[[block.items]]
+display = " &gt; 󰡭 DSP &lt;"
+cmd = ":"
+[[block.items]]
+display = " &gt; Placeholder &lt;"
+cmd = ":"
+[[block.items]]
+display = " &gt; Placeholder  &lt;"
+cmd = ":"
+[block.theme_overrides]
+idle_bg = "#191f2a"
+
+[[block]]
+block = "menu"
+text = " \uf011  "
+[[block.items]]
+display = " &gt;  Lock  &lt; "
+cmd = "~/.config/scripts/power/lock.sh"
+[[block.items]]
+display = " &gt;  Suspend  &lt; "
+cmd = "~/.config/scripts/power/suspend.sh"
+[[block.items]]
+display = " &gt;  Exit  &lt; "
+cmd = "~/.config/scripts/power/exit.sh"
+[[block.items]]
+display = " &gt;  Reboot  &lt; "
+cmd = "~/.config/scripts/power/reboot.sh"
+[[block.items]]
+display = " &gt;  Shutdown  &lt; "
+cmd = "~/.config/scripts/power/poweroff.sh"
+[block.theme_overrides]
+idle_bg = "#191f2a"
