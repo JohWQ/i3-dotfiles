@@ -1,9 +1,25 @@
--- ~/.config/yazi/init.lua
+-- Default rule override: 
+function Linemode:mtime()
+	local time = math.floor(self._file.cha.mtime or 0)
+	if time == 0 then
+		return ""
+	elseif os.date("%Y", time) == os.date("%Y") then
+		return os.date("%d/%m %H:%M", time)
+	else
+		return os.date("%d/%m  %Y", time)
+	end
+end
 
--- -- -- relative-motions:
+-- Border:
+require("full-border"):setup {
+	-- Available values: ui.Border.PLAIN, ui.Border.ROUNDED
+	type = ui.Border.PLAIN,
+}
+
+-- relative-motions:
 require("relative-motions"):setup({ show_numbers="relative", show_motion = true, enter_mode ="first" })
 
- -- -- bunny hops:
+-- bunny hops:
  require("bunny"):setup({
    hops = {
      { key = "/",          path = "/",                                               },

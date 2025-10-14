@@ -1,4 +1,7 @@
 # Comments and blank lines are allowed.
+/ping_websites.sh
+/monitor1.toml
+/monitor2.toml
 
 RCS
 .+,v

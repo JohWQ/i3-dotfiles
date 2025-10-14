@@ -108,24 +108,19 @@ bindsym Control+Shift+Escape [title="$scrpwt4"] scratchpad show; move position c
 exec --no-startup-id sleep 5; notify-send -t 5000 "Help menu" "Press Super + Alt + F1 to view shortcuts"
 
 exec_always --no-startup-id pgrep -f '^alacritty -t $scrpwt0' || alacritty -t $scrpwt0 -e $scrpwc0
-for_window [title="$scrpwt0"] move scratchpad
-for_window [title="$scrpwt0"] resize set 1050 700
+for_window [title="$scrpwt0"] move scratchpad, resize set 1050 700
 
 exec_always --no-startup-id pgrep -f '^alacritty -t $scrpwt1' || alacritty -t $scrpwt1 -e $scrpwc1
-for_window [title="$scrpwt1"] move scratchpad
-for_window [title="$scrpwt1"] resize set 1050 700
+for_window [title="$scrpwt1"] move scratchpad, resize set 1050 700
 
 exec_always --no-startup-id pgrep -f '^alacritty -t $scrpwt2' || alacritty -t $scrpwt2 -e $scrpwc2
-for_window [title="$scrpwt2"] move scratchpad
-for_window [title="$scrpwt2"] resize set 700 500
+for_window [title="$scrpwt2"] move scratchpad, resize set 850 600
 
 exec_always --no-startup-id pgrep -f '^alacritty -t $scrpwt3' || alacritty -t $scrpwt3 -e $scrpwc3
-for_window [title="$scrpwt3"] move scratchpad
-for_window [title="$scrpwt3"] resize set 1050 700
+for_window [title="$scrpwt3"] move scratchpad, resize set 1050 700
 
 exec_always --no-startup-id pgrep -f '^alacritty -t $scrpwt4' || alacritty -t $scrpwt4 -e $scrpwc4
-for_window [title="$scrpwt4"] move scratchpad
-for_window [title="$scrpwt4"] resize set 1050 700
+for_window [title="$scrpwt4"] move scratchpad, resize set 1050 700
 
 
 # Use Super + Mouse to move window
@@ -298,16 +293,13 @@ bindsym $mod+Mod1+Control+Shift+Right move right 600 px
 # floating applications:
 ## Steam
 for_window [class="^steam$"] [title="^Steam$"] move to output $monitor2
-#for_window [class="^steam$"] [title="^Steam$"] floating enable, move position center
-#for_window [class="^steam$"] [title="^Steam$"] resize set 1010 600
 for_window [class="^steam$"] [title="^Steam Settings$"] floating enable
 for_window [class="^steam$"] [title="^Friends List$"] floating enable
 for_window [class="^steam$"] [title="^Geometry Dash$"] floating disable
 for_window [class="^steam$"] [title="^Portal$"] floating enable
 ## File management
-#for_window [class="^org.gnome.FileRoller$"] [title="^Pakk ut$"] floating disable
-for_window [class="^Alacritty$"] [title="^yazi$"] floating enable, resize set 1070 1000, move position center
-for_window [class="^Alacritty$"] [title="^termfilechooser$"] floating enable, resize set 1070 1000, move position center, move position center
+for_window [class="^Alacritty$"] [title="^Yazi View$"] border normal, floating enable, resize set 1070 1000, move position center
+for_window [class="^Alacritty$"] [title="^File chooser$"] border normal, floating enable, resize set 1070 1000, move position center, move position center
 for_window [class="^Dragon$"] [title="^dragon"] move window position pointer
 
 # start a terminal

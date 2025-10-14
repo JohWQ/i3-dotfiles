@@ -509,14 +509,14 @@ on = [ ".", "s" ]
 run  = "plugin what-size"
 desc = "Calc size of selection or cwd"
 # -- augment-command -- #
-[[mgr.prepend_keymap]]
-on = "k"
-run = "plugin augment-command -- arrow -1"
-desc = "Move cursor up"
-[[mgr.prepend_keymap]]
-on = "j"
-run = "plugin augment-command -- arrow 1"
-desc = "Move cursor down"
+#[[mgr.prepend_keymap]]
+#on = "k"
+#run = "plugin augment-command -- arrow -1"
+#desc = "Move cursor up"
+#[[mgr.prepend_keymap]]
+#on = "j"
+#run = "plugin augment-command -- arrow 1"
+#desc = "Move cursor down"
 [[mgr.prepend_keymap]]
 on = "<C-k>"
 run = "plugin augment-command -- parent_arrow -1"
@@ -525,10 +525,10 @@ desc = "Move cursor up in the parent directory"
 on = "<C-j>"
 run = "plugin augment-command -- parent_arrow 1"
 desc = "Move cursor down in the parent directory"
-[[mgr.prepend_keymap]]
-on = "l"
-run = "plugin augment-command -- enter"
-desc = "Enter the child directory, or open the file"
+#[[mgr.prepend_keymap]]
+#on = "l"
+#run = "plugin augment-command -- enter"
+#desc = "Enter the child directory, or open the file"
 [[mgr.prepend_keymap]]
 on = "<Enter>"
 run = "plugin augment-command -- enter"
@@ -541,10 +541,10 @@ desc = "Enter the child directory, or open the file interactively"
 on = "<Right>"
 run = "plugin augment-command -- enter --no-skip"
 desc = "Enter the child directory, or open the file"
-[[mgr.prepend_keymap]]
-on = ["h"]
-run = "plugin augment-command -- leave"
-desc = "Go back to the parent directory"
+#[[mgr.prepend_keymap]]
+#on = ["h"]
+#run = "plugin augment-command -- leave"
+#desc = "Go back to the parent directory"
 [[mgr.prepend_keymap]]
 on = ["<Left>"]
 run = "plugin augment-command -- leave --no-skip"
