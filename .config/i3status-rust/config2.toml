@@ -12,8 +12,8 @@ player = ["YoutubeMusic", "strawberry", "fooyin"]
 interface_name_exclude = ["kdeconnect", "mpd"]
 format_alt = " $icon {$combo.str(max_w:6,rot_interval:0.4) |}"
 [block.format]
-full = " $icon {$combo.str(max_w:14) $play $next |}"
-short = "  $icon {$combo.str(max_w:6) $play $next |}"
+full = " $icon {$combo.str(max_w:14) $prev $next |}"
+short = "  $icon {$combo.str(max_w:6) $prev $next |}"
 [[block.click]]
 button = "left"
 action = "play_pause"

@@ -10,7 +10,6 @@ image_quality   = 60
 edit = [
 	{ run = '$EDITOR "$@"', desc = "$EDITOR", block = true, for = "unix" },
 ]
-[opener]
 extract = [
     { run = 'ya pub augmented-extract --list "$@"', desc = "Extract here", for = "unix" },
 ]
