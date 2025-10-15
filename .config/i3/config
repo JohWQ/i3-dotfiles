@@ -3,12 +3,31 @@
 ## https://i3wm.org/docs/userguide.html
 ## ========================================================= ##
 
+## ---------------------- IMPORTS ---------------------- ##
 include $HOME/.config/i3/modes.conf
 
+
+## ---------------------- VARIABLES ---------------------- ##
 set $monitor1 DP-2
 set $monitor2 DP-4
+
+set $ws1 "1:1"
+set $ws2 "2:2"
+set $ws3 "3:3"
+set $ws4 "4:4"
+set $ws5 "5:5"
+set $ws6 "6:6"
+set $ws11 "7:GIMP"
+set $ws7 "1:F1"
+set $ws8 "2:F2"
+set $ws9 "3:F3"
+set $ws10 "4:F4"
+
 set $mod Mod4
+
+set $desktopwallpaper ~/Pictures/default-dark.png
 set $configborderstyle pixel 3
+
 
 set $scratchpadwindowtitle1 help-dialog_term
 set $scratchpadwindowtitle2 alacritty_term
@@ -72,13 +91,27 @@ bar {
     }
 }
 
-## ---------------------- BASIC SETTINGS ---------------------- ##
-# reload the configuration file
-bindsym $mod+Shift+c reload
-# restart i3 and i3status-rs
-bindsym $mod+Shift+r restart
-# refresh monitor layout
+## ---------------------- MONITOR SETTINGS ---------------------- ##
+# Workspace outputs
+workspace $ws1 output $monitor1
+workspace $ws2 output $monitor1
+workspace $ws3 output $monitor1
+workspace $ws4 output $monitor1
+workspace $ws5 output $monitor1
+workspace $ws6 output $monitor1
+workspace $ws11 output $monitor1
+workspace $ws7 output $monitor2
+workspace $ws8 output $monitor2
+workspace $ws9 output $monitor2
+workspace $ws10 output $monitor2
+
+## --------------------- BINDSYMS ---------------------- 
 bindsym $mod+Shift+Control+r exec --no-startup-id xrandr --output $monitor1 --primary --mode 1920x1080 --rate 144.00 --pos 0x420 --output $monitor2 --mode 1920x1080 --rate 144.00 --pos 1920x0 --rotate left && sleep 2 && notify-send -t 2000 "Resolution reset"
+
+bindsym $mod+Shift+c reload #restart i3 & i3bar
+bindsym $mod+Shift+r restart #reload config file
+
+
 
 ## ---------------------- COLORS & APPEARANCE ---------------------- ##
 # type:                 layout  layout  invisi. bug_li. border
@@ -90,29 +123,25 @@ client.placeholder      #000000 #0c0c0c #ffffff #000000 #0c0c0c
 client.background       #ffffff
 
 
-## ---------------------- AUTOSTART APPLICATIONS ---------------------- ##
-# Desktop wallpaper with feh
-#exec_always --no-startup-id sleep 1; feh --bg-fill ~/Pictures/wp1.png
-exec_always --no-startup-id sleep 1; feh --bg-fill ~/Pictures/default-dark.png
+## ---------------------- AUTOSTART ---------------------- ##
+exec_always --no-startup-id sleep 1; feh --bg-fill $desktopwallpaper
 
 # XDG autostart .desktop files in /etc/xdg/autostart & ~/.config/autostart 
 exec --no-startup-id dex-autostart --autostart --environment i3
 
-# OpenTabletDriver daemon i3
+# OpenTabletDriver daemon
 exec --no-startup-id otd-daemon
-
-# Greenclip daemon for bindsym
+# Greenclip daemon
 exec --no-startup-id $greenclip daemon
-
-# picom compositor start
+# picom daemon
 exec --no-startup-id picom --daemon --config ~/.config/picom/picom.conf
 
 
-# Resolution for monitor 1 & 2 (turn off freesync)
+# Resolution for monitor 1 & 2
 exec --no-startup-id xset s 1200 0
 exec --no-startup-id xrandr --output $monitor1 --primary --mode 1920x1080 --rate 144.00 --pos 0x420 --output $monitor2 --mode 1920x1080 --rate 144.00 --pos 1920x0 --rotate left
 
-
+exec --no-startup-id sleep 5; notify-send -t 5000 "Help menu" "Press Super + Alt + F1 to view shortcuts"
 
 # Font for layouts
 font pango: Liberation Mono 9
@@ -154,26 +183,19 @@ bindsym $mod+Mod1+3 [title="$scratchpadwindowtitle4"] scratchpad show; move posi
 bindsym $mod+Mod1+4 [title="$scratchpadwindowtitle5"] scratchpad show; move position center
 bindsym Control+Shift+Escape [title="$scratchpadwindowtitle5"] scratchpad show; move position center
 
-# Launching applications for scratchpads
-
-# Help dialog:
-exec --no-startup-id sleep 5; notify-send -t 5000 "Help menu" "Press Super + Alt + F1 to view shortcuts"
-
+# Scratchpad 1 - Help dialog
 exec_always --no-startup-id pgrep -f '^alacritty -t $scratchpadwindowtitle1' || alacritty -t $scratchpadwindowtitle1 -e $scratchpadwindowcontainer1
-for_window [title="$scratchpadwindowtitle1"] move scratchpad, resize set 1050 700
-
+# Scratchpad 2 - Terminal
 exec_always --no-startup-id pgrep -f '^alacritty -t $scratchpadwindowtitle2' || alacritty -t $scratchpadwindowtitle2 -e $scratchpadwindowcontainer2
-for_window [title="$scratchpadwindowtitle2"] move scratchpad, resize set 1050 700
-
+# Scratchpad 3 - Pulsemixer
 exec_always --no-startup-id pgrep -f '^alacritty -t $scratchpadwindowtitle3' || alacritty -t $scratchpadwindowtitle3 -e $scratchpadwindowcontainer3
 for_window [title="$scratchpadwindowtitle3"] move scratchpad, resize set 850 600
-
+# Scratchpad 4 - Yazi
 exec_always --no-startup-id pgrep -f '^alacritty -t $scratchpadwindowtitle4' || alacritty -t $scratchpadwindowtitle4 -e $scratchpadwindowcontainer4
-for_window [title="$scratchpadwindowtitle4"] move scratchpad, resize set 1050 700
-
+# Scratchpad 5 - Btop
 exec_always --no-startup-id pgrep -f '^alacritty -t $scratchpadwindowtitle5' || alacritty -t $scratchpadwindowtitle5 -e $scratchpadwindowcontainer5
-for_window [title="$scratchpadwindowtitle5"] move scratchpad, resize set 1050 700
 
+for_window [title="^($scratchpadwindowtitle1|$scratchpadwindowtitle2|$scratchpadwindowtitle4|$scratchpadwindowtitle5)$"] move scratchpad, resize set 1050 700
 
 # Use Super + Mouse to move window
 floating_modifier $mod
@@ -226,31 +248,6 @@ bindsym $mod+a focus parent
 # focus the child container
 bindsym $mod+q focus child
 
-# Workspace sorting on monitor 1
-set $ws1 "1:1"
-set $ws2 "2:2"
-set $ws3 "3:3"
-set $ws4 "4:4"
-set $ws5 "5:5"
-set $ws6 "6:6"
-set $ws11 "7:GIMP"
-workspace $ws1 output $monitor1
-workspace $ws2 output $monitor1
-workspace $ws3 output $monitor1
-workspace $ws4 output $monitor1
-workspace $ws5 output $monitor1
-workspace $ws6 output $monitor1
-workspace $ws11 output $monitor1
-
-# Workspace sorting on monitor 2
-set $ws7 "1:F1"
-set $ws8 "2:F2"
-set $ws9 "3:F3"
-set $ws10 "4:F4"
-workspace $ws7 output $monitor2
-workspace $ws8 output $monitor2
-workspace $ws9 output $monitor2
-workspace $ws10 output $monitor2
 
 # Go to workspace
 bindsym $mod+1 workspace $ws1
