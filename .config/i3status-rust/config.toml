@@ -69,6 +69,7 @@ idle_bg = "#272f40"
 [block.icons_overrides]
 weather_fog = "\ue313"
 weather_rain = "\uef1c"
+weather_clouds_night = "\ueeef"
 
 [[block]]
 block = "time"
@@ -92,6 +93,9 @@ cmd = "rofi -config ~/.config/rofi/launchers/type-1/style-005.rasi -show window"
 display = " &gt; Clipboard &lt;"
 cmd = "rofi -config ~/.config/rofi/launchers/type-1/style-05.rasi -modi 'clipboard:greenclip print' -show clipboard -run-command '{cmd}'"
 [[block.items]]
+display = " &gt; 󰂳 BTH &lt;"
+cmd = "blueman-manager"
+[[block.items]]
 display = " &gt; Calculator &lt;"
 cmd = "rofi -config ~/.config/rofi/launchers/type-1/style-5.rasi -show calc"
 [block.theme_overrides]
@@ -100,9 +104,6 @@ idle_bg = "#191f2a"
 #[[block]]
 #block = "menu"
 #text = " "
-#[[block.items]]
-#display = " &gt; 󰂳 BTH &lt;"
-#cmd = ":"
 #[[block.items]]
 #display = " &gt; 󰡭 DSP &lt;"
 #cmd = ":"
