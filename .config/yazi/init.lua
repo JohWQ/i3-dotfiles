@@ -10,6 +10,9 @@ function Linemode:mtime()
  end
 end
 
+-- Folder saving preferences:
+-- require("folder-rules"):setup()
+
 -- Border:
 require("full-border"):setup {
  -- Available values: ui.Border.PLAIN, ui.Border.ROUNDED
