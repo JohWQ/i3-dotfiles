@@ -40,6 +40,72 @@ bindsym $mod+Shift+b exec --no-startup-id ~/.config/i3/scripts/toggle-gaps.sh
 bindsym $mod+Control+b exec --no-startup-id ~/.config/i3/scripts/cycle-border-style.sh
 
 
+## ---------------------- APPLICATION LAUNCHING ---------------------- ##
+# start a terminal
+bindsym $mod+Return exec --no-startup-id alacritty --config-file ~/.config/alacritty/alacritty.toml
+# Start lightweight terminal
+bindsym $mod+Control+Return exec st
+
+# screenshot
+# key: PrtSc
+bindsym Print exec --no-startup-id flameshot gui
+bindsym $mod+Print --release exec --no-startup-id flameshot screen
+
+# OTD tablet button keybinds:
+bindsym Control+Mod1+Shift+Insert workspace $ws11; exec --no-startup-id gimp
+bindsym Control+Mod1+Shift+Delete exec --no-startup-id ~/.config/scripts/toggle_display_wacom.sh
+
+# master volume controls
+set $i3_volume-device ~/.config/i3/scripts/volume-device.sh
+set $i3_volume-player ~/.config/i3/scripts/volume-player.sh
+bindsym $mod+Prior exec --no-startup-id $i3_volume-device volume_up
+bindsym $mod+Next exec --no-startup-id $i3_volume-device volume_down
+bindsym $mod+Home exec --no-startup-id $i3_volume-device volume_full
+bindsym $mod+Insert exec --no-startup-id $i3_volume-device volume_7
+bindsym $mod+Delete exec --no-startup-id $i3_volume-device volume_3
+bindsym $mod+End exec --no-startup-id $i3_volume-device volume_mute
+# music player controls
+bindsym Control+Mod1+Prior exec --no-startup-id $i3_volume-player volume_up
+bindsym Control+Mod1+Next exec --no-startup-id $i3_volume-player volume_down
+bindsym Control+Mod1+Home exec --no-startup-id $i3_volume-player volume_full
+bindsym Control+Mod1+Insert exec --no-startup-id $i3_volume-player volume_7
+bindsym Control+Mod1+Delete exec --no-startup-id $i3_volume-player volume_3
+bindsym Control+Mod1+End exec --no-startup-id $i3_volume-player volume_mute
+# playerctl controls
+bindsym Control+Mod1+Up exec --no-startup-id playerctl play-pause
+bindsym Control+Mod1+Down exec --no-startup-id playerctl stop
+bindsym Control+Mod1+Left exec --no-startup-id playerctl previous
+bindsym Control+Mod1+Right exec --no-startup-id playerctl next
+
+# Rofi Power menu
+bindsym $mod+bar exec --no-startup-id ~/.config/rofi/powermenu/type-1/powermenu.sh
+bindsym $mod+Shift+Escape exec --no-startup-id ~/.config/rofi/powermenu/type-1/powermenu.sh
+
+# Rofi recently modified files
+bindsym $mod+d exec --no-startup-id "fd -t f . -E Games/ -E i3status-rust/ --exec-batch ls -t . ~ | rofi -config ~/.config/rofi/launchers/type-1/style-05.rasi -dmenu -i -p recent_home | xargs -I {} ~/.config/rofi/file_actions.sh {}"
+
+# Rofi run modi command:
+bindsym $mod+Shift+Tab exec --no-startup-id "rofi -config ~/.config/rofi/launchers/type-1/style-5.rasi -show run"
+# Rofi app modi:
+bindsym $mod+Tab exec --no-startup-id "rofi -config ~/.config/rofi/launchers/type-1/style-5.rasi -show drun"
+# Rofi window modi:
+bindsym Mod1+Tab exec --no-startup-id "rofi -config ~/.config/rofi/launchers/type-1/style-005.rasi -show window"
+
+# Rofi Clipboard manager:
+bindsym $mod+c exec --no-startup-id "rofi -config ~/.config/rofi/launchers/type-1/style-05.rasi -modi 'clipboard:greenclip print' -show clipboard -run-command '{cmd}'"
+# Rofi-calc Calculator:
+bindsym $mod+m exec --no-startup-id "rofi -config ~/.config/rofi/launchers/type-1/style-5.rasi -show calc"
+
+
+# application shortcuts
+bindsym $mod+Mod1+f exec --no-startup-id firefox
+bindsym $mod+Mod1+m exec --no-startup-id fooyin
+bindsym $mod+Mod1+d exec --no-startup-id vesktop
+bindsym $mod+Mod1+y exec --no-startup-id youtube-music
+bindsym $mod+Mod1+n exec --no-startup-id thunar
+bindsym $mod+Mod1+o exec --no-startup-id obs
+bindsym $mod+Mod1+t exec --no-startup-id subl
+bindsym $mod+Mod1+g exec --no-startup-id gimp
 ## ---------------------- GENERAL SETTINGS ---------------------- ##
 set $mod Mod4
 floating_modifier $mod
@@ -333,72 +399,3 @@ bindsym $mod+Mod1+Control+Shift+Up move up 600 px
 bindsym $mod+Mod1+Control+Shift+Down move down 600 px
 bindsym $mod+Mod1+Control+Shift+Left move left 600 px
 bindsym $mod+Mod1+Control+Shift+Right move right 600 px
-
-
-## ---------------------- APPLICATION LAUNCHING ---------------------- ##
-# start a terminal
-bindsym $mod+Return exec --no-startup-id alacritty --config-file ~/.config/alacritty/alacritty.toml
-# Start lightweight terminal
-bindsym $mod+Control+Return exec st
-
-# screenshot
-# key: PrtSc
-bindsym Print exec --no-startup-id flameshot gui
-bindsym $mod+Print --release exec --no-startup-id flameshot screen
-
-# OTD tablet button keybinds:
-bindsym Control+Mod1+Shift+Insert workspace $ws11; exec --no-startup-id gimp
-bindsym Control+Mod1+Shift+Delete exec --no-startup-id ~/.config/scripts/toggle_display_wacom.sh
-
-# media shortcuts
-set $i3_volume-device ~/.config/i3/scripts/volume-device.sh
-set $i3_volume-player ~/.config/i3/scripts/volume-player.sh
-# master volume controls
-bindsym $mod+Prior exec --no-startup-id $i3_volume-device volume_up
-bindsym $mod+Next exec --no-startup-id $i3_volume-device volume_down
-bindsym $mod+Home exec --no-startup-id $i3_volume-device volume_full
-bindsym $mod+Insert exec --no-startup-id $i3_volume-device volume_7
-bindsym $mod+Delete exec --no-startup-id $i3_volume-device volume_3
-bindsym $mod+End exec --no-startup-id $i3_volume-device volume_mute
-# music player controls
-bindsym Control+Mod1+Prior exec --no-startup-id $i3_volume-player volume_up
-bindsym Control+Mod1+Next exec --no-startup-id $i3_volume-player volume_down
-bindsym Control+Mod1+Home exec --no-startup-id $i3_volume-player volume_full
-bindsym Control+Mod1+Insert exec --no-startup-id $i3_volume-player volume_7
-bindsym Control+Mod1+Delete exec --no-startup-id $i3_volume-player volume_3
-bindsym Control+Mod1+End exec --no-startup-id $i3_volume-player volume_mute
-# playerctl controls
-bindsym Control+Mod1+Up exec --no-startup-id playerctl play-pause
-bindsym Control+Mod1+Down exec --no-startup-id playerctl stop
-bindsym Control+Mod1+Left exec --no-startup-id playerctl previous
-bindsym Control+Mod1+Right exec --no-startup-id playerctl next
-
-# Rofi Power menu
-bindsym $mod+bar exec --no-startup-id ~/.config/rofi/powermenu/type-1/powermenu.sh
-bindsym $mod+Shift+Escape exec --no-startup-id ~/.config/rofi/powermenu/type-1/powermenu.sh
-
-# Rofi recently modified files
-bindsym $mod+d exec --no-startup-id "fd -t f . -E Games/ -E i3status-rust/ --exec-batch ls -t . ~ | rofi -config ~/.config/rofi/launchers/type-1/style-05.rasi -dmenu -i -p recent_home | xargs -I {} ~/.config/rofi/file_actions.sh {}"
-
-# Rofi run modi command:
-bindsym $mod+Shift+Tab exec --no-startup-id "rofi -config ~/.config/rofi/launchers/type-1/style-5.rasi -show run"
-# Rofi app modi:
-bindsym $mod+Tab exec --no-startup-id "rofi -config ~/.config/rofi/launchers/type-1/style-5.rasi -show drun"
-# Rofi window modi:
-bindsym Mod1+Tab exec --no-startup-id "rofi -config ~/.config/rofi/launchers/type-1/style-005.rasi -show window"
-
-# Rofi Clipboard manager:
-bindsym $mod+c exec --no-startup-id "rofi -config ~/.config/rofi/launchers/type-1/style-05.rasi -modi 'clipboard:greenclip print' -show clipboard -run-command '{cmd}'"
-# Rofi-calc Calculator:
-bindsym $mod+m exec --no-startup-id "rofi -config ~/.config/rofi/launchers/type-1/style-5.rasi -show calc"
-
-
-# application shortcuts
-bindsym $mod+Mod1+f exec --no-startup-id firefox
-bindsym $mod+Mod1+m exec --no-startup-id fooyin
-bindsym $mod+Mod1+d exec --no-startup-id vesktop
-bindsym $mod+Mod1+y exec --no-startup-id youtube-music
-bindsym $mod+Mod1+n exec --no-startup-id thunar
-bindsym $mod+Mod1+o exec --no-startup-id obs
-bindsym $mod+Mod1+t exec --no-startup-id subl
-bindsym $mod+Mod1+g exec --no-startup-id gimp
