@@ -24,11 +24,6 @@ rev = "4506f9d"
 hash = "4761fffb60a12d37096c34a356380cdf"
 
 [[plugin.deps]]
-use = "yazi-rs/plugins:mount"
-rev = "d1c8baa"
-hash = "435a2af56ecfb3d05755fd5e24977d8b"
-
-[[plugin.deps]]
 use = "iandol/sudo"
 rev = "997ac5b"
 hash = "b587f1fb49563562003ed84446a351bc"

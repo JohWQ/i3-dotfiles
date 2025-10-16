@@ -96,8 +96,7 @@ bindsym $mod+c exec --no-startup-id "rofi -config ~/.config/rofi/launchers/type-
 # Rofi-calc Calculator:
 bindsym $mod+m exec --no-startup-id "rofi -config ~/.config/rofi/launchers/type-1/style-5.rasi -show calc"
 
-
-# application shortcuts
+# Desktop applications:
 bindsym $mod+Mod1+f exec --no-startup-id firefox
 bindsym $mod+Mod1+m exec --no-startup-id fooyin
 bindsym $mod+Mod1+d exec --no-startup-id vesktop
@@ -106,6 +105,8 @@ bindsym $mod+Mod1+n exec --no-startup-id thunar
 bindsym $mod+Mod1+o exec --no-startup-id obs
 bindsym $mod+Mod1+t exec --no-startup-id subl
 bindsym $mod+Mod1+g exec --no-startup-id gimp
+
+
 ## ---------------------- GENERAL SETTINGS ---------------------- ##
 set $mod Mod4
 floating_modifier $mod

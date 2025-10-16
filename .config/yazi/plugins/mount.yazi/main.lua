@@ -49,19 +49,23 @@ end)
 
 local M = {
 	keys = {
-		{ on = "q", run = "quit" },
+		{ on = "q",       run = "quit" },
+		{ on = "<Esc>",   run = "quit" },
+		{ on = "<Enter>", run = { "enter", "quit" } },
 
-		{ on = "k", run = "up" },
-		{ on = "j", run = "down" },
-		{ on = "l", run = { "enter", "quit" } },
+		{ on = "k",       run = "up" },
+		{ on = "j",       run = "down" },
+		{ on = "K",       run = "largeup" },
+		{ on = "J",       run = "largedown" },
+		{ on = "l",       run = { "enter", "quit" } },
 
-		{ on = "<Up>", run = "up" },
-		{ on = "<Down>", run = "down" },
+		{ on = "<Up>",    run = "up" },
+		{ on = "<Down>",  run = "down" },
 		{ on = "<Right>", run = { "enter", "quit" } },
 
-		{ on = "m", run = "mount" },
-		{ on = "u", run = "unmount" },
-		{ on = "e", run = "eject" },
+		{ on = "m",       run = "mount" },
+		{ on = "u",       run = "unmount" },
+		{ on = "e",       run = "eject" },
 	},
 }
 
@@ -72,21 +76,21 @@ end
 
 function M:layout(area)
 	local chunks = ui.Layout()
-		:constraints({
-			ui.Constraint.Percentage(10),
-			ui.Constraint.Percentage(80),
-			ui.Constraint.Percentage(10),
-		})
-		:split(area)
+			:constraints({
+				ui.Constraint.Percentage(10),
+				ui.Constraint.Percentage(80),
+				ui.Constraint.Percentage(10),
+			})
+			:split(area)
 
 	local chunks = ui.Layout()
-		:direction(ui.Layout.HORIZONTAL)
-		:constraints({
-			ui.Constraint.Percentage(10),
-			ui.Constraint.Percentage(80),
-			ui.Constraint.Percentage(10),
-		})
-		:split(chunks[2])
+			:direction(ui.Layout.HORIZONTAL)
+			:constraints({
+				ui.Constraint.Percentage(10),
+				ui.Constraint.Percentage(80),
+				ui.Constraint.Percentage(10),
+			})
+			:split(chunks[2])
 
 	self._area = chunks[2]
 end
@@ -125,6 +129,10 @@ function M:entry(job)
 				update_cursor(-1)
 			elseif run == "down" then
 				update_cursor(1)
+			elseif run == "largeup" then
+				update_cursor(-5)
+			elseif run == "largedown" then
+				update_cursor(5)
 			elseif run == "enter" then
 				local active = active_partition()
 				if active and active.dist then
@@ -171,21 +179,21 @@ function M:redraw()
 	return {
 		ui.Clear(self._area),
 		ui.Border(ui.Edge.ALL)
-			:area(self._area)
-			:type(ui.Border.ROUNDED)
-			:style(ui.Style():fg("blue"))
-			:title(ui.Line("Mount"):align(ui.Align.CENTER)),
+				:area(self._area)
+				:type(ui.Border.ROUNDED)
+				:style(ui.Style():fg("blue"))
+				:title(ui.Line("Mount"):align(ui.Align.CENTER)),
 		ui.Table(rows)
-			:area(self._area:pad(ui.Pad(1, 2, 1, 2)))
-			:header(ui.Row({ "Src", "Label", "Dist", "FSType" }):style(ui.Style():bold()))
-			:row(self.cursor)
-			:row_style(ui.Style():fg("blue"):underline())
-			:widths {
-				ui.Constraint.Length(20),
-				ui.Constraint.Length(20),
-				ui.Constraint.Percentage(70),
-				ui.Constraint.Length(10),
-			},
+				:area(self._area:pad(ui.Pad(1, 2, 1, 2)))
+				:header(ui.Row({ "Src", "Label", "Dist", "FSType" }):style(ui.Style():bold()))
+				:row(self.cursor)
+				:row_style(ui.Style():fg("blue"):underline())
+				:widths {
+					ui.Constraint.Length(20),
+					ui.Constraint.Length(20),
+					ui.Constraint.Percentage(70),
+					ui.Constraint.Length(10),
+				},
 	}
 end
 
@@ -220,11 +228,11 @@ end
 
 function M.split(src)
 	local pats = {
-		{ "^/dev/sd[a-z]", "%d+$" }, -- /dev/sda1
+		{ "^/dev/sd[a-z]",     "%d+$" }, -- /dev/sda1
 		{ "^/dev/nvme%d+n%d+", "p%d+$" }, -- /dev/nvme0n1p1
-		{ "^/dev/mmcblk%d+", "p%d+$" }, -- /dev/mmcblk0p1
-		{ "^/dev/disk%d+", ".+$" }, -- /dev/disk1s1
-		{ "^/dev/sr%d+", ".+$" }, -- /dev/sr0
+		{ "^/dev/mmcblk%d+",   "p%d+$" }, -- /dev/mmcblk0p1
+		{ "^/dev/disk%d+",     ".+$" }, -- /dev/disk1s1
+		{ "^/dev/sr%d+",       ".+$" }, -- /dev/sr0
 	}
 	for _, p in ipairs(pats) do
 		local main = src:match(p[1])
