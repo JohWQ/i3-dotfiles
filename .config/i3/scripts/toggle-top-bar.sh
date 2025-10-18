@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env sh
 
 # Define a temporary file to store the bar state
 STATE_FILE="/tmp/i3_bar_state"

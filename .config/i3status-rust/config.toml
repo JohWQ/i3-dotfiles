@@ -93,7 +93,7 @@ cmd = "rofi -config ~/.config/rofi/launchers/type-1/style-005.rasi -show window"
 display = " &gt; Clipboard &lt;"
 cmd = "rofi -config ~/.config/rofi/launchers/type-1/style-05.rasi -modi 'clipboard:greenclip print' -show clipboard -run-command '{cmd}'"
 [[block.items]]
-display = " &gt; 󰂳 BTH &lt;"
+display = " &gt; Bluetooth &lt;"
 cmd = "blueman-manager"
 [[block.items]]
 display = " &gt; Calculator &lt;"
@@ -105,13 +105,7 @@ idle_bg = "#191f2a"
 #block = "menu"
 #text = " "
 #[[block.items]]
-#display = " &gt; 󰡭 DSP &lt;"
-#cmd = ":"
-#[[block.items]]
-#display = " &gt; Placeholder &lt;"
-#cmd = ":"
-#[[block.items]]
-#display = " &gt; Placeholder  &lt;"
+#display = " &gt; # &lt;"
 #cmd = ":"
 #[block.theme_overrides]
 #idle_bg = "#191f2a"

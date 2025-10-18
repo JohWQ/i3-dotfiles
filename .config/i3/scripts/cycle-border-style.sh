@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env sh
 
 # Get the current border style of the first window
 CURRENT_BORDER=$(i3-msg -t get_tree | jq -r '.. | select(.focused? == true) | .border')

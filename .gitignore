@@ -1,6 +1,8 @@
-ping_websites.sh
-monitor1.toml
-monitor2.toml
-theme.toml
+.config/scripts/ping_websites.sh
+.config/i3status-rust/monitor1.toml
+.config/i3status-rust/monitor2.toml
+.config/yazi/theme.toml
 .zshrc
-bookmarks
+.config/gtk-3.0/bookmarks
+.config/i3/config
+.stow-local-ignore

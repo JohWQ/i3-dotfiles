@@ -24,6 +24,7 @@ font pango: Liberation Mono 9
 #font pango:DejaVu Sans Mono 9
 #font pango: CaskaydiaCove Nerd Font 8
 
+# Desktop wallpaper. Replace with the path of your image:
 set $desktopwallpaper ~/Pictures/default-dark.png
 
 # Window style
@@ -99,12 +100,12 @@ bindsym $mod+m exec --no-startup-id "rofi -config ~/.config/rofi/launchers/type-
 # Desktop applications:
 bindsym $mod+Mod1+f exec --no-startup-id firefox
 bindsym $mod+Mod1+m exec --no-startup-id fooyin
-bindsym $mod+Mod1+d exec --no-startup-id vesktop
-bindsym $mod+Mod1+y exec --no-startup-id youtube-music
+bindsym $mod+Mod1+d exec --no-startup-id notify-send -t 600 "Launching Discord" && vesktop
+bindsym $mod+Mod1+y exec --no-startup-id notify-send -t 600 "Launching Youtube Music" && youtube-music
 bindsym $mod+Mod1+n exec --no-startup-id thunar
-bindsym $mod+Mod1+o exec --no-startup-id obs
+bindsym $mod+Mod1+o exec --no-startup-id notify-send -t 600 "Launching OBS Studio" && obs
 bindsym $mod+Mod1+t exec --no-startup-id subl
-bindsym $mod+Mod1+g exec --no-startup-id gimp
+bindsym $mod+Mod1+g exec --no-startup-id notify-send -t 600 "Launching Gimp" && gimp
 
 
 ## ---------------------- GENERAL SETTINGS ---------------------- ##
@@ -122,6 +123,8 @@ bindsym $mod+g exec --no-startup-id i3-msg split h && notify-send -t 800 "Horizo
 bindsym $mod+v exec --no-startup-id i3-msg split v && notify-send -t 800 "Vertical ↑ ↓"
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
+# Make container stick to screen (floating only)
+bindsym $mod+t exec --no-startup-id ~/.config/i3/scripts/toggle-sticky.sh
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
@@ -138,12 +141,12 @@ bindsym $mod+Shift+space floating toggle; [tiling con_id=__focused__] border $co
 bindsym --whole-window $mod+button2 floating toggle; [tiling con_id=__focused__] border $configborderstyle; [floating con_id=__focused__] border normal
 
 # Move floating window to center
-bindsym $mod+Shift+Home resize set 1050 700, move position center
+bindsym $mod+Shift+Home move position center
 
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
 # Jump to urgent window
-bindsym $mod+x [urgent=latest] focus
+##bindsym $mod+x [urgent=latest] focus
 # focus the parent container
 bindsym $mod+a focus parent
 # focus the child container
@@ -158,7 +161,7 @@ bar {
     padding -2px 0 -2px 0
     tray_output none
     strip_workspace_numbers yes
-    status_command ~/.cargo/bin/i3status-rs ~/.config/i3status-rust/monitor1.toml
+    status_command ~/.cargo/bin/i3status-rs ~/.config/i3status-rust/config1.toml
 
     colors {
         background #191f2a
@@ -180,7 +183,7 @@ bar {
     tray_output $monitor2
     tray_padding 2
     strip_workspace_numbers yes
-    status_command ~/.cargo/bin/i3status-rs ~/.config/i3status-rust/monitor2.toml
+    status_command ~/.cargo/bin/i3status-rs ~/.config/i3status-rust/config2.toml
 
     colors {
         background #191f2a
@@ -264,13 +267,13 @@ bindsym $mod+minus [title="^(?!$scratchpadwindowtitle2|$scratchpadwindowtitle3|$
 #bindsym $mod+minus scratchpad show; move position center
 
 # Window keybinds
-bindsym $mod+Mod1+F1 [title="$scratchpadwindowtitle1"] scratchpad show; move position center
-bindsym $mod+Mod1+0 [title="$scratchpadwindowtitle1"] scratchpad show; move position center
-bindsym $mod+Mod1+1 [title="$scratchpadwindowtitle2"] scratchpad show; move position center
-bindsym $mod+Mod1+2 [title="$scratchpadwindowtitle3"] scratchpad show; move position center
-bindsym $mod+Mod1+3 [title="$scratchpadwindowtitle4"] scratchpad show; move position center
-bindsym $mod+Mod1+4 [title="$scratchpadwindowtitle5"] scratchpad show; move position center
-bindsym Control+Shift+Escape [title="$scratchpadwindowtitle5"] scratchpad show; move position center
+bindsym $mod+Mod1+F1 [title="$scratchpadwindowtitle1"] scratchpad show, move position center
+bindsym $mod+Mod1+0 [title="$scratchpadwindowtitle1"] scratchpad show, move position center
+bindsym $mod+Mod1+1 [title="$scratchpadwindowtitle2"] scratchpad show, move position center
+bindsym $mod+Mod1+2 [title="$scratchpadwindowtitle3"] scratchpad show, move position center
+bindsym $mod+Mod1+3 [title="$scratchpadwindowtitle4"] scratchpad show, move position center
+bindsym $mod+Mod1+4 [title="$scratchpadwindowtitle5"] scratchpad show, move position center
+bindsym Control+Shift+Escape [title="$scratchpadwindowtitle5"] scratchpad show, move position center
 
 # Scratchpad 1 - Help dialog
 exec_always --no-startup-id pgrep -f '^alacritty -t $scratchpadwindowtitle1' || alacritty -t $scratchpadwindowtitle1 -e $scratchpadwindowcontainer1
@@ -311,14 +314,10 @@ bindsym $mod+Control+Down exec --no-startup-id $i3_resize down
 
 
 # Go to workspace
+bindsym $mod+x focus output DP-4 DP-2
 bindsym $mod+p workspace prev
 bindsym $mod+n workspace next
-bindsym $mod+Shift+p move to workspace prev, workspace prev
-bindsym $mod+Shift+n move to workspace next, workspace next
-bindsym $mod+Control+p move to workspace prev
-bindsym $mod+Control+n move to workspace next
 bindsym $mod+1 workspace $ws1
-
 bindsym $mod+2 workspace $ws2
 bindsym $mod+3 workspace $ws3
 bindsym $mod+4 workspace $ws4
@@ -330,6 +329,8 @@ bindsym $mod+F3 workspace $ws9
 bindsym $mod+F4 workspace $ws10
 
 # move focused container to workspace and go to workspace
+bindsym $mod+Shift+p move to workspace prev, workspace prev
+bindsym $mod+Shift+n move to workspace next, workspace next
 bindsym $mod+Shift+1 move container to workspace $ws1, workspace $ws1
 bindsym $mod+Shift+2 move container to workspace $ws2, workspace $ws2
 bindsym $mod+Shift+3 move container to workspace $ws3, workspace $ws3
@@ -342,6 +343,8 @@ bindsym $mod+Shift+F3 move container to workspace $ws9, workspace $ws9
 bindsym $mod+Shift+F4 move container to workspace $ws10, workspace $ws10
 
 # move focused container to workspace
+bindsym $mod+Control+p move to workspace prev
+bindsym $mod+Control+n move to workspace next
 bindsym $mod+Control+1 move container to workspace $ws1
 bindsym $mod+Control+2 move container to workspace $ws2
 bindsym $mod+Control+3 move container to workspace $ws3
