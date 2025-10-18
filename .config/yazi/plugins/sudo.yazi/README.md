@@ -1,11 +1,12 @@
 # sudo.yazi
+Forked from https://github.com/iandol/sudo.yazi, which is a fork from https://github.com/TD-Sky/sudo.yazi.
 
 Call `sudo` in yazi. This fork replaces the NuShell dependency in the original https://github.com/TD-Sky/sudo.yazi with Ruby or Python which are more commonly installed. Made using [Gemini CLI](https://geminicli.com).
 
 ## Installation
 
 ```bash
-$ ya pack -a iandol/sudo
+$ ya pkg add JohWQ/sudo
 ```
 
 ## Requirements
@@ -23,6 +24,7 @@ $ ya pack -a iandol/sudo
 - [x] create relative-path symbolic links
 - [x] create hard links
 - [x] touch new file
+- [x] open file in $editor
 - [x] make new directory
 
 > You can use [conceal](https://github.com/TD-Sky/conceal) to browse and restore trashed files
@@ -43,6 +45,12 @@ desc = "sudo paste"
 on = ["R", "P"]
 run = "plugin sudo -- paste --force"
 desc = "sudo paste"
+
+# sudo open editor
+[[mgr.prepend_keymap]]
+on = ["R", "o"]
+run = "plugin sudo -- open"
+desc = "sudo open editor"
 
 # sudo mv
 [[manager.keymap]]

@@ -132,6 +132,7 @@ bindsym --whole-window $mod+Shift+button3 layout toggle split
 
 bindsym $mod+Shift+q kill
 bindsym --whole-window $mod+Shift+button2 kill
+bindsym --whole-window Control+button2 kill
 
 bindsym $mod+Shift+space floating toggle; [tiling con_id=__focused__] border $configborderstyle; [floating con_id=__focused__] border normal
 bindsym --whole-window $mod+button2 floating toggle; [tiling con_id=__focused__] border $configborderstyle; [floating con_id=__focused__] border normal
