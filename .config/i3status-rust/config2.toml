@@ -48,6 +48,9 @@ idle_bg = "#2d3749"
 block = "weather"
 format = " $icon  $temp $wind m/s "
 format_alt = "$icon  om 12 timer: {$temp_favg ({$temp_fmin}-{$temp_fmax})|Unavailable} "
+[[block.click]]
+button = "right"
+action = "toggle_format"
 [block.service]
 name = "metno"
 coordinates = ["59.9125115", "10.747012"] # Oslo
