@@ -17,9 +17,9 @@ CURRENT_STATE=$(cat "$STATE_FILE")
 if [ "$CURRENT_STATE" == "enabled" ]; then
     i3-msg "sticky disable"
     echo "disabled" > "$STATE_FILE"
-    notify-send -t 1800 "Window stick" "disabled for $CONTAINER_CLASS"
+    notify-send -t 1800 "Window stick (floating)" "disabled for $CONTAINER_CLASS"
 else
     i3-msg "sticky enable"
     echo "enabled" > "$STATE_FILE"
-    notify-send -t 1800 "Window Stick" "enabled for $CONTAINER_CLASS"
+    notify-send -t 1800 "Window Stick (floating)" "enabled for $CONTAINER_CLASS"
 fi

@@ -209,9 +209,6 @@ local function sudo_remove(value)
     local args = sudo_cmd()
 
     extend_list(args, { interpreter, script, "rm" })
-    if value.permanently then
-        table.insert(args, "--permanent")
-    end
     extend_iter(args, list_map(value.selected, ya.quote))
 
     execute(args)
@@ -240,7 +237,6 @@ return {
         elseif state.kind == "create" then
             sudo_create()
         elseif state.kind == "remove" then
-            state.value.permanently = job.args.permanently
             sudo_remove(state.value)
         elseif state.kind == "rename" then
             sudo_rename(state.value)

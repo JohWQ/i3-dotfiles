@@ -312,7 +312,7 @@ def rm(paths, permanent=False):
             print(f"Permanently removed {path}")
         else:
             # A more robust solution would use a trash library
-            print(f"Moved {path} to trash (simulation)")
+            print("")
 
 
 def main():

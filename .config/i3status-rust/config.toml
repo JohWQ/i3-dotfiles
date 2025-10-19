@@ -8,8 +8,8 @@ icons = "awesome6"
 
 [[block]]
 block = "music"
-player = ["YoutubeMusic", "strawberry", "fooyin"]
-interface_name_exclude = ["kdeconnect", "mpd"]
+player = ["YoutubeMusic", "strawberry", "fooyin", "mpd"]
+interface_name_exclude = ["kdeconnect"]
 format_alt = " $icon {$combo.str(max_w:15,rot_interval:0.4) |}"
 [block.format]
 full = " $icon {$combo.str(max_w:30) $prev $next |}"
