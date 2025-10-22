@@ -1,7 +1,5 @@
-## ========================================================= ##
 ## i3 CONFIG FILE (v4)
 ## https://i3wm.org/docs/userguide.html
-## ========================================================= ##
 
 ## ---------------------- i3WM SETTINGS ---------------------- ##
 include $HOME/.config/i3/modes.conf
@@ -12,17 +10,15 @@ bindsym $mod+Shift+r restart
 
 
 ## ---------------------- COLORS & APPEARANCE ---------------------- ##
-# type:                 layout  layout  invisi. bug_li. border
+# type:                 layout  layout  title   line    border
 client.focused          #0377ce #0377ce #ffffff #0377ce #0377ce
-client.focused_inactive #313f4e #313f4e #ffffff #313f4e #313f4e
-client.unfocused        #252525 #252525 #ffffff #252525 #252525
+client.focused_inactive #313f4e #313f4e #e6e6e6 #313f4e #313f4e
+client.unfocused        #252525 #252525 #d1d1d1 #252525 #252525
 client.urgent           #87ceeb #87ceeb #104b63 #87ceeb #87ceeb
-client.placeholder      #000000 #0c0c0c #ffffff #000000 #0c0c0c
+client.placeholder      #000000 #000000 #ffffff #000000 #000000
 client.background       #ffffff
 
 font pango: Liberation Mono 9
-#font pango:DejaVu Sans Mono 9
-#font pango: CaskaydiaCove Nerd Font 8
 
 # Desktop wallpaper. Replace with the path of your image:
 set $desktopwallpaper ~/Pictures/default-dark.png
@@ -33,22 +29,21 @@ default_floating_border normal
 set $configborderstyle pixel 3
 default_border $configborderstyle
 
-gaps inner 8
-smart_gaps on
 # Border style scripts
 bindsym $mod+b exec --no-startup-id ~/.config/i3/scripts/toggle-top-bar.sh
 bindsym $mod+Shift+b exec --no-startup-id ~/.config/i3/scripts/toggle-gaps.sh
 bindsym $mod+Control+b exec --no-startup-id ~/.config/i3/scripts/cycle-border-style.sh
 
+gaps inner 8
+smart_gaps on
 
 ## ---------------------- APPLICATION LAUNCHING ---------------------- ##
-# start a terminal
+# Start a terminal
 bindsym $mod+Return exec --no-startup-id alacritty --config-file ~/.config/alacritty/alacritty.toml
 # Start lightweight terminal
 bindsym $mod+Control+Return exec st
 
-# screenshot
-# key: PrtSc
+# Screenshot
 bindsym Print exec --no-startup-id flameshot gui
 bindsym $mod+Print --release exec --no-startup-id flameshot screen
 
@@ -56,7 +51,7 @@ bindsym $mod+Print --release exec --no-startup-id flameshot screen
 bindsym Control+Mod1+Shift+Insert workspace $ws11; exec --no-startup-id gimp
 bindsym Control+Mod1+Shift+Delete exec --no-startup-id ~/.config/scripts/toggle_display_wacom.sh
 
-# master volume controls
+# Master volume controls
 set $i3_volume-device ~/.config/i3/scripts/volume-device.sh
 set $i3_volume-player ~/.config/i3/scripts/volume-player.sh
 bindsym $mod+Prior exec --no-startup-id $i3_volume-device volume_up
@@ -65,14 +60,14 @@ bindsym $mod+Home exec --no-startup-id $i3_volume-device volume_full
 bindsym $mod+Insert exec --no-startup-id $i3_volume-device volume_7
 bindsym $mod+Delete exec --no-startup-id $i3_volume-device volume_3
 bindsym $mod+End exec --no-startup-id $i3_volume-device volume_mute
-# music player controls
+# Music player controls
 bindsym Control+Mod1+Prior exec --no-startup-id $i3_volume-player volume_up
 bindsym Control+Mod1+Next exec --no-startup-id $i3_volume-player volume_down
 bindsym Control+Mod1+Home exec --no-startup-id $i3_volume-player volume_full
 bindsym Control+Mod1+Insert exec --no-startup-id $i3_volume-player volume_7
 bindsym Control+Mod1+Delete exec --no-startup-id $i3_volume-player volume_3
 bindsym Control+Mod1+End exec --no-startup-id $i3_volume-player volume_mute
-# playerctl controls
+# Playerctl controls
 bindsym Control+Mod1+Up exec --no-startup-id playerctl play-pause
 bindsym Control+Mod1+Down exec --no-startup-id playerctl stop
 bindsym Control+Mod1+Left exec --no-startup-id playerctl previous
@@ -114,6 +109,7 @@ floating_modifier $mod
 workspace_auto_back_and_forth yes
 set $monitor1 DP-2
 set $monitor2 DP-4
+#bindsym --border button1 nop
 
 bindsym $mod+Shift+Control+r exec --no-startup-id xrandr --output $monitor1 --primary --mode 1920x1080 --rate 144.00 --pos 0x420 --output $monitor2 --mode 1920x1080 --rate 144.00 --pos 1920x0 --rotate left && sleep 2 && notify-send -t 2000 "Resolution reset"
 
@@ -140,17 +136,19 @@ bindsym --whole-window Control+button2 kill
 bindsym $mod+Shift+space floating toggle; [tiling con_id=__focused__] border $configborderstyle; [floating con_id=__focused__] border normal
 bindsym --whole-window $mod+button2 floating toggle; [tiling con_id=__focused__] border $configborderstyle; [floating con_id=__focused__] border normal
 
+# Change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
 # Move floating window to center
 bindsym $mod+Shift+Home move position center
 
-# change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
-# Jump to urgent window
-##bindsym $mod+x [urgent=latest] focus
-# focus the parent container
+# Focus the parent container
 bindsym $mod+a focus parent
-# focus the child container
+# Focus the child container
 bindsym $mod+q focus child
+
+##bindsym $mod+z [urgent=latest] focus
+
 
 ## ---------------------- BAR SETTINGS ---------------------- ##
 # Monitor 1 - i3status-rust
@@ -227,7 +225,7 @@ set $ws10 "4:F4"
 exec_always --no-startup-id sleep 1; feh --bg-fill $desktopwallpaper
 
 # Help message
-exec --no-startup-id sleep 5; notify-send -t 5000 "Help menu" "Press Super + Alt + F1 to view shortcuts"
+#exec --no-startup-id sleep 5; notify-send -t 5000 "Help menu" "Press Super + Alt + F1 to view shortcuts"
 
 # XDG autostart .desktop files in /etc/xdg/autostart & ~/.config/autostart 
 exec --no-startup-id dex-autostart --autostart --environment i3
@@ -237,8 +235,11 @@ exec --no-startup-id otd-daemon
 # Greenclip daemon
 set $greenclip /usr/local/bin/greenclip
 exec --no-startup-id $greenclip daemon
-# picom daemon
+# Picom daemon
 exec --no-startup-id picom --daemon --config ~/.config/picom/picom.conf
+
+# Mpd
+exec --no-startup-id mpd
 
 # Resolution for monitor 1 & 2
 exec --no-startup-id xset s 1200 0
@@ -251,29 +252,37 @@ set $scratchpadwindowtitle2 alacritty_term
 set $scratchpadwindowtitle3 pulsemixer_term
 set $scratchpadwindowtitle4 yazi_term
 set $scratchpadwindowtitle5 btop_term
+set $scratchpadwindowtitle6 rmpc_term
 
-set $scratchpadwindowcontainer1 ~/.config/scripts/help_menu.sh
+set $scratchpadwindowcontainer1 ~/.config/i3/scripts/help_menu.sh
 set $scratchpadwindowcontainer2 ~/.config/i3/scripts/exec-fastfetch.sh
 set $scratchpadwindowcontainer3 pulsemixer
 set $scratchpadwindowcontainer4 yazi
 set $scratchpadwindowcontainer5 btop
+set $scratchpadwindowcontainer6 ~/.config/i3/scripts/exec-rmpc.sh
 
 # Make the currently focused window a scratchpad
 bindsym $mod+Shift+minus exec --no-startup-id i3-msg "move scratchpad" && notify-send -t 2000 "Sending to scratchpad workspace..."
 
 # Show "other" scratchpads that are not set to launch with i3 on startup
-bindsym $mod+minus [title="^(?!$scratchpadwindowtitle2|$scratchpadwindowtitle3|$scratchpadwindowtitle4|$scratchpadwindowtitle5).*"] scratchpad show; move position center; [tiling con_id=__focused__] border $configborderstyle; [floating con_id=__focused__] border normal
+bindsym $mod+minus [title="^(?!$scratchpadwindowtitle1|$scratchpadwindowtitle2|$scratchpadwindowtitle3|$scratchpadwindowtitle4|$scratchpadwindowtitle5|$scratchpadwindowtitle6).*"] scratchpad show; move position center; [tiling con_id=__focused__] border $configborderstyle; [floating con_id=__focused__] border normal
 # Swap with previous bindsym to retain cycling through window functionality:
 #bindsym $mod+minus scratchpad show; move position center
 
 # Window keybinds
-bindsym $mod+Mod1+F1 [title="$scratchpadwindowtitle1"] scratchpad show, move position center
-bindsym $mod+Mod1+0 [title="$scratchpadwindowtitle1"] scratchpad show, move position center
-bindsym $mod+Mod1+1 [title="$scratchpadwindowtitle2"] scratchpad show, move position center
-bindsym $mod+Mod1+2 [title="$scratchpadwindowtitle3"] scratchpad show, move position center
-bindsym $mod+Mod1+3 [title="$scratchpadwindowtitle4"] scratchpad show, move position center
-bindsym $mod+Mod1+4 [title="$scratchpadwindowtitle5"] scratchpad show, move position center
-bindsym Control+Shift+Escape [title="$scratchpadwindowtitle5"] scratchpad show, move position center
+bindsym $mod+Mod1+F1 [title="^($scratchpadwindowtitle1)$"] scratchpad show, move position center
+bindsym $mod+Mod1+0 [title="^($scratchpadwindowtitle1)$"] scratchpad show, move position center
+
+bindsym $mod+Mod1+1 [title="^($scratchpadwindowtitle2)$"] scratchpad show, move position center
+
+bindsym $mod+Mod1+2 [title="^($scratchpadwindowtitle3)$"] scratchpad show, move position center
+
+bindsym $mod+Mod1+3 [title="^($scratchpadwindowtitle4)$"] scratchpad show, move position center
+
+bindsym Control+Shift+Escape [title="^($scratchpadwindowtitle5)$"] scratchpad show, move position center
+bindsym $mod+Mod1+4 [title="^($scratchpadwindowtitle5)$"] scratchpad show, move position center
+
+bindsym $mod+Mod1+5 [title="^($scratchpadwindowtitle6)$"] scratchpad show, move position center
 
 # Scratchpad 1 - Help dialog
 exec_always --no-startup-id pgrep -f '^alacritty -t $scratchpadwindowtitle1' || alacritty -t $scratchpadwindowtitle1 -e $scratchpadwindowcontainer1
@@ -285,6 +294,8 @@ exec_always --no-startup-id pgrep -f '^alacritty -t $scratchpadwindowtitle3' || 
 exec_always --no-startup-id pgrep -f '^alacritty -t $scratchpadwindowtitle4' || alacritty -t $scratchpadwindowtitle4 -e $scratchpadwindowcontainer4
 # Scratchpad 5 - Btop
 exec_always --no-startup-id pgrep -f '^alacritty -t $scratchpadwindowtitle5' || alacritty -t $scratchpadwindowtitle5 -e $scratchpadwindowcontainer5
+# Scratchpad 6 - rmpc
+exec_always --no-startup-id pgrep -f '^alacritty -t $scratchpadwindowtitle6' || alacritty -t $scratchpadwindowtitle6 -e $scratchpadwindowcontainer6
 
 
 ## ---------------------- WINDOW MANIPULATION ---------------------- ##
@@ -301,7 +312,7 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 
-# resize without entering resize mode ("2px or 2 ppt"):
+# Resize without entering resize mode ("2px or 2 ppt"):
 set $i3_resize ~/.config/i3/scripts/i3resize.sh
 bindsym $mod+Control+h exec --no-startup-id $i3_resize left
 bindsym $mod+Control+l exec --no-startup-id $i3_resize right
@@ -328,7 +339,8 @@ bindsym $mod+F2 workspace $ws8
 bindsym $mod+F3 workspace $ws9
 bindsym $mod+F4 workspace $ws10
 
-# move focused container to workspace and go to workspace
+# Move focused container to workspace and go to workspace
+bindsym $mod+Shift+x move container to output DP-4 DP-2, focus output DP-4 DP-2
 bindsym $mod+Shift+p move to workspace prev, workspace prev
 bindsym $mod+Shift+n move to workspace next, workspace next
 bindsym $mod+Shift+1 move container to workspace $ws1, workspace $ws1
@@ -342,7 +354,8 @@ bindsym $mod+Shift+F2 move container to workspace $ws8, workspace $ws8
 bindsym $mod+Shift+F3 move container to workspace $ws9, workspace $ws9
 bindsym $mod+Shift+F4 move container to workspace $ws10, workspace $ws10
 
-# move focused container to workspace
+# Move focused container to workspace
+bindsym $mod+Control+x move container to output DP-4 DP-2
 bindsym $mod+Control+p move to workspace prev
 bindsym $mod+Control+n move to workspace next
 bindsym $mod+Control+1 move container to workspace $ws1
@@ -356,25 +369,21 @@ bindsym $mod+Control+F2 move container to workspace $ws8
 bindsym $mod+Control+F3 move container to workspace $ws9
 bindsym $mod+Control+F4 move container to workspace $ws10
 
-
 # Move window (Vim Keys)
 bindsym $mod+Shift+h move left
 bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
-
 # Move window 1 px (Vim Keys)
 bindsym $mod+Mod1+Shift+h move left 1 px
 bindsym $mod+Mod1+Shift+j move down 1 px
 bindsym $mod+Mod1+Shift+k move up 1 px
 bindsym $mod+Mod1+Shift+l move right 1 px
-
 # Move window 200 px (Vim Keys)
 bindsym $mod+Control+Shift+h move left 200 px
 bindsym $mod+Control+Shift+j move down 200 px
 bindsym $mod+Control+Shift+k move up 200 px
 bindsym $mod+Control+Shift+l move right 200 px
-
 # Move window 600 px (Vim Keys)
 bindsym $mod+Mod1+Control+Shift+h move left 600 px
 bindsym $mod+Mod1+Control+Shift+j move down 600 px
@@ -386,19 +395,16 @@ bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
-
 # Move window 1 px (Arrow Keys)
 bindsym $mod+Mod1+Shift+Up move up 1 px
 bindsym $mod+Mod1+Shift+Down move down 1 px
 bindsym $mod+Mod1+Shift+Left move left 1 px
 bindsym $mod+Mod1+Shift+Right move right 1 px
-
 # Move window 200 px (Arrow Keys)
 bindsym $mod+Control+Shift+Up move up 200 px
 bindsym $mod+Control+Shift+Down move down 200 px
 bindsym $mod+Control+Shift+Left move left 200 px
 bindsym $mod+Control+Shift+Right move right 200 px
-
 # Move window 600 px (Arrow Keys)
 bindsym $mod+Mod1+Control+Shift+Up move up 600 px
 bindsym $mod+Mod1+Control+Shift+Down move down 600 px
