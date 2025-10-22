@@ -61,6 +61,12 @@ idle_bg = "#272f40"
 weather_fog = "\ue313"
 weather_rain = "\uef1c"
 weather_clouds_night = "\ueeef"
+weather_rain_night = "\uef1c"
+weather_sun = "\ueef0"
+weather_fog_night = "\ue346"
+weather_snow = "\uf2dc"
+weather_thunder_night = "\ue32a"
+weather_thunder = "\ue31d"
 
 [[block]]
 block = "time"
