@@ -77,13 +77,15 @@ export GPG_TTY=$TTY
 
 
 # ----- jw paths ----- #
-#export YAZI_LOG=debug yazi
 eval "$(zoxide init zsh)"
+source <(fzf --zsh)
+
+export SHELL='/usr/local/bin/zsh'
 export TERMINAL='alacritty'
-export SHELL='zsh'
 export EDITOR='nvim'
 export VISUAL='nvim'
-source <(fzf --zsh)
+export PATH="$HOME/.cargo/bin:$PATH"
+. "$HOME/.cargo/env"
 
 export FZF_DEFAULT_COMMAND='fd -H -t f \
 -E "/.snapshots" \
