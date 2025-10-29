@@ -1,6 +1,8 @@
 [mgr]
+linemode = "mtime"
 show_hidden = true
-linemode    = "mtime"
+sort_reverse = true
+sort_by = "mtime"
 
 [preview]
 wrap            = "yes"

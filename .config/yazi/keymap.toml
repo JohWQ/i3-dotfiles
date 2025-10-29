@@ -585,10 +585,10 @@ desc = "Add files to an archive"
 on = "o"
 run = "plugin augment-command -- editor"
 desc = "Open files with the default editor"
-[[mgr.prepend_keymap]]
-on = "i"
-run = "plugin augment-command -- pager"
-desc = "Open files with the default pager"
+#[[mgr.prepend_keymap]]
+#on = "i"
+#run = "plugin augment-command -- pager"
+#desc = "Open files with the default pager"
 [[mgr.prepend_keymap]]
 on = ["c", "c"]
 run = "plugin augment-command -- copy path"
