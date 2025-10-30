@@ -7,6 +7,8 @@ include $HOME/.config/i3/window-rules.conf
 
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
+# Hack to reload only the config and i3bar.
+bindsym $mod+Shift+ctrl+c exec --no-startup-id i3-msg "reload" && pkill i3bar && i3bar &
 
 
 ## ---------------------- COLORS & APPEARANCE ---------------------- ##
