@@ -81,7 +81,7 @@ interval = 60
 format = " $icon $timestamp.datetime(f:'%d/%m - %R') "
 [[block.click]]
 button = "left"
-cmd = "i3-msg exec 'firefox --no-remote --class webcalprofile1 -profile ~/.mozilla/firefox/npbhnp6z.default'"
+cmd = "firefox --no-remote --class cleanwebappfirefoxc2 -profile ~/.mozilla/firefox/npbhnp6z.default"
 [block.theme_overrides]
 idle_bg = "#212837"
 [block.icons_overrides]

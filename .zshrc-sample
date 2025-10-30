@@ -272,7 +272,6 @@ alias pingtest='~/.config/scripts/ping_websites.sh'
 # ---------------------------
 # Scripts / Tools
 # ---------------------------
-alias check='~/.config/scripts/check_package.sh'
 alias picom='picom --daemon --config ~/.config/picom/picom.conf'
 alias neofetch='clear; fastfetch'
 alias songrecord='songrec listen -d "alsa_output.pci-0000_00_1f.3.analog-stereo.monitor"'

@@ -244,7 +244,7 @@ exec --no-startup-id picom --daemon --config ~/.config/picom/picom.conf
 exec --no-startup-id mpd
 
 # Resolution for monitor 1 & 2
-exec --no-startup-id xset s 1200 0
+exec --no-startup-id xset s 3600 0
 exec --no-startup-id xrandr --output $monitor1 --primary --mode 1920x1080 --rate 144.00 --pos 0x420 --output $monitor2 --mode 1920x1080 --rate 144.00 --pos 1920x0 --rotate left
 
 

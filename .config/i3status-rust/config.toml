@@ -80,6 +80,7 @@ weather_fog = "\ue313"
 weather_rain = "\uef1c"
 #weather_clouds_night = "\ueeef"
 weather_clouds_night = "\uf0c2"
+weather_rain_night = "\uef1c"
 weather_sun = "\ueef0"
 weather_fog_night = "\ue346"
 weather_snow = "\uf2dc"
@@ -92,7 +93,7 @@ interval = 60
 format = " $icon $timestamp.datetime(f:'%d/%m - %R') "
 [[block.click]]
 button = "left"
-cmd = "i3-msg exec 'firefox --no-remote --class webcalprofile1 -profile ~/.mozilla/firefox/npbhnp6z.default'"
+cmd = "firefox --no-remote --class cleanwebappfirefoxc1 -profile ~/.mozilla/firefox/npbhnp6z.default"
 [block.theme_overrides]
 idle_bg = "#212837"
 [block.icons_overrides]
