@@ -27,6 +27,7 @@ require("bunny"):setup({
  hops = {
   { key = "/",               path = "/", },
   { key = "t",               path = "/tmp", },
+  { key = "e",               path = "/etc", },
   { key = "o",               path = "/opt", },
   { key = { "u", "l", "b" }, path = "/usr/local/bin",          desc = "Local bin" },
   { key = { "u", "b" },      path = "/usr/bin",                desc = "binaries" },
@@ -41,7 +42,8 @@ require("bunny"):setup({
   { key = "c",               path = "~/.config",               desc = "Config files" },
   { key = "d",               path = "~/Downloads",             desc = "Downloads" },
   { key = "D",               path = "~/Documents",             desc = "Documents" },
-  { key = "p",               path = "~/Pictures/",             desc = "Pictures" },
+  { key = "p",               path = "~/Pictures",              desc = "Pictures" },
+  { key = "v",               path = "~/Videos",                desc = "Videos" },
   { key = "h",               path = "~",                       desc = "Home" },
   -- key and path attributes are required, desc is optional
  },

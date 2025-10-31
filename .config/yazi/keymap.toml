@@ -369,6 +369,10 @@ on   = "!"
 for  = "unix"
 run  = 'shell "$SHELL" --block'
 desc = "Open $SHELL here"
+[[mgr.prepend_keymap]]
+on   = "<C-o>"
+run  = "shell --orphan --confirm 'thunar .'"
+desc = "Open the current directory in Thunar"
 # --- PLUGINS --- #
 # -- Chmod -- #
 [[mgr.prepend_keymap]]
