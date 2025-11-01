@@ -11,5 +11,4 @@ sudo umount -f /mnt/4TB
 pkill mpd
 pkill dunst
 pkill alacritty
-sleep 1
-sudo systemctl poweroff
+sleep 1; systemctl poweroff
