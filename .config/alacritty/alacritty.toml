@@ -1,15 +1,13 @@
 # [[keyboard.bindings]]
-# key = "ø"
+# key = ""
 # mods = "None"
-# chars = "⌀"
+# chars = ""
 
-[keyboard]
-bindings = [
-  { key = "ø", mods = "None", chars = "⌀" },
-# buggy  { key = "Ø", mods = "None", chars = "Ø"},
+#[keyboard]
+#bindings = [
 #  { key = "V", mods = "Control", action = "Paste" },
 #  { key = "Return", mods = "Control|Shift", action = "SpawnNewInstance"}, # `Ctrl+D` to close
-]
+#]
 
 [font]
 
@@ -66,7 +64,7 @@ size = 16.0
 ##        yellow  = "#fa8419"
 
 [window]
-opacity = 0.88
+opacity = 0.85
 
 [terminal.shell]
 program = "/usr/local/bin/zsh"

@@ -8,7 +8,7 @@ include $HOME/.config/i3/window-rules.conf
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 # Hack to reload only the config and i3bar.
-bindsym $mod+Shift+ctrl+c exec --no-startup-id i3-msg "reload" && pkill i3bar && i3bar &
+bindsym $mod+Shift+ctrl+c exec --no-startup-id pkill i3bar && (i3bar -b bar-0 & i3bar -b bar-1 &)
 
 
 ## ---------------------- COLORS & APPEARANCE ---------------------- ##
@@ -289,17 +289,17 @@ bindsym $mod+Mod1+4 [title="^($scratchpadwindowtitle5)$"] scratchpad show, move 
 #bindsym $mod+Mod1+5 [title="^($scratchpadwindowtitle6)$"] scratchpad show, move position center
 
 # Scratchpad 1 - Help dialog
-exec_always --no-startup-id pgrep -f '^alacritty -t $scratchpadwindowtitle1' || alacritty -t $scratchpadwindowtitle1 -e $scratchpadwindowcontainer1
+exec_always --no-startup-id pgrep -f "^(alacritty -t $scratchpadwindowtitle1)" || alacritty -t $scratchpadwindowtitle1 -e $scratchpadwindowcontainer1
 # Scratchpad 2 - Terminal
-exec_always --no-startup-id pgrep -f '^alacritty -t $scratchpadwindowtitle2' || alacritty -t $scratchpadwindowtitle2 -e $scratchpadwindowcontainer2
+exec_always --no-startup-id pgrep -f "^(alacritty -t $scratchpadwindowtitle2)" || alacritty -t $scratchpadwindowtitle2 -e $scratchpadwindowcontainer2
 # Scratchpad 3 - Pulsemixer
-exec_always --no-startup-id pgrep -f '^alacritty -t $scratchpadwindowtitle3' || alacritty -t $scratchpadwindowtitle3 -e $scratchpadwindowcontainer3
+exec_always --no-startup-id pgrep -f "^(alacritty -t $scratchpadwindowtitle3)" || alacritty -t $scratchpadwindowtitle3 -e $scratchpadwindowcontainer3
 # Scratchpad 4 - Yazi
-exec_always --no-startup-id pgrep -f '^alacritty -t $scratchpadwindowtitle4' || alacritty -t $scratchpadwindowtitle4 -e $scratchpadwindowcontainer4
+exec_always --no-startup-id pgrep -f "^(alacritty -t $scratchpadwindowtitle4)" || alacritty -t $scratchpadwindowtitle4 -e $scratchpadwindowcontainer4
 # Scratchpad 5 - Btop
-exec_always --no-startup-id pgrep -f '^alacritty -t $scratchpadwindowtitle5' || alacritty -t $scratchpadwindowtitle5 -e $scratchpadwindowcontainer5
+exec_always --no-startup-id pgrep -f "^(alacritty -t $scratchpadwindowtitle5)" || alacritty -t $scratchpadwindowtitle5 -e $scratchpadwindowcontainer5
 # Scratchpad 6 - rmpc
-#exec_always --no-startup-id pgrep -f '^alacritty -t $scratchpadwindowtitle6' || alacritty -t $scratchpadwindowtitle6 -e $scratchpadwindowcontainer6
+#exec_always --no-startup-id pgrep -f "^(alacritty -t $scratchpadwindowtitle6)" || alacritty -t $scratchpadwindowtitle6 -e $scratchpadwindowcontainer6
 
 
 ## ---------------------- WINDOW MANIPULATION ---------------------- ##
