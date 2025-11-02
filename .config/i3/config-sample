@@ -128,23 +128,23 @@ bindsym $mod+t exec --no-startup-id ~/.config/i3/scripts/toggle-sticky.sh
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
-bindsym --whole-window $mod+Shift+button5 layout stacking
-bindsym --whole-window $mod+Shift+button4 layout tabbed
-bindsym --whole-window $mod+Shift+button3 layout toggle split
+bindsym --whole-window $mod+ctrl+button5 layout stacking
+bindsym --whole-window $mod+ctrl+button4 layout tabbed
+bindsym --whole-window $mod+ctrl+button3 layout toggle split
 
 bindsym $mod+Shift+q kill
 bindsym --whole-window $mod+Shift+button2 kill
-bindsym --whole-window ctrl+button2 kill
-
-bindsym $mod+Shift+space floating toggle; [tiling con_id=__focused__] border $configborderstyle; [floating con_id=__focused__] border normal
-bindsym --whole-window $mod+button2 floating toggle; [tiling con_id=__focused__] border $configborderstyle; [floating con_id=__focused__] border normal
 
 # Change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
 
+bindsym $mod+Shift+space floating toggle; [tiling con_id=__focused__] border $configborderstyle; [floating con_id=__focused__] border normal
+bindsym --whole-window $mod+ctrl+button2 floating toggle; [tiling con_id=__focused__] border $configborderstyle; [floating con_id=__focused__] border normal
+
 # Move floating window to center
 bindsym $mod+Shift+Home move position center
 bindsym $mod+Shift+End exec --no-startup-id ~/.config/i3/scripts/cycle-window-size.sh
+bindsym --whole-window $mod+ctrl+button1 exec --no-startup-id ~/.config/i3/scripts/cycle-window-size.sh
 
 # Focus the parent container
 bindsym $mod+a focus parent
