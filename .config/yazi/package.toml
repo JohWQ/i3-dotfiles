@@ -53,5 +53,10 @@ use = "yazi-rs/plugins:smart-filter"
 rev = "8f1d971"
 hash = "bcda8eeb3f4013bae156aecabfc745e8"
 
+[[plugin.deps]]
+use = "JohWQ/convert"
+rev = "91b921a"
+hash = "15f980464bf41efc3ff2c7fe1d1ab4f3"
+
 [flavor]
 deps = []

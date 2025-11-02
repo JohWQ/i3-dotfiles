@@ -143,6 +143,8 @@ bindsym --whole-window $mod+ctrl+button2 floating toggle; [tiling con_id=__focus
 
 # Move floating window to center
 bindsym $mod+Shift+Home move position center
+
+# Change size of current floating container
 bindsym $mod+Shift+End exec --no-startup-id ~/.config/i3/scripts/cycle-window-size.sh
 bindsym --whole-window $mod+ctrl+button1 exec --no-startup-id ~/.config/i3/scripts/cycle-window-size.sh
 

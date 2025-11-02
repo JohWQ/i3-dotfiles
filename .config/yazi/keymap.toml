@@ -376,7 +376,7 @@ desc = "Open the current directory in Thunar"
 # --- PLUGINS --- #
 # -- Chmod -- #
 [[mgr.prepend_keymap]]
-on   = [ "c", "m" ]
+on   = [ "n", "m" ]
 run  = "plugin chmod"
 desc = "Chmod on selected files"
 # -- Confirm-quit -- #
@@ -609,3 +609,16 @@ desc = "Copy the filename"
 on = ["c", "n"]
 run = "plugin augment-command -- copy name_without_ext"
 desc = "Copy the filename without extension"
+# -- convert-- #
+[[mgr.prepend_keymap]]
+on = ["n", "p"]
+run = "plugin convert -- --extension='png'"
+desc = "Convert to PNG"
+[[mgr.prepend_keymap]]
+on = ["n", "j"]
+run = "plugin convert -- --extension='jpg'"
+desc = "Convert to JPG"
+[[mgr.prepend_keymap]]
+on = ["n", "w"]
+run = "plugin convert -- --extension='webp'"
+desc = "Convert to WebP"
