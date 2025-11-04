@@ -1,1 +1,1 @@
-firefox --no-remote -profile ~/.mozilla/firefox/npbhnp6z.default calendar.google.com
+firefox --no-remote -profile ~/.mozilla/firefox/pb5pvlut.webapp-calendar calendar.google.com
