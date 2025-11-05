@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 #
 # Interactive Help Navigator (fzf + bat)
 # Easier help entry definition using add_help() function

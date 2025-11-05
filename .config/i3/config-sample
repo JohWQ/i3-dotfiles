@@ -51,7 +51,7 @@ bindsym Print exec --no-startup-id flameshot gui
 bindsym $mod+Print --release exec --no-startup-id flameshot screen
 
 # OTD tablet button keybinds:
-bindsym ctrl+Mod1+Shift+Insert workspace $ws11; exec --no-startup-id gimp
+bindsym ctrl+Mod1+Shift+Insert workspace $ws100; exec --no-startup-id gimp
 bindsym ctrl+Mod1+Shift+Delete exec --no-startup-id ~/.config/scripts/toggle_display_wacom.sh
 
 # Master volume controls
@@ -164,7 +164,8 @@ bar {
     position top
     padding -2px 0 -2px 0
     tray_output none
-    strip_workspace_numbers yes
+    # Removed due to imcompatability with scripts. Range: 1 - 10
+    #strip_workspace_numbers yes
     status_command ~/.cargo/bin/i3status-rs ~/.config/i3status-rust/config1.toml
 
     colors {
@@ -186,7 +187,8 @@ bar {
     padding -2px 0 -2px 0
     tray_output $monitor2
     tray_padding 2
-    strip_workspace_numbers yes
+    # Removed due to imcompatability with scripts. Range: 11 - 20
+    #strip_workspace_numbers yes
     status_command ~/.cargo/bin/i3status-rs ~/.config/i3status-rust/config2.toml
 
     colors {
@@ -208,23 +210,47 @@ workspace $ws3 output $monitor1
 workspace $ws4 output $monitor1
 workspace $ws5 output $monitor1
 workspace $ws6 output $monitor1
-workspace $ws11 output $monitor1
-workspace $ws7 output $monitor2
-workspace $ws8 output $monitor2
-workspace $ws9 output $monitor2
-workspace $ws10 output $monitor2
+workspace $ws7 output $monitor1
+workspace $ws8 output $monitor1
+workspace $ws9 output $monitor1
+workspace $ws10 output $monitor1
+workspace $ws100 output $monitor1
+
+workspace $ws11 output $monitor2
+workspace $ws12 output $monitor2
+workspace $ws13 output $monitor2
+workspace $ws14 output $monitor2
+workspace $ws15 output $monitor2
+workspace $ws16 output $monitor2
+workspace $ws17 output $monitor2
+workspace $ws18 output $monitor2
+workspace $ws19 output $monitor2
+workspace $ws20 output $monitor2
+
 # Workspace order
-set $ws1 "1:1"
-set $ws2 "2:2"
-set $ws3 "3:3"
-set $ws4 "4:4"
-set $ws5 "5:5"
-set $ws6 "6:6"
-set $ws11 "7:GIMP"
-set $ws7 "1:F1"
-set $ws8 "2:F2"
-set $ws9 "3:F3"
-set $ws10 "4:F4"
+# Monitor 1:
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+set $ws100 "100"
+# Monitor 2:
+set $ws11 "11"
+set $ws12 "12"
+set $ws13 "13"
+set $ws14 "14"
+set $ws15 "15"
+set $ws16 "16"
+set $ws17 "17"
+set $ws18 "18"
+set $ws19 "19"
+set $ws20 "20"
 
 
 ## ---------------------- AUTOSTART ---------------------- ##
@@ -331,6 +357,7 @@ bindsym $mod+ctrl+Down exec --no-startup-id $i3_resize down
 
 
 # Go to workspace
+bindsym $mod+o exec --no-startup-id i3-msg workspace number $(~/.config/i3/scripts/new-workspace.sh), workspace number $_
 bindsym $mod+x focus output DP-4 DP-2
 bindsym $mod+p workspace prev
 bindsym $mod+n workspace next
@@ -340,40 +367,54 @@ bindsym $mod+3 workspace $ws3
 bindsym $mod+4 workspace $ws4
 bindsym $mod+5 workspace $ws5
 bindsym $mod+6 workspace $ws6
-bindsym $mod+F1 workspace $ws7
-bindsym $mod+F2 workspace $ws8
-bindsym $mod+F3 workspace $ws9
-bindsym $mod+F4 workspace $ws10
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+bindsym $mod+F1 workspace $ws11
+bindsym $mod+F2 workspace $ws12
+bindsym $mod+F3 workspace $ws13
+bindsym $mod+F4 workspace $ws14
 
 # Move focused container to workspace and go to workspace
+bindsym $mod+Shift+o exec --no-startup-id i3-msg move container to workspace $(~/.config/i3/scripts/new-workspace.sh) && i3-msg workspace number $_
 bindsym $mod+Shift+x move container to output DP-4 DP-2, focus output DP-4 DP-2
-bindsym $mod+Shift+p move to workspace prev, workspace prev
-bindsym $mod+Shift+n move to workspace next, workspace next
+bindsym $mod+Shift+p move container to workspace prev, workspace prev
+bindsym $mod+Shift+n move container to workspace next, workspace next
 bindsym $mod+Shift+1 move container to workspace $ws1, workspace $ws1
 bindsym $mod+Shift+2 move container to workspace $ws2, workspace $ws2
 bindsym $mod+Shift+3 move container to workspace $ws3, workspace $ws3
 bindsym $mod+Shift+4 move container to workspace $ws4, workspace $ws4
 bindsym $mod+Shift+5 move container to workspace $ws5, workspace $ws5
 bindsym $mod+Shift+6 move container to workspace $ws6, workspace $ws6
-bindsym $mod+Shift+F1 move container to workspace $ws7, workspace $ws7
-bindsym $mod+Shift+F2 move container to workspace $ws8, workspace $ws8
-bindsym $mod+Shift+F3 move container to workspace $ws9, workspace $ws9
-bindsym $mod+Shift+F4 move container to workspace $ws10, workspace $ws10
+bindsym $mod+Shift+7 move container to workspace $ws7, workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8, workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9, workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10, workspace $ws10
+bindsym $mod+Shift+F1 move container to workspace $ws11, workspace $ws11
+bindsym $mod+Shift+F2 move container to workspace $ws12, workspace $ws12
+bindsym $mod+Shift+F3 move container to workspace $ws13, workspace $ws13
+bindsym $mod+Shift+F4 move container to workspace $ws14, workspace $ws14
 
 # Move focused container to workspace
+bindsym $mod+ctrl+o exec --no-startup-id i3-msg move container to workspace $(~/.config/i3/scripts/new-workspace.sh)
 bindsym $mod+ctrl+x move container to output DP-4 DP-2
-bindsym $mod+ctrl+p move to workspace prev
-bindsym $mod+ctrl+n move to workspace next
+bindsym $mod+ctrl+p move container to workspace prev
+bindsym $mod+ctrl+n move container to workspace next
 bindsym $mod+ctrl+1 move container to workspace $ws1
 bindsym $mod+ctrl+2 move container to workspace $ws2
 bindsym $mod+ctrl+3 move container to workspace $ws3
 bindsym $mod+ctrl+4 move container to workspace $ws4
 bindsym $mod+ctrl+5 move container to workspace $ws5
 bindsym $mod+ctrl+6 move container to workspace $ws6
-bindsym $mod+ctrl+F1 move container to workspace $ws7
-bindsym $mod+ctrl+F2 move container to workspace $ws8
-bindsym $mod+ctrl+F3 move container to workspace $ws9
-bindsym $mod+ctrl+F4 move container to workspace $ws10
+bindsym $mod+ctrl+7 move container to workspace $ws7
+bindsym $mod+ctrl+8 move container to workspace $ws8
+bindsym $mod+ctrl+9 move container to workspace $ws9
+bindsym $mod+ctrl+0 move container to workspace $ws10
+bindsym $mod+ctrl+F1 move container to workspace $ws11
+bindsym $mod+ctrl+F2 move container to workspace $ws12
+bindsym $mod+ctrl+F3 move container to workspace $ws13
+bindsym $mod+ctrl+F4 move container to workspace $ws14
 
 # Move window (Vim Keys)
 bindsym $mod+Shift+h move left
