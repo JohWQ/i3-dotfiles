@@ -10,28 +10,26 @@ image_quality   = 60
 
 [opener]
 edit = [
-	{ run = '$EDITOR "$@"', desc = "$EDITOR", block = true, for = "unix" },
+  { run = '$EDITOR "$@"', desc = "$EDITOR", block = true, for = "unix" },
 ]
 extract = [
-    { run = 'ya pub augmented-extract --list "$@"', desc = "Extract here", for = "unix" },
+  { run = 'ya pub augmented-extract --list "$@"', desc = "Extract here", for = "unix" },
 ]
 
 [plugin]
 prepend_preloaders = [
-    # Office Documents
-    { mime = "application/openxmlformats-officedocument.*", run = "office" },
-    { mime = "application/oasis.opendocument.*", run = "office" },
-    { mime = "application/ms-*", run = "office" },
-    { mime = "application/msword", run = "office" },
-    { name = "*.docx", run = "office" },
+  # Office Documents
+  { mime = "application/openxmlformats-officedocument*", run = "office" },
+  { mime = "application/oasis.opendocument.*", run = "office" },
+  { mime = "application/ms-*", run = "office" },
+  { mime = "application/msword", run = "office" },
 ]
 prepend_previewers = [
-    # audio metadata
-    { mime = "audio/*",   run = "exifaudio"},
-    # Office Documents
-    { mime = "application/openxmlformats-officedocument.*", run = "office" },
-    { mime = "application/oasis.opendocument.*", run = "office" },
-    { mime = "application/ms-*", run = "office" },
-    { mime = "application/msword", run = "office" },
-    { name = "*.docx", run = "office" },
+  # audio metadata
+  { mime = "audio/*",   run = "exifaudio"},
+  # Office Documents
+  { mime = "application/openxmlformats-officedocument*", run = "office" },
+  { mime = "application/oasis.opendocument.*", run = "office" },
+  { mime = "application/ms-*", run = "office" },
+  { mime = "application/msword", run = "office" },
 ]

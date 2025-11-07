@@ -8,8 +8,6 @@ It is recommended that you have set up RPMFusion to get access to more packages.
 sudo dnf group install multimedia
 sudo dnf group install "development-tools"
 sudo dnf install gcc meson autoconf automake cairo-devel fontconfig libev-devel libjpeg-turbo-devel libXinerama libxkbcommon-devel libxkbcommon-x11-devel libXrandr pam-devel pkgconf xcb-util-image-devel xcb-util-xrm-devel clang openssl openssl-devel lm_sensors lm_sensors-devel notmuch-devel pipewire-libs pandoc xclip xsel jq make git python3 picom playerctl stow rofi rofi-devel libtool qalculate neovim Thunar st alacritty dunst feh btop fzf ImageMagick xdpyinfo xrdb 
-sudo dnf copr enable lihaohong/yazi && sudo dnf install yazi
-You can also install the following packages:
 ```
 
 ```
@@ -46,8 +44,6 @@ meson compile -C build/
 sudo meson install
 cd ~/Downloads && wget https://github.com/erebe/greenclip/releases/download/v4.2/greenclip && sudo mv ./greenclip /usr/local/bin/
 ```
-
-
 
 ## Installing [i3status-rs](https://github.com/greshake/i3status-rust)
 

@@ -46,19 +46,29 @@ icon_command = ""
 globs = []
 dirs  = [
 	{ name = ".config", text = "" },
+	{ name = "dotfiles", text = "" },
 	{ name = ".git", text = "" },
 	{ name = ".github", text = "" },
 	{ name = ".npm", text = "" },
 	{ name = "Desktop", text = "" },
+	{ name = "Desktop-WINDOWS", text = "" },
 	{ name = "Development", text = "" },
 	{ name = "Documents", text = "" },
+	{ name = "Documents-NTFS", text = "" },
+	{ name = "Documents-WINDOWS", text = "" },
 	{ name = "Downloads", text = "" },
+	{ name = "Downloads-WINDOWS", text = "" },
 	{ name = "Library", text = "" },
 	{ name = "Movies", text = "" },
 	{ name = "Music", text = "" },
+	{ name = "music-SERVER", text = "" },
 	{ name = "Pictures", text = "" },
+	{ name = "Pictures-WINDOWS", text = "" },
 	{ name = "Public", text = "" },
 	{ name = "Videos", text = "" },
+	{ name = "Videos-EXT4", text = "" },
+	{ name = "Videos-NTFS", text = "" },
+	{ name = "Videos-WINDOWS", text = "" },
 ]
 
 conds = [
