@@ -49,7 +49,7 @@ cd ~/Downloads && wget https://github.com/erebe/greenclip/releases/download/v4.2
 
 
 
-## Installing [i3status-rs]([GitHub - greshake/i3status-rust: Very resourcefriendly and feature-rich replacement for i3status, written in pure Rust](https://github.com/greshake/i3status-rust))
+## Installing [i3status-rs](https://github.com/greshake/i3status-rust)
 
 Make sure to have the required packages from the first code block installed.
 
