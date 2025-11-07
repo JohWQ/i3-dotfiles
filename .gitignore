@@ -6,3 +6,4 @@
 .config/gtk-3.0/bookmarks
 .config/i3/config
 .stow-local-ignore
+.stfolder
