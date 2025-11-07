@@ -115,7 +115,6 @@ add_help "System:Useful Tips" <<'EOF'
 # System: Useful Tips
 
   sudo !!         → Re-run last command as root
-  history | grep  → Search command history
   Ctrl + R        → Reverse search through history
 EOF
 

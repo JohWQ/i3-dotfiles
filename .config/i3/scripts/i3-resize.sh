@@ -4,7 +4,7 @@
 distanceStr="2 px or 2 ppt"
 
 moveChoice() {
-  i3-msg resize "$1" "$2" "$distanceStr" | grep '"success":true' || \
+  i3-msg resize "$1" "$2" "$distanceStr" | rg '"success":true' || \
     i3-msg resize "$3" "$4" "$distanceStr"
 }
 

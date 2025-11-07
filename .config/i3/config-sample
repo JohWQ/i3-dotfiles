@@ -164,7 +164,7 @@ bar {
     position top
     padding -2px 0 -2px 0
     tray_output none
-    # Removed due to imcompatability with scripts. Range: 1 - 10
+    # Removed due to incompatability with scripts. Range: 1 - 10
     #strip_workspace_numbers yes
     status_command ~/.cargo/bin/i3status-rs ~/.config/i3status-rust/config1.toml
 
@@ -187,7 +187,7 @@ bar {
     padding -2px 0 -2px 0
     tray_output $monitor2
     tray_padding 2
-    # Removed due to imcompatability with scripts. Range: 11 - 20
+    # Removed due to incompatability with scripts. Range: 11 - 20
     #strip_workspace_numbers yes
     status_command ~/.cargo/bin/i3status-rs ~/.config/i3status-rust/config2.toml
 
@@ -286,8 +286,9 @@ set $scratchpadwindowtitle4 yazi_term-S4
 set $scratchpadwindowtitle5 btop_term-S5
 ##set $scratchpadwindowtitle6 rmpc_term-S6
 
-set $scratchpadwindowcontainer1 ~/.config/i3/scripts/help_menu.sh
-set $scratchpadwindowcontainer2 ~/.config/i3/scripts/exec-fastfetch.sh
+#set $scratchpadwindowcontainer1 ~/.config/i3/scripts/help_menu.sh
+#set $scratchpadwindowcontainer2 ~/.config/i3/scripts/exec-fastfetch.sh
+set $scratchpadwindowcontainer2 tmux
 set $scratchpadwindowcontainer3 pulsemixer
 set $scratchpadwindowcontainer4 yazi
 set $scratchpadwindowcontainer5 btop
@@ -305,14 +306,14 @@ bindsym $mod+minus [title="^(?!$scratchpadwindowtitle1|$scratchpadwindowtitle2|$
 #bindsym $mod+Mod1+F1 [title="^($scratchpadwindowtitle1)$"] scratchpad show, move position center
 #bindsym $mod+Mod1+0 [title="^($scratchpadwindowtitle1)$"] scratchpad show, move position center
 
-bindsym $mod+Mod1+1 [title="^($scratchpadwindowtitle2)$"] scratchpad show, move position center
+bindsym $mod+Mod1+1 [title="^($scratchpadwindowtitle2)$"] scratchpad show, move position center, sticky enable
 
-bindsym $mod+Mod1+2 [title="^($scratchpadwindowtitle3)$"] scratchpad show, move position center
+bindsym $mod+Mod1+2 [title="^($scratchpadwindowtitle3)$"] scratchpad show, move position center, sticky enable
 
-bindsym $mod+Mod1+3 [title="^($scratchpadwindowtitle4)$"] scratchpad show, move position center
+bindsym $mod+Mod1+3 [title="^($scratchpadwindowtitle4)$"] scratchpad show, move position center, sticky enable
 
-bindsym ctrl+Shift+Escape [title="^($scratchpadwindowtitle5)$"] scratchpad show, move position center
-bindsym $mod+Mod1+4 [title="^($scratchpadwindowtitle5)$"] scratchpad show, move position center
+bindsym ctrl+Shift+Escape [title="^($scratchpadwindowtitle5)$"] scratchpad show, move position center, sticky enable
+bindsym $mod+Mod1+4 [title="^($scratchpadwindowtitle5)$"] scratchpad show, move position center, sticky enable
 
 #bindsym $mod+Mod1+5 [title="^($scratchpadwindowtitle6)$"] scratchpad show, move position center
 

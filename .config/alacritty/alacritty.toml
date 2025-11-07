@@ -64,7 +64,7 @@ size = 16.0
 ##        yellow  = "#fa8419"
 
 [window]
-opacity = 0.85
+opacity = 0.80
 
 [terminal.shell]
 program = "/usr/local/bin/zsh"

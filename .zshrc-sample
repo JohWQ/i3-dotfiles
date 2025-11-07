@@ -106,59 +106,32 @@ export FZF_DEFAULT_COMMAND='fd -H -t f \
 -E ".snapshots" \
 -E "/home/.snapshots" \
 -E ".cache" \
--E "/home/jw/.cache" \
 -E ".steam" \
--E "/home/jw/.steam" \
 -E ".mozilla" \
--E "/home/jw/.mozilla" \
 -E ".cargo/registry" \
--E "/home/jw/.cargo/registry" \
 -E ".config/BraveSoftware" \
--E "/home/jw/.config/BraveSoftware" \
 -E ".config/vesktop/sessionData" \
--E "/home/jw/.config/vesktop/sessionData" \
 -E ".config/YouTube Music/Cache" \
--E "/home/jw/.config/YouTube Music/Cache" \
 -E ".config/YouTube Music/Code Cache" \
--E "/home/jw/.config/YouTube Music/Code Cache" \
--E ".config/YouTube Music/Service Worker/" \
--E "/home/jw/.config/YouTube Music/Service Worker/" \
+-E ".config/YouTube Music/Service Worker" \
 -E ".local/share/Steam/appcache" \
--E "/home/jw/.local/share/Steam/appcache" \
 -E ".local/share/Steam/controller_base" \
--E "/home/jw/.local/share/Steam/controller_base" \
 -E ".local/share/Steam/resource" \
--E "/home/jw/.local/share/Steam/resource" \
 -E ".local/share/Steam/graphics" \
--E "/home/jw/.local/share/Steam/graphics" \
 -E ".local/share/Steam/steamrt64" \
--E "/home/jw/.local/share/Steam/steamrt64" \
 -E ".local/share/Steam/tenfoot" \
--E "/home/jw/.local/share/Steam/tenfoot" \
--E ".local/share/Steam/config/avatarcache/" \
--E "/home/jw/.local/share/Steam/config/avatarcache/" \
+-E ".local/share/Steam/config/avatarcache" \
 -E ".local/share/Steam/config/htmlcache" \
--E "/home/jw/.local/share/Steam/config/htmlcache/" \
 -E ".local/share/Steam/ubuntu12_32" \
--E "/home/jw/.local/share/Steam/ubuntu12_32" \
 -E ".local/share/Steam/ubuntu12_64" \
--E "/home/jw/.local/share/Steam/ubuntu12_64" \
 -E ".local/share/Steam/public" \
--E "/home/jw/.local/share/Steam/public" \
 -E ".local/share/Steam/steam" \
--E "/home/jw/.local/share/Steam/steam" \
 -E ".local/share/Steam/steamui" \
--E "/home/jw/.local/share/Steam/steamui" \
 -E ".local/share/Steam/friends" \
--E "/home/jw/.local/share/Steam/friends" \
 -E ".local/share/nvim/lazy" \
--E "/home/jw/.local/share/nvim/lazy" \
 -E ".local/share/nvim.bak" \
--E "/home/jw/.local/share/nvim.bak" \
 -E ".local/share/Smart Code ltd" \
--E "/home/jw/.local/share/Smart Code ltd" \
 -E ".local/state/yazi/packages" \
--E "/home/jw/.local/state/yazi/packages"'
 
 #export QT_QPA_PLATFORMTHEME=qt6ct
 #QT_STYLE_OVERRIDE=Adwaita-Dark
@@ -239,7 +212,6 @@ alias fdfind='fd -H'
 alias bashrc='nvim ~/.bashrc'
 alias zshrc='nvim ~/.zshrc'
 alias i3config='nvim ~/.config/i3/config'
-alias i3statusconfig='nvim /home/jw/.config/i3status-rust/config.toml'
 alias picomconfig='nvim ~/.config/picom/picom.conf'
 alias yaziconfig='nvim ~/.config/yazi/yazi.toml'
 
@@ -286,7 +258,7 @@ alias neofetch='clear; fastfetch'
 alias songrecord='songrec listen -d "alsa_output.pci-0000_00_1f.3.analog-stereo.monitor"'
 alias localsend='sudo systemctl stop firewalld; localsend; systemctl start firewalld'
 alias ocr='~/.config/scripts/ocr.sh'
-alias showfont='fc-list : family | grep -i '
+alias showfont='fc-list : family | rg --ignore-case '
 alias pk='pkill '
 alias xpropinfo='xprop | rg -e WM_CLASS -e WM_NAME -e WM_NORMAL_HINTS'
 alias rmpc='mpd-mpris -host 127.0.0.1 > /dev/null 2>&1 & ~/.cargo/bin/rmpc; pkill mpd-mpris'
