@@ -67,7 +67,7 @@ rustflags = ["-C", "target-feature=-crt-static"]' > ~/.cargo/config.toml
 
 ```
 # Run as normal user
-git clone https://github.com/greshake/i3status-rust
+cd ~/Downloads && git clone https://github.com/greshake/i3status-rust
 cd i3status-rust
 cargo install --path . --locked
 ./install.sh
