@@ -22,6 +22,11 @@ require("full-border"):setup {
 -- relative-motions:
 require("relative-motions"):setup({ show_numbers = "relative", show_motion = true, enter_mode = "first" })
 
+
+-- Augment command:
+-- Custom configuration
+-- https://github.com/hankertrix/augment-command.yazi
+
 -- bunny hops:
 require("bunny"):setup({
  hops = {
@@ -39,6 +44,7 @@ require("bunny"):setup({
   { key = "i",               path = "~/.config/i3",            desc = "i3wm config" },
   { key = "s",               path = "~/.config/scripts",       desc = "scripts" },
   { key = "y",               path = "~/.config/yazi",          desc = "Yazi config" },
+  { key = "f",               path = "~/dotfiles",              desc = "dotfiles" },
   { key = "c",               path = "~/.config",               desc = "Config files" },
   { key = "d",               path = "~/Downloads",             desc = "Downloads" },
   { key = "D",               path = "~/Documents",             desc = "Documents" },

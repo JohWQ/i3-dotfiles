@@ -1,4 +1,5 @@
 .config/scripts/ping_websites.sh
+.config/scripts/replace-configs.sh
 .config/i3status-rust/monitor1.toml
 .config/i3status-rust/monitor2.toml
 .config/yazi/theme.toml
@@ -7,3 +8,4 @@
 .config/i3/config
 .stow-local-ignore
 .stfolder
+

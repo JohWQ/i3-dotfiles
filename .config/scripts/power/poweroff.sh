@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 playerctl pause
 xrandr --output DP-4 --off
 #umount /media/NTFSHDD4TB

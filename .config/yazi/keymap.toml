@@ -123,21 +123,20 @@ keymap = [
 	#	{ on = [ "g", "c" ],       run = "cd ~/.config",     desc = "Go ~/.config" },
 	#	{ on = [ "g", "d" ],       run = "cd ~/Downloads",   desc = "Go ~/Downloads" },
 	{ on = [ "g", "<Space>" ], run = "cd --interactive", desc = "Jump interactively" },
-	{ on = [ "g", "f" ], run = "plugin smart-filter", desc = "Filter traversal" },
 	#{ on = [ "g", "f" ],       run = "follow",           desc = "Follow hovered symlink" },
 
 	# Tabs
 	{ on = "t", run = "tab_create --current", desc = "Create a new tab with CWD" },
 
-	{ on = "<C-1>", run = "tab_switch 0", desc = "Switch to first tab" },
-	{ on = "<C-2>", run = "tab_switch 1", desc = "Switch to second tab" },
-	{ on = "<C-3>", run = "tab_switch 2", desc = "Switch to third tab" },
-	{ on = "<C-4>", run = "tab_switch 3", desc = "Switch to fourth tab" },
-	{ on = "<C-5>", run = "tab_switch 4", desc = "Switch to fifth tab" },
-	{ on = "<C-6>", run = "tab_switch 5", desc = "Switch to sixth tab" },
-	{ on = "<C-7>", run = "tab_switch 6", desc = "Switch to seventh tab" },
-	{ on = "<C-8>", run = "tab_switch 7", desc = "Switch to eighth tab" },
-	{ on = "<C-9>", run = "tab_switch 8", desc = "Switch to ninth tab" },
+	{ on = "1", run = "tab_switch 0", desc = "Switch to first tab" },
+	{ on = "2", run = "tab_switch 1", desc = "Switch to second tab" },
+	{ on = "3", run = "tab_switch 2", desc = "Switch to third tab" },
+	{ on = "4", run = "tab_switch 3", desc = "Switch to fourth tab" },
+	{ on = "5", run = "tab_switch 4", desc = "Switch to fifth tab" },
+	{ on = "6", run = "tab_switch 5", desc = "Switch to sixth tab" },
+	{ on = "7", run = "tab_switch 6", desc = "Switch to seventh tab" },
+	{ on = "8", run = "tab_switch 7", desc = "Switch to eighth tab" },
+	{ on = "9", run = "tab_switch 8", desc = "Switch to ninth tab" },
 
 	{ on = "[", run = "tab_switch -1 --relative", desc = "Switch to previous tab" },
 	{ on = "]", run = "tab_switch 1 --relative",  desc = "Switch to next tab" },
@@ -374,46 +373,51 @@ on   = "<C-o>"
 run  = "shell --orphan --confirm 'thunar .'"
 desc = "Open the current directory in Thunar"
 # --- PLUGINS --- #
+# -- Smart-filter" -- #
+[[mgr.prepend_keymap]]
+on = [ "g", "f" ]
+run = "plugin smart-filter"
+desc = "Filter traversal"
 # -- Confirm-quit -- #
 [[mgr.prepend_keymap]]
-on   = [ "q" ]
+on   = "q"
 run  = "plugin confirm-quit"
 desc = "Confirm quit for tabs"
 # -- Relative-motions -- #
 [[mgr.prepend_keymap]]
-on = [ "1" ]
+on = "<C-1>"
 run = "plugin relative-motions 1"
 desc = "Move in relative steps"
 [[mgr.prepend_keymap]]
-on = [ "2" ]
+on = "<C-2>"
 run = "plugin relative-motions 2"
 desc = "Move in relative steps"
 [[mgr.prepend_keymap]]
-on = [ "3" ]
+on = "<C-3>"
 run = "plugin relative-motions 3"
 desc = "Move in relative steps"
 [[mgr.prepend_keymap]]
-on = [ "4" ]
+on = "<C-4>"
 run = "plugin relative-motions 4"
 desc = "Move in relative steps"
 [[mgr.prepend_keymap]]
-on = [ "5" ]
+on = "<C-5>"
 run = "plugin relative-motions 5"
 desc = "Move in relative steps"
 [[mgr.prepend_keymap]]
-on = [ "6" ]
+on = "<C-6>"
 run = "plugin relative-motions 6"
 desc = "Move in relative steps"
 [[mgr.prepend_keymap]]
-on = [ "7" ]
+on = "<C-7>"
 run = "plugin relative-motions 7"
 desc = "Move in relative steps"
 [[mgr.prepend_keymap]]
-on = [ "8" ]
+on = "<C-8>"
 run = "plugin relative-motions 8"
 desc = "Move in relative steps"
 [[mgr.prepend_keymap]]
-on = [ "9" ]
+on = "<C-9>"
 run = "plugin relative-motions 9"
 desc = "Move in relative steps"
 # -- Toggle-pane -- #

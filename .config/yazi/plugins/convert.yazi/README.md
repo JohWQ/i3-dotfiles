@@ -26,17 +26,17 @@ Add this to your ~/.config/yazi/keymap.toml
 ```toml
 
 [[mgr.prepend_keymap]]
-on = ["n", "p"]
+on = ["b", "p"]
 run = "plugin convert -- --extension='png'"
 desc = "Convert to PNG"
 
 [[mgr.prepend_keymap]]
-on = ["n", "j"]
+on = ["b", "j"]
 run = "plugin convert -- --extension='jpg'"
 desc = "Convert to JPG"
 
 [[mgr.prepend_keymap]]
-on = ["n", "w"]
+on = ["b", "w"]
 run = "plugin convert -- --extension='webp'"
 desc = "Convert to WebP"
 

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # File to store the current state
 STATE_FILE="/tmp/display_toggle_wacom_state"

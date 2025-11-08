@@ -81,7 +81,7 @@ bindsym $mod+bar exec --no-startup-id ~/.config/rofi/powermenu/type-1/powermenu.
 bindsym $mod+Shift+Escape exec --no-startup-id ~/.config/rofi/powermenu/type-1/powermenu.sh
 
 # Rofi recently modified files
-bindsym $mod+d exec --no-startup-id "fd -t f . -E Games/ -E i3status-rust/ --exec-batch ls -t . ~ | rofi -config ~/.config/rofi/launchers/type-1/style-05.rasi -dmenu -i -p recent_home | xargs -I {} ~/.config/rofi/file_actions.sh {}"
+bindsym $mod+d exec --no-startup-id "fd -t f . --exec-batch ls -t . ~ | rofi -config ~/.config/rofi/launchers/type-1/style-05.rasi -dmenu -i -p recent_home | xargs -I {} ~/.config/rofi/file_actions.sh {}"
 
 # Rofi run modi command:
 bindsym $mod+Shift+Tab exec --no-startup-id "rofi -config ~/.config/rofi/launchers/type-1/style-5.rasi -show run"
@@ -97,10 +97,11 @@ bindsym $mod+m exec --no-startup-id "rofi -config ~/.config/rofi/launchers/type-
 
 # Desktop applications:
 bindsym $mod+Mod1+f exec --no-startup-id firefox
+bindsym $mod+Mod1+n exec --no-startup-id ~/.config/scripts/freshrss-webapp.sh
 bindsym $mod+Mod1+m exec --no-startup-id fooyin
 bindsym $mod+Mod1+d exec --no-startup-id notify-send -t 600 "Launching Discord" && vesktop
 bindsym $mod+Mod1+y exec --no-startup-id notify-send -t 600 "Launching Youtube Music" && youtube-music
-bindsym $mod+Mod1+n exec --no-startup-id thunar
+bindsym $mod+Mod1+b exec --no-startup-id thunar
 bindsym $mod+Mod1+o exec --no-startup-id notify-send -t 600 "Launching OBS Studio" && obs
 bindsym $mod+Mod1+t exec --no-startup-id marktext
 bindsym $mod+Mod1+g exec --no-startup-id notify-send -t 600 "Launching Gimp" && gimp
@@ -166,7 +167,7 @@ bar {
     tray_output none
     # Removed due to incompatability with scripts. Range: 1 - 10
     #strip_workspace_numbers yes
-    status_command ~/.cargo/bin/i3status-rs ~/.config/i3status-rust/config1.toml
+    status_command ~/.cargo/bin/i3status-rs ~/.config/i3status-rust/config.toml
 
     colors {
         background #191f2a

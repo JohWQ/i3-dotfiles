@@ -84,3 +84,8 @@ Then modify the `i3.desktop` file by changing the `Exec` line with the following
 ```
 Exec=sh -c 'env QT_QPA_PLATFORMTHEME=gtk3 i3'
 ```
+
+## TODO:
+- Create a personal Nvim configuration
+- Set per-directory viewing configuration in yazi
+- Have a more consistent theme (instead of having a different dark theme for GTK and QT applications) 
