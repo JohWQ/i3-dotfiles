@@ -89,6 +89,7 @@ source <(fzf --zsh)
 
 export SHELL='/usr/local/bin/zsh'
 export TERMINAL='alacritty'
+export TERM="xterm-256color"
 export BROWSER='firefox'
 export EDITOR='nvim'
 export VISUAL='nvim'
@@ -212,6 +213,8 @@ alias fdfind='fd -H'
 alias bashrc='nvim ~/.bashrc'
 alias zshrc='nvim ~/.zshrc'
 alias i3config='nvim ~/.config/i3/config'
+alias i3statusconfig1='nvim /home/jw/.config/i3status-rust/config.toml'
+alias i3statusconfig2='nvim /home/jw/.config/i3status-rust/config.toml'
 alias picomconfig='nvim ~/.config/picom/picom.conf'
 alias yaziconfig='nvim ~/.config/yazi/yazi.toml'
 
@@ -220,6 +223,7 @@ alias yaziconfig='nvim ~/.config/yazi/yazi.toml'
 # ---------------------------
 alias cls='clear'
 alias clr='clear'
+alias q:='exit'
 alias zsh='clear; zsh; reset'
 alias bash='clear; bash'
 alias sudo='sudo '
@@ -232,7 +236,7 @@ alias grubupdate='sudo grub2-mkconfig -o /boot/grub2/grub.cfg'
 alias uefiboot='systemctl reboot --firmware-setup'
 alias uefiupdate='sudo fwupdmgr update'
 alias nogui='sudo systemctl set-default multi-user.target && ~/.config/scripts/power/reboot.sh'
-alias yesgui='sudo systemctl set-default graphical.target && ~/.config/scripts/power/reboot.sh'
+alias yesgui='sudo systemctl set-default graphical.target && systemctl reboot'
 # ---------------------------
 # Package Management (dnf)
 # ---------------------------
@@ -288,7 +292,7 @@ setopt correct
 correct_ignore="[_|.]*"
 correct_ignore="[rpm|vim]*"
 # programs missing option autocomplete:
-compdef _gnu_generic fpaste pastel picom lightdm betterlockscreen pw-cli pw-dump dnf diff eza rofi xrandr
+compdef _gnu_generic fpaste pastel picom lightdm betterlockscreen pw-cli pw-dump dnf diff eza rofi xrandr fzf
 # ----- autocorrect ----- #
 
 # add flags to existing aliases.

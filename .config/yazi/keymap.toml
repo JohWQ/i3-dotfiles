@@ -77,7 +77,7 @@ keymap = [
 	{ on = "s",         run = "search --via=fd",             desc = "Search files by name via fd" },
 	{ on = "S",         run = "search --via=rg",             desc = "Search files by content via ripgrep" },
 	{ on = "<C-s>",     run = "escape --search",             desc = "Cancel the ongoing search" },
-	{ on = "*",         run = "plugin fzf",                  desc = "Jump to a file/directory via fzf" },
+	{ on = "'",         run = "plugin fzf",                  desc = "Jump to a file/directory via fzf" },
 	{ on = "Z",         run = "plugin zoxide",               desc = "Jump to a directory via zoxide" },
 
 	# Linemode
@@ -456,10 +456,10 @@ desc = "Start bunny.yazi"
 on = "z"
 run = "plugin bunny"
 # Optionally, add another keymap to immediately fuzzy search bookmarks
-[[mgr.prepend_keymap]]
-desc = "Start bunny.yazi fuzzy search"
-on = "'"
-run = "plugin bunny fuzzy"
+#[[mgr.prepend_keymap]]
+#desc = "Start bunny.yazi fuzzy search"
+#on = "'"
+#run = "plugin bunny fuzzy"
 # -- mount -- #
 [[mgr.prepend_keymap]]
 on  = "M"

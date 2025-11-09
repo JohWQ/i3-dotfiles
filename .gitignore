@@ -6,6 +6,6 @@
 .zshrc
 .config/gtk-3.0/bookmarks
 .config/i3/config
+.config/nvim.astro.old
 .stow-local-ignore
 .stfolder
-

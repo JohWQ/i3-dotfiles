@@ -30,4 +30,3 @@ case $CURRENT_BORDER in
         i3-msg '[class=".*"] border pixel 3'
         ;;
 esac
-

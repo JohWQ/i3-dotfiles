@@ -21,7 +21,7 @@ action = "play_pause"
 button = "right"
 action = "toggle_format"
 [block.theme_overrides]
-idle_bg = "#3f4d64"
+idle_bg = "#3f4c69"
 
 [[block]]
 block = "focused_window"
@@ -35,7 +35,7 @@ cmd = "i3-msg 'floating toggle; [tiling con_id=__focused__] border pixel 3; [flo
 button = "right"
 cmd = "i3-msg workspace number $(~/.config/i3/scripts/new-workspace-monitor1.py)"
 [block.theme_overrides]
-idle_bg = "#39465b"
+idle_bg = "#39455f"
 
 [[block]]
 block = "sound"
@@ -47,10 +47,10 @@ max_vol = 200
 [[block.click]]
 button = "left"
 cmd = "pavucontrol"
-[block.theme_overrides]
-idle_bg = "#354155"
 [block.icons_overrides]
 volume_muted = "\ueee8"
+[block.theme_overrides]
+idle_bg = "#354059"
 
 [[block]]
 block = "net"
@@ -60,7 +60,7 @@ format = " $icon ↓:$speed_down.eng(prefix:K)↑:$speed_up.eng(prefix:K) "
 button = "left"
 cmd = "nm-connection-editor"
 [block.theme_overrides]
-idle_bg = "#2d3749"
+idle_bg = "#2f394f"
 
 [[block]]
 block = "weather"
@@ -76,8 +76,6 @@ action = "toggle_format"
 name = "metno"
 coordinates = ["59.9125115", "10.747012"] # Oslo
 lang = "nb"
-[block.theme_overrides]
-idle_bg = "#272f40"
 [block.icons_overrides]
 weather_fog = "\ue313"
 weather_rain = "\uef1c"
@@ -89,6 +87,20 @@ weather_fog_night = "\ue346"
 weather_snow = "\uf2dc"
 weather_thunder_night = "\ue32a"
 weather_thunder = "\ue31d"
+[block.theme_overrides]
+idle_bg = "#293245"
+
+[[block]]
+block = "notify"
+format = " $icon {($notification_count.eng(w:1)) |}"
+[[block.click]]
+button = "left"
+action = "show"
+[[block.click]]
+button = "right"
+action = "toggle_paused"
+[block.theme_overrides]
+idle_bg = "#232b3b"
 
 [[block]]
 block = "time"
@@ -97,10 +109,10 @@ format = " $icon $timestamp.datetime(f:'%d/%m - %R') "
 [[block.click]]
 button = "left"
 cmd = "firefox --no-remote --class cleanwebappfirefoxc1 -profile ~/.mozilla/firefox/pb5pvlut.webapp-calendar calendar.google.com"
-[block.theme_overrides]
-idle_bg = "#212837"
 [block.icons_overrides]
 time = "󰥔"
+[block.theme_overrides]
+idle_bg = "#1d2431"
 
 [[block]]
 block = "menu"
@@ -121,7 +133,7 @@ cmd = "blueman-manager"
 display = " &gt; Calculator &lt;"
 cmd = "rofi -config ~/.config/rofi/launchers/type-1/style-5.rasi -show calc"
 [block.theme_overrides]
-idle_bg = "#191f2a"
+idle_bg = "#171d27"
 
 #[[block]]
 #block = "menu"
@@ -130,7 +142,7 @@ idle_bg = "#191f2a"
 #display = " &gt; # &lt;"
 #cmd = ":"
 #[block.theme_overrides]
-#idle_bg = "#191f2a"
+#idle_bg = "#171d27"
 
 [[block]]
 block = "menu"
@@ -151,4 +163,4 @@ cmd = "~/.config/scripts/power/reboot.sh"
 display = " &gt;  Shutdown  &lt; "
 cmd = "~/.config/scripts/power/poweroff.sh"
 [block.theme_overrides]
-idle_bg = "#191f2a"
+idle_bg = "#171d27"

@@ -96,4 +96,6 @@ export FZF_DEFAULT_COMMAND='fd -H -t f \
 -E ".local/share/Smart Code ltd" \
 -E "/home/jw/.local/share/Smart Code ltd" \
 -E ".local/state/yazi/packages" \
--E "/home/jw/.local/state/yazi/packages"'
+-E "/home/jw/.local/state/yazi/packages"
+-E "/mnt/4TB/JW/div/games/ludusavi-backup"
+-E "JW/div/games/ludusavi-backup"'

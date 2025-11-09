@@ -288,8 +288,8 @@ set $scratchpadwindowtitle5 btop_term-S5
 ##set $scratchpadwindowtitle6 rmpc_term-S6
 
 #set $scratchpadwindowcontainer1 ~/.config/i3/scripts/help_menu.sh
-#set $scratchpadwindowcontainer2 ~/.config/i3/scripts/exec-fastfetch.sh
-set $scratchpadwindowcontainer2 tmux
+set $scratchpadwindowcontainer2 ~/.config/i3/scripts/exec-fastfetch.sh
+#set $scratchpadwindowcontainer2 tmux
 set $scratchpadwindowcontainer3 pulsemixer
 set $scratchpadwindowcontainer4 yazi
 set $scratchpadwindowcontainer5 btop
@@ -319,7 +319,7 @@ bindsym $mod+Mod1+4 [title="^($scratchpadwindowtitle5)$"] scratchpad show, move 
 #bindsym $mod+Mod1+5 [title="^($scratchpadwindowtitle6)$"] scratchpad show, move position center
 
 # Scratchpad 1 - Help dialog
-exec_always --no-startup-id pgrep -f "^(alacritty -t $scratchpadwindowtitle1)" || alacritty -t $scratchpadwindowtitle1 -e $scratchpadwindowcontainer1
+#exec_always --no-startup-id pgrep -f "^(alacritty -t $scratchpadwindowtitle1)" || alacritty -t $scratchpadwindowtitle1 -e $scratchpadwindowcontainer1
 # Scratchpad 2 - Terminal
 exec_always --no-startup-id pgrep -f "^(alacritty -t $scratchpadwindowtitle2)" || alacritty -t $scratchpadwindowtitle2 -e $scratchpadwindowcontainer2
 # Scratchpad 3 - Pulsemixer
