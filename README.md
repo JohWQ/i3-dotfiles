@@ -1,39 +1,24 @@
 # Functional i3wm configuration on Fedora 42.
 
-## Install Packages available in repos:
+## Installation script
 
-It is recommended that you have set up RPMFusion to get access to more packages.
-### 
-### ```
-### 
-### ```
-### 
-### ```
-### # Optional:
-### 
-### ```
-### 
-### Install various stuff:
-### 
-### ```
-### ```
-### 
-### ## Installing [i3status-rs](https://github.com/greshake/i3status-rust)
-### 
-### Make sure to have the required packages from the first code block installed.
-### 
+```
+git clone https://github.com/JohWQ/i3-dotfiles.git && cd i3-dotfiles/.config/scripts
+./install.sh
+
+```
+
+### Installing [i3status-rs](https://github.com/greshake/i3status-rust)
 ### - Install [rustup](https://rustup.rs/) with its installation command.
-### 
-### - Configure cargo:
-### 
+### - Configure cargo
 ### ```
 ### mkdir -p ~/.cargo
 ### echo '[build]
 ### rustflags = ["-C", "target-feature=-crt-static"]' > ~/.cargo/config.toml
 ### ```
-### 
+###
 ### - Build and Install from Source:
-### 
+###
 ### ```
 ### # Run as normal user
 ### cd ~/Downloads && git clone https://github.com/greshake/i3status-rust
@@ -41,19 +26,19 @@ It is recommended that you have set up RPMFusion to get access to more packages.
 ### cargo install --path . --locked
 ### ./install.sh
 ### ```
-### 
+###
 ### ## Dark mode in applications
-### 
+###
 ### Modify the `i3.desktop` xsession file:
-### 
+###
 ### First create a backup:
-### 
+###
 ### ```
 ### sudo cp /usr/share/xsessions/i3.desktop /usr/share/xsessions/i3.desktop.bak 
 ### ```
-### 
+###
 ### Then modify the `i3.desktop` file by changing the `Exec` line with the following:
-### 
+###
 ### ```
 ### Exec=sh -c 'env QT_QPA_PLATFORMTHEME=gtk3 i3'
 ### ```
