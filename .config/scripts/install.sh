@@ -10,7 +10,6 @@ sudo dnf install \
 gcc \
 clang \
 python3 \
-git \
 meson \
 make \
 autoconf \
