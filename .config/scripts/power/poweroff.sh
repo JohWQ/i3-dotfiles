@@ -1,10 +1,14 @@
 #!/usr/bin/env bash
 playerctl pause
 xrandr --output DP-4 --off
-#umount /media/NTFSHDD4TB
+pkill virt-manager
+pkill libvirtd
+pkill dnsmasq
+pkill qemu-system-x86
+pkill alacritty
+pkill st
 pkill baobab
 pkill mpd
 pkill dunst
-pkill alacritty
 sleep 1
 systemctl poweroff
