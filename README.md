@@ -5,7 +5,6 @@
 ```
 git clone https://github.com/JohWQ/i3-dotfiles.git && cd i3-dotfiles/.config/scripts
 ./install.sh
-
 ```
 
 ### Installing [i3status-rs](https://github.com/greshake/i3status-rust)
