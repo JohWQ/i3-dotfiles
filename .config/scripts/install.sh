@@ -99,8 +99,6 @@ curl https://raw.githubusercontent.com/GeorgeFilipkin/pulsemixer/master/pulsemix
 sudo rm -rf $HOME/i3-dotfiles-install/*
 
 
-
-
 echo "Clearing font cache:"
 fc-cache -fv
 
