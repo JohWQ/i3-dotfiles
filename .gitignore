@@ -7,5 +7,7 @@
 .config/gtk-3.0/bookmarks
 .config/i3/config
 .config/nvim.astro.old
+.config/org.freedesktop.FileManager1.common/config.bak
+.config/org
 .stow-local-ignore
 .stfolder
