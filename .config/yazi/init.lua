@@ -35,6 +35,7 @@ require("bunny"):setup({
 		{ key = "o", path = "/opt" },
 		{ key = { "u", "l", "b" }, path = "/usr/local/bin", desc = "Local bin" },
 		{ key = { "u", "b" }, path = "/usr/bin", desc = "binaries" },
+		{ key = { "u", "s" }, path = "/usr/share", desc = "usr share" },
 		{ key = { "u", "a" }, path = "/usr/share/applications", desc = ".desktop files" },
 		{ key = { "m", "4" }, path = "/mnt/4TB", desc = "SMB Share" },
 		{ key = { "m", "m" }, path = "/media", desc = "Drives" },
