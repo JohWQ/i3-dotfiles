@@ -99,3 +99,6 @@ export FZF_DEFAULT_COMMAND='fd -H -t f \
 -E "/home/jw/.local/state/yazi/packages"
 -E "/mnt/4TB/JW/div/games/ludusavi-backup"
 -E "JW/div/games/ludusavi-backup"'
+
+# ALIAS:
+alias yesgui='sudo systemctl set-default graphical.target && systemctl reboot'
