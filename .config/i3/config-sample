@@ -51,26 +51,25 @@ bindsym Print exec --no-startup-id flameshot gui
 bindsym $mod+Print --release exec --no-startup-id flameshot screen
 
 # OTD tablet button keybinds:
-bindsym ctrl+Mod1+Shift+Insert workspace $ws100; exec --no-startup-id gimp
+bindsym ctrl+Mod1+Shift+Insert workspace $:::ws100; exec --no-startup-id gimp
 bindsym ctrl+Mod1+Shift+Delete exec --no-startup-id ~/.config/scripts/toggle_display_wacom.sh
 
 # Master volume controls
-set $i3_volume-device ~/.config/i3/scripts/volume-device.sh
-set $i3_volume-player ~/.config/i3/scripts/volume-player.sh
-bindsym $mod+Prior exec --no-startup-id $i3_volume-device volume_up
-bindsym $mod+Next exec --no-startup-id $i3_volume-device volume_down
-bindsym $mod+Home exec --no-startup-id $i3_volume-device volume_full
-bindsym $mod+Insert exec --no-startup-id $i3_volume-device volume_7
-bindsym $mod+Delete exec --no-startup-id $i3_volume-device volume_3
-bindsym $mod+End exec --no-startup-id $i3_volume-device volume_mute
-# Music player controls
-bindsym ctrl+Mod1+Prior exec --no-startup-id $i3_volume-player volume_up
-bindsym ctrl+Mod1+Next exec --no-startup-id $i3_volume-player volume_down
-bindsym ctrl+Mod1+Home exec --no-startup-id $i3_volume-player volume_full
-bindsym ctrl+Mod1+Insert exec --no-startup-id $i3_volume-player volume_7
-bindsym ctrl+Mod1+Delete exec --no-startup-id $i3_volume-player volume_3
-bindsym ctrl+Mod1+End exec --no-startup-id $i3_volume-player volume_mute
+set $i3_volume-control ~/.config/i3/scripts/volume-control.sh
+#set $i3_volume-player ~/.config/i3/scripts/volume-player.sh
+bindsym $mod+Prior exec --no-startup-id $i3_volume-control pactl_volume_up
+bindsym $mod+Next exec --no-startup-id $i3_volume-control pactl_volume_down
+bindsym $mod+Home exec --no-startup-id $i3_volume-control pactl_volume_full
+bindsym $mod+Insert exec --no-startup-id $i3_volume-control pactl_volume_7
+bindsym $mod+Delete exec --no-startup-id $i3_volume-control pactl_volume_3
+bindsym $mod+End exec --no-startup-id $i3_volume-control pactl_volume_mute
 # Playerctl controls
+bindsym ctrl+Mod1+Prior exec --no-startup-id $i3_volume-control playerctl_volume_up
+bindsym ctrl+Mod1+Next exec --no-startup-id $i3_volume-control playerctl_volume_down
+bindsym ctrl+Mod1+Home exec --no-startup-id $i3_volume-control playerctl_volume_full
+bindsym ctrl+Mod1+Insert exec --no-startup-id $i3_volume-control playerctl_volume_7
+bindsym ctrl+Mod1+Delete exec --no-startup-id $i3_volume-control playerctl_volume_3
+bindsym ctrl+Mod1+End exec --no-startup-id $i3_volume-control playerctl_volume_mute
 bindsym ctrl+Mod1+Up exec --no-startup-id playerctl play-pause
 bindsym ctrl+Mod1+Down exec --no-startup-id playerctl stop
 bindsym ctrl+Mod1+Left exec --no-startup-id playerctl previous
@@ -98,7 +97,6 @@ bindsym $mod+m exec --no-startup-id "rofi -config ~/.config/rofi/launchers/type-
 # Desktop applications:
 bindsym $mod+Mod1+f exec --no-startup-id firefox
 bindsym $mod+Mod1+n exec --no-startup-id ~/.config/scripts/freshrss-webapp.sh
-bindsym $mod+Mod1+m exec --no-startup-id fooyin
 bindsym $mod+Mod1+d exec --no-startup-id notify-send -t 600 "Launching Discord" && vesktop
 bindsym $mod+Mod1+y exec --no-startup-id notify-send -t 600 "Launching Youtube Music" && youtube-music
 bindsym $mod+Mod1+b exec --no-startup-id thunar
@@ -113,6 +111,7 @@ floating_modifier $mod
 workspace_auto_back_and_forth yes
 set $monitor1 DP-2
 set $monitor2 DP-4
+# Removes border resize + Titlebar grab with Mouse1:
 #bindsym --border button1 nop
 
 bindsym $mod+Shift+ctrl+r exec --no-startup-id xrandr --output $monitor1 --primary --mode 1920x1080 --rate 144.00 --pos 0x420 --output $monitor2 --mode 1920x1080 --rate 144.00 --pos 1920x0 --rotate left && sleep 2 && notify-send -t 2000 "Resolution reset"
@@ -154,10 +153,70 @@ bindsym $mod+a focus parent
 # Focus the child container
 bindsym $mod+q focus child
 
-##bindsym $mod+z [urgent=latest] focus
+
+## ---------------------- AUTOSTART ---------------------- ##
+exec_always --no-startup-id sleep 1; feh --bg-fill $desktopwallpaper
+
+# XDG autostart .desktop files in /etc/xdg/autostart & ~/.config/autostart 
+exec --no-startup-id dex-autostart --autostart --environment i3
+
+# OpenTabletDriver daemon
+exec --no-startup-id otd-daemon
+# Greenclip daemon
+set $greenclip /usr/local/bin/greenclip
+exec --no-startup-id $greenclip daemon
+# Picom daemon
+exec --no-startup-id picom --daemon --config ~/.config/picom/picom.conf
+
+# Mpd
+exec --no-startup-id mpd
+
+# Resolution for monitor 1 & 2
+exec --no-startup-id xset s 3600 0
+exec --no-startup-id xrandr --output $monitor1 --primary --mode 1920x1080 --rate 144.00 --pos 0x420 --output $monitor2 --mode 1920x1080 --rate 144.00 --pos 1920x0 --rotate left
+
+
+## ---------------------- SCRATCHPADS ---------------------- ##
+set $scratchpadwindowtitle1 alacritty_term-S1
+set $scratchpadwindowtitle2 pulsemixer_term-S2
+set $scratchpadwindowtitle3 yazi_term-S3
+set $scratchpadwindowtitle4 btop_term-S4
+
+set $scratchpadwindowcontainer1 ~/.config/i3/scripts/exec-fastfetch.sh
+set $scratchpadwindowcontainer2 pulsemixer
+set $scratchpadwindowcontainer3 yazi
+set $scratchpadwindowcontainer4 btop
+
+# Make the currently focused window a scratchpad
+bindsym $mod+Shift+minus exec --no-startup-id i3-msg "move scratchpad" && notify-send -t 2000 "Sending to scratchpad workspace..."
+
+# Show "other" scratchpads that are not set to launch with i3 on startup
+bindsym $mod+minus [title="^(?!$scratchpadwindowtitle1|$scratchpadwindowtitle2|$scratchpadwindowtitle3|$scratchpadwindowtitle4|$scratchpadwindowtitle5).*"] scratchpad show; move position center; [tiling con_id=__focused__] border $configborderstyle; [floating con_id=__focused__] border normal
+# Swap with previous bindsym to retain cycling through window functionality:
+#bindsym $mod+minus scratchpad show; move position center
+
+# Window keybinds
+bindsym $mod+Mod1+1 [title="^($scratchpadwindowtitle1)$"] scratchpad show, move position center, sticky enable
+
+bindsym $mod+Mod1+2 [title="^($scratchpadwindowtitle2)$"] scratchpad show, move position center, sticky enable
+
+bindsym $mod+Mod1+3 [title="^($scratchpadwindowtitle3)$"] scratchpad show, move position center, sticky enable
+
+bindsym ctrl+Shift+Escape [title="^($scratchpadwindowtitle4)$"] scratchpad show, move position center, sticky enable
+bindsym $mod+Mod1+4 [title="^($scratchpadwindowtitle4)$"] scratchpad show, move position center, sticky enable
+
+# Scratchpad 1 - Terminal
+exec_always --no-startup-id pgrep -f "^(alacritty -t $scratchpadwindowtitle1)" || alacritty -t $scratchpadwindowtitle1 -e $scratchpadwindowcontainer1
+# Scratchpad 2 - Pulsemixer
+exec_always --no-startup-id pgrep -f "^(alacritty -t $scratchpadwindowtitle2)" || alacritty -t $scratchpadwindowtitle2 -e $scratchpadwindowcontainer2
+# Scratchpad 3 - Yazi
+exec_always --no-startup-id pgrep -f "^(alacritty -t $scratchpadwindowtitle3)" || alacritty -t $scratchpadwindowtitle3 -e $scratchpadwindowcontainer3
+# Scratchpad 4 - Btop
+exec_always --no-startup-id pgrep -f "^(alacritty -t $scratchpadwindowtitle4)" || alacritty -t $scratchpadwindowtitle4 -e $scratchpadwindowcontainer4
 
 
 ## ---------------------- BAR SETTINGS ---------------------- ##
+# Removed stripping of WS to retain compatability with scripts.
 # Monitor 1 - i3status-rust
 bar {
     output $monitor1
@@ -165,9 +224,8 @@ bar {
     position top
     padding -2px 0 -2px 0
     tray_output none
-    # Removed due to incompatability with scripts. Range: 1 - 10
-    #strip_workspace_numbers yes
-    status_command ~/.cargo/bin/i3status-rs ~/.config/i3status-rust/config.toml
+    #strip_workspace_numbers yes - WS 1 - 10
+    status_command i3status-rs ~/.config/i3status-rust/monitor1.toml
 
     colors {
         background #191f2a
@@ -188,9 +246,8 @@ bar {
     padding -2px 0 -2px 0
     tray_output $monitor2
     tray_padding 2
-    # Removed due to incompatability with scripts. Range: 11 - 20
-    #strip_workspace_numbers yes
-    status_command ~/.cargo/bin/i3status-rs ~/.config/i3status-rust/config2.toml
+    #strip_workspace_numbers yes - WS: 11 - 20
+    status_command i3status-rs ~/.config/i3status-rust/monitor2.toml
 
     colors {
         background #191f2a
@@ -203,31 +260,8 @@ bar {
     }
 }
 
+
 ## ---------------------- MONITOR WORKSPACE SETTINGS ---------------------- ##
-# Workspace outputs
-workspace $ws1 output $monitor1
-workspace $ws2 output $monitor1
-workspace $ws3 output $monitor1
-workspace $ws4 output $monitor1
-workspace $ws5 output $monitor1
-workspace $ws6 output $monitor1
-workspace $ws7 output $monitor1
-workspace $ws8 output $monitor1
-workspace $ws9 output $monitor1
-workspace $ws10 output $monitor1
-workspace $ws100 output $monitor1
-
-workspace $ws11 output $monitor2
-workspace $ws12 output $monitor2
-workspace $ws13 output $monitor2
-workspace $ws14 output $monitor2
-workspace $ws15 output $monitor2
-workspace $ws16 output $monitor2
-workspace $ws17 output $monitor2
-workspace $ws18 output $monitor2
-workspace $ws19 output $monitor2
-workspace $ws20 output $monitor2
-
 # Workspace order
 # Monitor 1:
 set $ws1 "1"
@@ -253,83 +287,29 @@ set $ws18 "18"
 set $ws19 "19"
 set $ws20 "20"
 
+# Workspace outputs
+workspace $ws1 output $monitor1
+workspace $ws2 output $monitor1
+workspace $ws3 output $monitor1
+workspace $ws4 output $monitor1
+workspace $ws5 output $monitor1
+workspace $ws6 output $monitor1
+workspace $ws7 output $monitor1
+workspace $ws8 output $monitor1
+workspace $ws9 output $monitor1
+workspace $ws10 output $monitor1
+workspace $ws100 output $monitor1
 
-## ---------------------- AUTOSTART ---------------------- ##
-exec_always --no-startup-id sleep 1; feh --bg-fill $desktopwallpaper
-
-# Help message
-#exec --no-startup-id sleep 5; notify-send -t 5000 "Help menu" "Press Super + Alt + F1 to view shortcuts"
-
-# XDG autostart .desktop files in /etc/xdg/autostart & ~/.config/autostart 
-exec --no-startup-id dex-autostart --autostart --environment i3
-
-# OpenTabletDriver daemon
-exec --no-startup-id otd-daemon
-# Greenclip daemon
-set $greenclip /usr/local/bin/greenclip
-exec --no-startup-id $greenclip daemon
-# Picom daemon
-exec --no-startup-id picom --daemon --config ~/.config/picom/picom.conf
-
-# Mpd
-exec --no-startup-id mpd
-
-# Resolution for monitor 1 & 2
-exec --no-startup-id xset s 3600 0
-exec --no-startup-id xrandr --output $monitor1 --primary --mode 1920x1080 --rate 144.00 --pos 0x420 --output $monitor2 --mode 1920x1080 --rate 144.00 --pos 1920x0 --rotate left
-
-
-## ---------------------- SCRATCHPADS ---------------------- ##
-#set $scratchpadwindowtitle1 help-dialog_term-S1
-set $scratchpadwindowtitle2 alacritty_term-S2
-set $scratchpadwindowtitle3 pulsemixer_term-S3
-set $scratchpadwindowtitle4 yazi_term-S4
-set $scratchpadwindowtitle5 btop_term-S5
-##set $scratchpadwindowtitle6 rmpc_term-S6
-
-#set $scratchpadwindowcontainer1 ~/.config/i3/scripts/help_menu.sh
-set $scratchpadwindowcontainer2 ~/.config/i3/scripts/exec-fastfetch.sh
-#set $scratchpadwindowcontainer2 tmux
-set $scratchpadwindowcontainer3 pulsemixer
-set $scratchpadwindowcontainer4 yazi
-set $scratchpadwindowcontainer5 btop
-#set $scratchpadwindowcontainer6 ~/.config/i3/scripts/exec-rmpc.sh
-
-# Make the currently focused window a scratchpad
-bindsym $mod+Shift+minus exec --no-startup-id i3-msg "move scratchpad" && notify-send -t 2000 "Sending to scratchpad workspace..."
-
-# Show "other" scratchpads that are not set to launch with i3 on startup
-bindsym $mod+minus [title="^(?!$scratchpadwindowtitle1|$scratchpadwindowtitle2|$scratchpadwindowtitle3|$scratchpadwindowtitle4|$scratchpadwindowtitle5).*"] scratchpad show; move position center; [tiling con_id=__focused__] border $configborderstyle; [floating con_id=__focused__] border normal
-# Swap with previous bindsym to retain cycling through window functionality:
-#bindsym $mod+minus scratchpad show; move position center
-
-# Window keybinds
-#bindsym $mod+Mod1+F1 [title="^($scratchpadwindowtitle1)$"] scratchpad show, move position center
-#bindsym $mod+Mod1+0 [title="^($scratchpadwindowtitle1)$"] scratchpad show, move position center
-
-bindsym $mod+Mod1+1 [title="^($scratchpadwindowtitle2)$"] scratchpad show, move position center, sticky enable
-
-bindsym $mod+Mod1+2 [title="^($scratchpadwindowtitle3)$"] scratchpad show, move position center, sticky enable
-
-bindsym $mod+Mod1+3 [title="^($scratchpadwindowtitle4)$"] scratchpad show, move position center, sticky enable
-
-bindsym ctrl+Shift+Escape [title="^($scratchpadwindowtitle5)$"] scratchpad show, move position center, sticky enable
-bindsym $mod+Mod1+4 [title="^($scratchpadwindowtitle5)$"] scratchpad show, move position center, sticky enable
-
-#bindsym $mod+Mod1+5 [title="^($scratchpadwindowtitle6)$"] scratchpad show, move position center
-
-# Scratchpad 1 - Help dialog
-#exec_always --no-startup-id pgrep -f "^(alacritty -t $scratchpadwindowtitle1)" || alacritty -t $scratchpadwindowtitle1 -e $scratchpadwindowcontainer1
-# Scratchpad 2 - Terminal
-exec_always --no-startup-id pgrep -f "^(alacritty -t $scratchpadwindowtitle2)" || alacritty -t $scratchpadwindowtitle2 -e $scratchpadwindowcontainer2
-# Scratchpad 3 - Pulsemixer
-exec_always --no-startup-id pgrep -f "^(alacritty -t $scratchpadwindowtitle3)" || alacritty -t $scratchpadwindowtitle3 -e $scratchpadwindowcontainer3
-# Scratchpad 4 - Yazi
-exec_always --no-startup-id pgrep -f "^(alacritty -t $scratchpadwindowtitle4)" || alacritty -t $scratchpadwindowtitle4 -e $scratchpadwindowcontainer4
-# Scratchpad 5 - Btop
-exec_always --no-startup-id pgrep -f "^(alacritty -t $scratchpadwindowtitle5)" || alacritty -t $scratchpadwindowtitle5 -e $scratchpadwindowcontainer5
-# Scratchpad 6 - rmpc
-#exec_always --no-startup-id pgrep -f "^(alacritty -t $scratchpadwindowtitle6)" || alacritty -t $scratchpadwindowtitle6 -e $scratchpadwindowcontainer6
+workspace $ws11 output $monitor2
+workspace $ws12 output $monitor2
+workspace $ws13 output $monitor2
+workspace $ws14 output $monitor2
+workspace $ws15 output $monitor2
+workspace $ws16 output $monitor2
+workspace $ws17 output $monitor2
+workspace $ws18 output $monitor2
+workspace $ws19 output $monitor2
+workspace $ws20 output $monitor2
 
 
 ## ---------------------- WINDOW MANIPULATION ---------------------- ##
