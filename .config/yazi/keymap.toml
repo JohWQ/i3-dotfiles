@@ -81,12 +81,13 @@ keymap = [
 	{ on = "Z",         run = "plugin zoxide",               desc = "Jump to a directory via zoxide" },
 
 	# Linemode
-	{ on = [ "m", "s" ], run = "linemode size",        desc = "Linemode: size" },
-	{ on = [ "m", "p" ], run = "linemode permissions", desc = "Linemode: permissions" },
-	{ on = [ "m", "b" ], run = "linemode btime",       desc = "Linemode: btime" },
-	{ on = [ "m", "m" ], run = "linemode mtime",       desc = "Linemode: mtime" },
-	{ on = [ "m", "o" ], run = "linemode owner",       desc = "Linemode: owner" },
-	{ on = [ "m", "n" ], run = "linemode none",        desc = "Linemode: none" },
+	{ on = [ "m", "s" ], run = "linemode size",           desc = "Linemode: size" },
+	{ on = [ "m", "c" ], run = "linemode size_and_mtime", desc = "Linemode: size & mtime" },
+	{ on = [ "m", "p" ], run = "linemode permissions",    desc = "Linemode: permissions" },
+	{ on = [ "m", "b" ], run = "linemode btime",          desc = "Linemode: btime" },
+	{ on = [ "m", "m" ], run = "linemode mtime",          desc = "Linemode: mtime" },
+	{ on = [ "m", "o" ], run = "linemode owner",          desc = "Linemode: owner" },
+	{ on = [ "m", "n" ], run = "linemode none",           desc = "Linemode: none" },
 
 	# Copy
 	{ on = [ "c", "c" ], run = "copy path",             desc = "Copy the file path" },
@@ -638,6 +639,10 @@ on = [ "m", "s" ]
 run = [ "linemode size", "plugin pref-by-location -- save" ]
 desc = "Linemode: size"
 [[mgr.prepend_keymap]]
+on = [ "m", "c" ]
+run = [ "linemode size_and_mtime", "plugin pref-by-location -- save" ]
+desc = "Linemode: size & mtime"
+[[mgr.prepend_keymap]]
 on = [ "m", "p" ]
 run = [ "linemode permissions", "plugin pref-by-location -- save" ]
 desc = "Linemode: permissions"
@@ -716,8 +721,6 @@ on = [ ",", "N" ]
 run = [ "sort natural --reverse", "plugin pref-by-location -- save" ]
 desc = "Sort naturally (reverse)"
 [[mgr.prepend_keymap]]
-# --sensitive=no or --sensitive
-# { on = [ ",", "N" ], run = [ "sort natural --reverse=no --sensitive", "plugin pref-by-location -- save" ],                    desc = "Sort naturally"
 on = [ ",", "s" ]
 run = [ "sort size --reverse=no", "linemode size", "plugin pref-by-location -- save" ]
 desc = "Sort by size"
@@ -725,6 +728,14 @@ desc = "Sort by size"
 on = [ ",", "S" ]
 run = [ "sort size --reverse", "linemode size", "plugin pref-by-location -- save" ]
 desc = "Sort by size (reverse)"
+[[mgr.prepend_keymap]]
+on = [ ",", "c" ]
+run = [ "sort size --reverse=no", "linemode size_and_mtime", "plugin pref-by-location -- save" ]
+desc = "Sort by size & mtime"
+[[mgr.prepend_keymap]]
+on = [ ",", "C" ]
+run = [ "sort size --reverse", "linemode size_and_mtime", "plugin pref-by-location -- save" ]
+desc = "Sort by size & mtime"
 [[mgr.prepend_keymap]]
 on = [ ",", "r" ]
 run = [ "sort random --reverse=no", "plugin pref-by-location -- save" ]

@@ -11,6 +11,21 @@ function Linemode:mtime()
 	end
 end
 
+-- Add linemode option:
+function Linemode:size_and_mtime()
+	local time = math.floor(self._file.cha.mtime or 0)
+	if time == 0 then
+		time = ""
+	-- Options: "%b", "%k", "%m", "%g", "%t", "%p", "%e", "%z", "%y", "%r", "%q"
+	elseif os.date("%Y", time) == os.date("%Y") then
+		time = os.date("%p %d/%m %H:%M", time)
+	else
+		time = os.date("%p %d/%m %Y", time)
+	end
+
+	local size = self._file:size()
+	return string.format("%s %s", size and ya.readable_size(size) or "-", time)
+end
 ------------------------------------------------------------------
 -- Folder saving preferences:
 local pref_by_location = require("pref-by-location")
@@ -59,13 +74,13 @@ require("bunny"):setup({
 		{ key = "y", path = "~/.config/yazi", desc = "Yazi config" },
 		{ key = "f", path = "~/dotfiles", desc = "dotfiles" },
 		{ key = "c", path = "~/.config", desc = "Config files" },
-		{ key = "d", path = "~/Downloads", desc = "Downloads" },
-		{ key = "D", path = "~/Documents", desc = "Documents" },
-		{ key = "p", path = "~/Pictures", desc = "Pictures" },
 		{ key = { "s", "m" }, path = "~/Music", desc = "Music" },
 		{ key = { "s", "M" }, path = "~/Music/music-SERVER/Metal_Rock", desc = "Metal Music" },
 		{ key = { "s", "H" }, path = "~/Music/music-SERVER/Hip-hop_Pop", desc = "Hip-hop Music" },
 		{ key = { "s", "A" }, path = "~/Music/music-SERVER/Ambient", desc = "Ambient Music" },
+		{ key = "d", path = "~/Downloads", desc = "Downloads" },
+		{ key = "D", path = "~/Documents", desc = "Documents" },
+		{ key = "p", path = "~/Pictures", desc = "Pictures" },
 		{ key = "v", path = "~/Videos", desc = "Videos" },
 		{ key = "h", path = "~", desc = "Home" },
 		-- key and path attributes are required, desc is optional
