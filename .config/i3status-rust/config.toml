@@ -147,6 +147,9 @@ idle_bg = "#171d27"
 [[block]]
 block = "menu"
 text = " \uf011  "
+[[block.click]]
+button = "right"
+cmd = "pkill i3bar && (i3bar -b bar-0 & i3bar -b bar-1 &)"
 [[block.items]]
 display = " &gt;  Lock  &lt; "
 cmd = "~/.config/scripts/power/lock.sh"
