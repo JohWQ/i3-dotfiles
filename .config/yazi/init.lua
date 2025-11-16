@@ -1,3 +1,4 @@
+------------------------------------------------------------------
 -- Default rule override:
 function Linemode:mtime()
 	local time = math.floor(self._file.cha.mtime or 0)
@@ -10,9 +11,15 @@ function Linemode:mtime()
 	end
 end
 
+------------------------------------------------------------------
 -- Folder saving preferences:
--- require("folder-rules"):setup()
+local pref_by_location = require("pref-by-location")
+pref_by_location:setup({
+	prefs = { -- (Optional)
+	},
+})
 
+------------------------------------------------------------------
 -- Border:
 require("full-border"):setup({
 	-- Available values: ui.Border.PLAIN, ui.Border.ROUNDED
@@ -26,6 +33,7 @@ require("relative-motions"):setup({ show_numbers = "relative", show_motion = tru
 -- Custom configuration
 -- https://github.com/hankertrix/augment-command.yazi
 
+------------------------------------------------------------------
 -- bunny hops:
 require("bunny"):setup({
 	hops = {

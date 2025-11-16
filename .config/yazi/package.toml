@@ -58,5 +58,10 @@ use = "JohWQ/convert"
 rev = "91b921a"
 hash = "15f980464bf41efc3ff2c7fe1d1ab4f3"
 
+[[plugin.deps]]
+use = "boydaihungst/pref-by-location"
+rev = "882e752"
+hash = "f45cf212024c85b5f0ea0423e27196a"
+
 [flavor]
 deps = []

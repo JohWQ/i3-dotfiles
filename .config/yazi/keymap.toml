@@ -369,7 +369,7 @@ for  = "unix"
 run  = 'shell "$SHELL" --block'
 desc = "Open $SHELL here"
 [[mgr.prepend_keymap]]
-on   = "<C-o>"
+on   = "<C-Enter>"
 run  = "shell --orphan --confirm 'thunar .'"
 desc = "Open the current directory in Thunar"
 # --- PLUGINS --- #
@@ -511,12 +511,12 @@ run = "plugin sudo -- remove --permanently"
 desc = "sudo delete"
 # -- diff -- #
 [[mgr.prepend_keymap]]
-on   = "<C-D>"
+on = [ "i", "d" ]
 run  = "plugin diff"
 desc = "Diff the selected with the hovered file"
 # -- what-size -- #
 [[mgr.prepend_keymap]]
-on = [ ".", "s" ]
+on = [ "i", "s" ]
 run  = "plugin what-size"
 desc = "Calc size of selection or cwd"
 # -- augment-command -- #
@@ -548,18 +548,18 @@ desc = "Enter the child directory, or open the file"
 on = "<S-Enter>"
 run = "plugin augment-command -- enter --interactive"
 desc = "Enter the child directory, or open the file interactively"
-[[mgr.prepend_keymap]]
-on = "<Right>"
-run = "plugin augment-command -- enter --no-skip"
-desc = "Enter the child directory, or open the file"
+#[[mgr.prepend_keymap]]
+#on = "<Right>"
+#run = "plugin augment-command -- enter --no-skip"
+#desc = "Enter the child directory, or open the file"
 #[[mgr.prepend_keymap]]
 #on = ["h"]
 #run = "plugin augment-command -- leave"
 #desc = "Go back to the parent directory"
-[[mgr.prepend_keymap]]
-on = ["<Left>"]
-run = "plugin augment-command -- leave --no-skip"
-desc = "Go back to the parent directory"
+#[[mgr.prepend_keymap]]
+#on = ["<Left>"]
+#run = "plugin augment-command -- leave --no-skip"
+#desc = "Go back to the parent directory"
 [[mgr.prepend_keymap]]
 on = "t"
 run = "plugin augment-command -- tab_create --current"
@@ -610,10 +610,10 @@ run = "plugin augment-command -- copy name_without_ext"
 desc = "Copy the filename without extension"
 # -- Chmod -- #
 [[mgr.prepend_keymap]]
-on   = [ "b", "m" ]
+on   = [ "b", "c" ]
 run  = "plugin chmod"
 desc = "Chmod on selected files"
-# -- convert-- #
+# -- convert -- #
 [[mgr.prepend_keymap]]
 on = ["b", "p"]
 run = "plugin convert -- --extension='png'"
@@ -626,3 +626,106 @@ desc = "Convert to JPG"
 on = ["b", "w"]
 run = "plugin convert -- --extension='webp'"
 desc = "Convert to WebP"
+# -- pref-by-location -- #
+[[mgr.prepend_keymap]]
+# Toggle Hidden
+on = "."
+run = [ "hidden toggle", "plugin pref-by-location -- save" ]
+desc = "Toggle the visibility of hidden files"
+[[mgr.prepend_keymap]]
+# Linemode
+on = [ "m", "s" ]
+run = [ "linemode size", "plugin pref-by-location -- save" ]
+desc = "Linemode: size"
+[[mgr.prepend_keymap]]
+on = [ "m", "p" ]
+run = [ "linemode permissions", "plugin pref-by-location -- save" ]
+desc = "Linemode: permissions"
+[[mgr.prepend_keymap]]
+on = [ "m", "b" ]
+run = [ "linemode btime", "plugin pref-by-location -- save" ]
+desc = "Linemode: btime"
+[[mgr.prepend_keymap]]
+on = [ "m", "m" ]
+run = [ "linemode mtime", "plugin pref-by-location -- save" ]
+desc = "Linemode: mtime"
+[[mgr.prepend_keymap]]
+on = [ "m", "o" ]
+run = [ "linemode owner", "plugin pref-by-location -- save" ]
+desc = "Linemode: owner"
+[[mgr.prepend_keymap]]
+on = [ "m", "n" ]
+run = [ "linemode none", "plugin pref-by-location -- save" ]
+desc = "Linemode: none"
+[[mgr.prepend_keymap]]
+# Custom size_and_mtime linemode
+# { on = [ "u", "S" ], run = [ "linemode size_and_mtime", "plugin pref-by-location -- save" ], desc = "Show Size and Modified time"
+# Sorting
+# Any changes during disabled state won't be saved to save file.
+on = [ ",", "t" ]
+run = "plugin pref-by-location -- toggle"
+desc = "Toggle auto-save preferences"
+[[mgr.prepend_keymap]]
+on = [ ",", "d" ]
+run = "plugin pref-by-location -- disable"
+desc = "Disable auto-save preferences"
+[[mgr.prepend_keymap]]
+# This will reset any preference changes for the current working directory (CWD)
+# then fall back to the predefined preferences in init.lua or yazi.toml.
+on = [ ",", "R" ]
+run = "plugin pref-by-location -- reset"
+desc = "Reset preference of cwd"
+[[mgr.prepend_keymap]]
+on = [ ",", "m" ]
+run = [ "sort mtime --reverse=no", "linemode mtime", "plugin pref-by-location -- save" ]
+desc = "Sort by modified time"
+[[mgr.prepend_keymap]]
+on = [ ",", "M" ]
+run = [ "sort mtime --reverse", "linemode mtime", "plugin pref-by-location -- save" ]
+desc = "Sort by modified time (reverse)"
+[[mgr.prepend_keymap]]
+on = [ ",", "b" ]
+run = [ "sort btime --reverse=no", "linemode btime", "plugin pref-by-location -- save" ]
+desc = "Sort by birth time"
+[[mgr.prepend_keymap]]
+on = [ ",", "B" ]
+run = [ "sort btime --reverse", "linemode btime", "plugin pref-by-location -- save" ]
+desc = "Sort by birth time (reverse)"
+[[mgr.prepend_keymap]]
+on = [ ",", "e" ]
+run = [ "sort extension --reverse=no", "plugin pref-by-location -- save" ]
+desc = "Sort by extension"
+[[mgr.prepend_keymap]]
+on = [ ",", "E" ]
+run = [ "sort extension --reverse", "plugin pref-by-location -- save" ]
+desc = "Sort by extension (reverse)"
+[[mgr.prepend_keymap]]
+on = [ ",", "a" ]
+run = [ "sort alphabetical --reverse=no", "plugin pref-by-location -- save" ]
+desc = "Sort alphabetically"
+[[mgr.prepend_keymap]]
+on = [ ",", "A" ]
+run = [ "sort alphabetical --reverse", "plugin pref-by-location -- save" ]
+desc = "Sort alphabetically (reverse)"
+[[mgr.prepend_keymap]]
+on = [ ",", "n" ]
+run = [ "sort natural --reverse=no", "plugin pref-by-location -- save" ]
+desc = "Sort naturally"
+[[mgr.prepend_keymap]]
+on = [ ",", "N" ]
+run = [ "sort natural --reverse", "plugin pref-by-location -- save" ]
+desc = "Sort naturally (reverse)"
+[[mgr.prepend_keymap]]
+# --sensitive=no or --sensitive
+# { on = [ ",", "N" ], run = [ "sort natural --reverse=no --sensitive", "plugin pref-by-location -- save" ],                    desc = "Sort naturally"
+on = [ ",", "s" ]
+run = [ "sort size --reverse=no", "linemode size", "plugin pref-by-location -- save" ]
+desc = "Sort by size"
+[[mgr.prepend_keymap]]
+on = [ ",", "S" ]
+run = [ "sort size --reverse", "linemode size", "plugin pref-by-location -- save" ]
+desc = "Sort by size (reverse)"
+[[mgr.prepend_keymap]]
+on = [ ",", "r" ]
+run = [ "sort random --reverse=no", "plugin pref-by-location -- save" ]
+desc = "Sort randomly"

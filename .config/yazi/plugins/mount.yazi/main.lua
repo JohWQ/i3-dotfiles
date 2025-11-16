@@ -17,7 +17,9 @@ end)
 
 local subscribe = ya.sync(function(self)
 	ps.unsub("mount")
-	ps.sub("mount", function() ya.emit("plugin", { self._id, "refresh" }) end)
+	ps.sub("mount", function()
+		ya.emit("plugin", { self._id, "refresh" })
+	end)
 end)
 
 local update_partitions = ya.sync(function(self, partitions)
@@ -31,7 +33,9 @@ local update_partitions = ya.sync(function(self, partitions)
 	end
 end)
 
-local active_partition = ya.sync(function(self) return self.partitions[self.cursor + 1] end)
+local active_partition = ya.sync(function(self)
+	return self.partitions[self.cursor + 1]
+end)
 
 local update_cursor = ya.sync(function(self, cursor)
 	if #self.partitions == 0 then
@@ -49,23 +53,25 @@ end)
 
 local M = {
 	keys = {
-		{ on = "q",       run = "quit" },
-		{ on = "<Esc>",   run = "quit" },
+		{ on = "q", run = "quit" },
+		{ on = "<Esc>", run = "quit" },
 		{ on = "<Enter>", run = { "enter", "quit" } },
 
-		{ on = "k",       run = "up" },
-		{ on = "j",       run = "down" },
-		{ on = "K",       run = "largeup" },
-		{ on = "J",       run = "largedown" },
-		{ on = "l",       run = { "enter", "quit" } },
+		{ on = "k", run = "up" },
+		{ on = "j", run = "down" },
+		{ on = "K", run = "largeup" },
+		{ on = "J", run = "largedown" },
+		{ on = "<C-u>", run = "extralargeup" },
+		{ on = "<C-d>", run = "extralargedown" },
+		{ on = "l", run = { "enter", "quit" } },
 
-		{ on = "<Up>",    run = "up" },
-		{ on = "<Down>",  run = "down" },
+		{ on = "<Up>", run = "up" },
+		{ on = "<Down>", run = "down" },
 		{ on = "<Right>", run = { "enter", "quit" } },
 
-		{ on = "m",       run = "mount" },
-		{ on = "u",       run = "unmount" },
-		{ on = "e",       run = "eject" },
+		{ on = "m", run = "mount" },
+		{ on = "u", run = "unmount" },
+		{ on = "e", run = "eject" },
 	},
 }
 
@@ -76,21 +82,21 @@ end
 
 function M:layout(area)
 	local chunks = ui.Layout()
-			:constraints({
-				ui.Constraint.Percentage(10),
-				ui.Constraint.Percentage(80),
-				ui.Constraint.Percentage(10),
-			})
-			:split(area)
+		:constraints({
+			ui.Constraint.Percentage(10),
+			ui.Constraint.Percentage(80),
+			ui.Constraint.Percentage(10),
+		})
+		:split(area)
 
 	local chunks = ui.Layout()
-			:direction(ui.Layout.HORIZONTAL)
-			:constraints({
-				ui.Constraint.Percentage(10),
-				ui.Constraint.Percentage(80),
-				ui.Constraint.Percentage(10),
-			})
-			:split(chunks[2])
+		:direction(ui.Layout.HORIZONTAL)
+		:constraints({
+			ui.Constraint.Percentage(10),
+			ui.Constraint.Percentage(80),
+			ui.Constraint.Percentage(10),
+		})
+		:split(chunks[2])
 
 	self._area = chunks[2]
 end
@@ -108,7 +114,7 @@ function M:entry(job)
 	local tx2, rx2 = ya.chan("mpsc")
 	function producer()
 		while true do
-			local cand = self.keys[ya.which { cands = self.keys, silent = true }] or { run = {} }
+			local cand = self.keys[ya.which({ cands = self.keys, silent = true })] or { run = {} }
 			for _, r in ipairs(type(cand.run) == "table" and cand.run or { cand.run }) do
 				tx1:send(r)
 				if r == "quit" then
@@ -133,6 +139,10 @@ function M:entry(job)
 				update_cursor(-5)
 			elseif run == "largedown" then
 				update_cursor(5)
+			elseif run == "extralargeup" then
+				update_cursor(-15)
+			elseif run == "extralargedown" then
+				update_cursor(15)
 			elseif run == "enter" then
 				local active = active_partition()
 				if active and active.dist then
@@ -162,38 +172,40 @@ function M:entry(job)
 	ya.join(producer, consumer1, consumer2)
 end
 
-function M:reflow() return { self } end
+function M:reflow()
+	return { self }
+end
 
 function M:redraw()
 	local rows = {}
 	for _, p in ipairs(self.partitions or {}) do
 		if not p.sub then
-			rows[#rows + 1] = ui.Row { p.main }
+			rows[#rows + 1] = ui.Row({ p.main })
 		elseif p.sub == "" then
-			rows[#rows + 1] = ui.Row { p.main, p.label or "", p.dist or "", p.fstype or "" }
+			rows[#rows + 1] = ui.Row({ p.main, p.label or "", p.dist or "", p.fstype or "" })
 		else
-			rows[#rows + 1] = ui.Row { "  " .. p.sub, p.label or "", p.dist or "", p.fstype or "" }
+			rows[#rows + 1] = ui.Row({ "  " .. p.sub, p.label or "", p.dist or "", p.fstype or "" })
 		end
 	end
 
 	return {
 		ui.Clear(self._area),
 		ui.Border(ui.Edge.ALL)
-				:area(self._area)
-				:type(ui.Border.ROUNDED)
-				:style(ui.Style():fg("blue"))
-				:title(ui.Line("Mount"):align(ui.Align.CENTER)),
+			:area(self._area)
+			:type(ui.Border.ROUNDED)
+			:style(ui.Style():fg("blue"))
+			:title(ui.Line("Mount"):align(ui.Align.CENTER)),
 		ui.Table(rows)
-				:area(self._area:pad(ui.Pad(1, 2, 1, 2)))
-				:header(ui.Row({ "Src", "Label", "Dist", "FSType" }):style(ui.Style():bold()))
-				:row(self.cursor)
-				:row_style(ui.Style():fg("blue"):underline())
-				:widths {
-					ui.Constraint.Length(20),
-					ui.Constraint.Length(20),
-					ui.Constraint.Percentage(70),
-					ui.Constraint.Length(10),
-				},
+			:area(self._area:pad(ui.Pad(1, 2, 1, 2)))
+			:header(ui.Row({ "Src", "Label", "Dist", "FSType" }):style(ui.Style():bold()))
+			:row(self.cursor)
+			:row_style(ui.Style():fg("blue"):underline())
+			:widths({
+				ui.Constraint.Length(20),
+				ui.Constraint.Length(20),
+				ui.Constraint.Percentage(70),
+				ui.Constraint.Length(10),
+			}),
 	}
 end
 
@@ -228,11 +240,11 @@ end
 
 function M.split(src)
 	local pats = {
-		{ "^/dev/sd[a-z]",     "%d+$" }, -- /dev/sda1
+		{ "^/dev/sd[a-z]", "%d+$" }, -- /dev/sda1
 		{ "^/dev/nvme%d+n%d+", "p%d+$" }, -- /dev/nvme0n1p1
-		{ "^/dev/mmcblk%d+",   "p%d+$" }, -- /dev/mmcblk0p1
-		{ "^/dev/disk%d+",     ".+$" }, -- /dev/disk1s1
-		{ "^/dev/sr%d+",       ".+$" }, -- /dev/sr0
+		{ "^/dev/mmcblk%d+", "p%d+$" }, -- /dev/mmcblk0p1
+		{ "^/dev/disk%d+", ".+$" }, -- /dev/disk1s1
+		{ "^/dev/sr%d+", ".+$" }, -- /dev/sr0
 	}
 	for _, p in ipairs(pats) do
 		local main = src:match(p[1])
@@ -301,7 +313,9 @@ function M.operate(type)
 	end
 end
 
-function M.fail(...) ya.notify { title = "Mount", content = string.format(...), timeout = 10, level = "error" } end
+function M.fail(...)
+	ya.notify({ title = "Mount", content = string.format(...), timeout = 10, level = "error" })
+end
 
 function M:click() end
 

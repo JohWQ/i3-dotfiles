@@ -10,6 +10,7 @@ image_quality   = 60
 
 [opener]
 edit = [
+  { run = 'alacritty -e nvim "$@"', orphan=true, desc = "Open Neovim in new Alacritty", for = "unix" },
   { run = '$EDITOR "$@"', desc = "$EDITOR", block = true, for = "unix" },
 ]
 extract = [
