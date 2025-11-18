@@ -1,7 +1,7 @@
 # Functional i3wm configuration on Fedora 42.
 
 ## Installation script
-
+### Install packages:
 ```
 sudo dnf update && sudo dnf install git
 git clone https://github.com/JohWQ/i3-dotfiles.git && cd i3-dotfiles/.config/scripts

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-echo "Enable RPMFusion:"
+echo "Enable Repos:"
 sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm && sudo dnf config-manager setopt fedora-cisco-openh264.enabled=1
 sudo dnf copr enable alternateved/i3status-rust
 sudo dnf update
@@ -66,6 +66,10 @@ st \
 alacritty \
 btop \
 fzf \
+fd-find \
+p7zip \
+zoxide \
+bat \
 gio \
 flameshot \
 tesseract \
@@ -75,6 +79,7 @@ obs-studio
 echo "Installing various packages:"
 cd $HOME
 mkdir i3-dotfiles-install && cd i3-dotfiles-install
+cargo install resvg
 cargo install --force --git https://github.com/sxyazi/yazi.git yazi-build
 git clone https://github.com/Raymo111/i3lock-color.git && cd i3lock-color && sudo ./install-i3lock-color.sh
 cd $HOME/i3-dotfiles-install
@@ -103,4 +108,4 @@ echo "Clearing font cache:"
 fc-cache -fv
 
 
-echo "Reboot to initialize all changes!"
+echo "Packages installed!"

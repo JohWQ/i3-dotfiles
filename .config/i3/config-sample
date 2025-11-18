@@ -225,7 +225,7 @@ bar {
     padding -2px 0 -2px 0
     tray_output none
     #strip_workspace_numbers yes - WS 1 - 10
-    status_command i3status-rs ~/.config/i3status-rust/monitor1.toml
+    status_command i3status-rs ~/.config/i3status-rust/config.toml
 
     colors {
         background #191f2a
@@ -247,7 +247,7 @@ bar {
     tray_output $monitor2
     tray_padding 2
     #strip_workspace_numbers yes - WS: 11 - 20
-    status_command i3status-rs ~/.config/i3status-rust/monitor2.toml
+    status_command i3status-rs ~/.config/i3status-rust/config2.toml
 
     colors {
         background #191f2a

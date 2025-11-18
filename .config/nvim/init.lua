@@ -5,7 +5,7 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
-vim.g.have_nerd_font = true
+vim.g.have_nerd_font = true -- jw custom
 
 -- [[ Setting options ]]
 -- See `:help vim.o`
@@ -16,7 +16,7 @@ vim.g.have_nerd_font = true
 vim.o.number = true
 -- You can also add relative line numbers, to help with jumping.
 --  Experiment for yourself to see if you like it!
-vim.o.relativenumber = true
+vim.o.relativenumber = true -- jw custom
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.o.mouse = 'a'
@@ -108,20 +108,21 @@ vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' }
 --  Use CTRL+<hjkl> to switch between windows
 --
 --  See `:help wincmd` for a list of all window commands
-vim.keymap.set('n', '<C-w>s', '<Nop>')
-vim.keymap.set('n', '<C-w>v', '<:sp<CR>', { desc = 'Split window' })
-vim.keymap.set('n', '<C-w>g', '<:vs<CR>', { desc = 'Split window vertically' })
 
-vim.keymap.set('n', '<M-h>', '<C-w><M-h>', { desc = 'Move focus to the left window' })
-vim.keymap.set('n', '<M-l>', '<C-w><M-l>', { desc = 'Move focus to the right window' })
-vim.keymap.set('n', '<M-j>', '<C-w><M-j>', { desc = 'Move focus to the lower window' })
-vim.keymap.set('n', '<M-k>', '<C-w><M-k>', { desc = 'Move focus to the upper window' })
+vim.keymap.set('n', '<C-w>s', '<Nop>') --, { desc = 'which_key_ignore, other_options' }) -- jw custom
+vim.keymap.set('n', '<C-w>v', '<:sp<CR>', { desc = 'Split window' }) -- jw custom
+vim.keymap.set('n', '<C-w>g', '<:vs<CR>', { desc = 'Split window vertically' }) -- jw custom
+
+vim.keymap.set('n', '<M-h>', '<C-w><M-h>', { desc = 'Move focus to the left window' }) -- jw custom
+vim.keymap.set('n', '<M-l>', '<C-w><M-l>', { desc = 'Move focus to the right window' }) -- jw custom
+vim.keymap.set('n', '<M-j>', '<C-w><M-j>', { desc = 'Move focus to the lower window' }) -- jw custom
+vim.keymap.set('n', '<M-k>', '<C-w><M-k>', { desc = 'Move focus to the upper window' }) -- jw custom
 
 -- NOTE: Some terminals have colliding keymaps or are not able to send distinct keycodes
-vim.keymap.set('n', '<M-S-h>', '<C-w>H', { desc = 'Move window to the left' })
+vim.keymap.set('n', '<M-S-h>', '<C-w>H', { desc = 'Move window to the left' }) -- jw custom
 vim.keymap.set('n', '<M-S-l>', '<C-w>L', { desc = 'Move window to the right' })
-vim.keymap.set('n', '<M-S-j>', '<C-w>J', { desc = 'Move window to the lower' })
-vim.keymap.set('n', '<M-S-k>', '<C-w>K', { desc = 'Move window to the upper' })
+vim.keymap.set('n', '<M-S-j>', '<C-w>J', { desc = 'Move window to the lower' }) -- jw custom
+vim.keymap.set('n', '<M-S-k>', '<C-w>K', { desc = 'Move window to the upper' }) -- jw custom
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
@@ -191,9 +192,17 @@ require('lazy').setup({
   -- options to `gitsigns.nvim`.
   --
   -- See `:help gitsigns` to understand what the configuration keys do
-
   {
-    'brenoprata10/nvim-highlight-colors',
+    'MeanderingProgrammer/render-markdown.nvim',
+    dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-mini/mini.nvim' }, -- if you use the mini.nvim suite
+    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-mini/mini.icons' },        -- if you use standalone mini plugins
+    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
+    ---@module 'render-markdown'
+    ---@type render.md.UserConfig
+    opts = {},
+  },
+  {
+    'brenoprata10/nvim-highlight-colors', -- jw plugin
     enabled = true,
     event = { 'BufReadPre', 'BufNewFile' },
     opts = {
@@ -247,7 +256,7 @@ require('lazy').setup({
 
   ---@type LazySpec
   {
-    'mikavilpas/yazi.nvim',
+    'mikavilpas/yazi.nvim', -- jw plugin
     version = '*', -- use the latest stable version
     event = 'VeryLazy',
     dependencies = {
@@ -327,6 +336,7 @@ require('lazy').setup({
       icons = {
         -- set icon mappings to true if you have a Nerd Font
         mappings = vim.g.have_nerd_font,
+        -- brah
         -- If you are using a Nerd Font: set icons.keys to an empty table which will use the
         -- default which-key.nvim defined Nerd Font icons, otherwise define a string table
         keys = vim.g.have_nerd_font and {} or {
