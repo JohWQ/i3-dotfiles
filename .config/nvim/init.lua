@@ -109,7 +109,8 @@ vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' }
 --
 --  See `:help wincmd` for a list of all window commands
 
-vim.keymap.set('n', '<C-w>s', '<Nop>') --, { desc = 'which_key_ignore, other_options' }) -- jw custom
+-- whyyyy:
+--vim.keymap.set('n', '<C-w>s', '<nil>', { desc = 'which_key_ignore' }) -- jw custom
 vim.keymap.set('n', '<C-w>v', '<:sp<CR>', { desc = 'Split window' }) -- jw custom
 vim.keymap.set('n', '<C-w>g', '<:vs<CR>', { desc = 'Split window vertically' }) -- jw custom
 
@@ -288,6 +289,9 @@ require('lazy').setup({
       open_for_directories = false,
       keymaps = {
         show_help = '<f1>',
+        open_file_in_vertical_split = '<c-g>',
+        open_file_in_horizontal_split = '<c-v>',
+        replace_in_directory = '<c-x>',
       },
     },
     -- 👇 if you use `open_for_directories=true`, this is recommended
