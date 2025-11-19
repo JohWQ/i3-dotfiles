@@ -33,7 +33,7 @@ button = "left"
 cmd = "i3-msg 'floating toggle; [tiling con_id=__focused__] border pixel 3; [floating con_id=__focused__] border normal'"
 [[block.click]]
 button = "right"
-cmd = "i3-msg workspace number $(~/.config/i3/scripts/new-workspace-monitor1.py)"
+cmd = "i3-msg 'layout toggle split'"
 [block.theme_overrides]
 idle_bg = "#39455f"
 
@@ -118,20 +118,17 @@ idle_bg = "#1d2431"
 block = "menu"
 text = " 󰵆 "
 [[block.items]]
-display = " &gt; Apps &lt;"
-cmd = "rofi -config ~/.config/rofi/launchers/type-1/style-5.rasi -show drun"
-[[block.items]]
-display = " &gt; Windows &lt;"
-cmd = "rofi -config ~/.config/rofi/launchers/type-1/style-005.rasi -show window"
-[[block.items]]
 display = " &gt; Clipboard &lt;"
 cmd = "rofi -config ~/.config/rofi/launchers/type-1/style-05.rasi -modi 'clipboard:greenclip print' -show clipboard -run-command '{cmd}'"
 [[block.items]]
+display = " &gt; Empty workspace &lt;"
+cmd = "i3-msg workspace number $(~/.config/i3/scripts/new-workspace-monitor1.py)"
+[[block.items]]
+display = " &gt; Apps &lt;"
+cmd = "rofi -config ~/.config/rofi/launchers/type-1/style-5.rasi -show drun"
+[[block.items]]
 display = " &gt; Bluetooth &lt;"
 cmd = "blueman-manager"
-[[block.items]]
-display = " &gt; Calculator &lt;"
-cmd = "rofi -config ~/.config/rofi/launchers/type-1/style-5.rasi -show calc"
 [block.theme_overrides]
 idle_bg = "#171d27"
 
