@@ -3,6 +3,7 @@
 .config/i3status-rust/monitor1.toml
 .config/i3status-rust/monitor2.toml
 .config/yazi/theme.toml
+.config/yazi/init.lua
 .config/yazi/pref-by-location
 .zshrc
 .config/gtk-3.0/bookmarks
