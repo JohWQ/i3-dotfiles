@@ -374,7 +374,7 @@ on   = "<C-Enter>"
 run  = "shell --orphan --confirm 'thunar .'"
 desc = "Open the current directory in Thunar"
 # --- PLUGINS --- #
-# -- Smart-filter" -- #
+# -- Smart-filter -- #
 [[mgr.prepend_keymap]]
 on = [ "g", "f" ]
 run = "plugin smart-filter"
