@@ -221,6 +221,7 @@ alias yaziconfig='nvim ~/.config/yazi/yazi.toml'
 # ---------------------------
 # Shell management
 # ---------------------------
+alias tmux='tmux -q has-session && tmux attach-session -d || exec tmux new-session'
 alias cls='clear'
 alias clr='clear'
 alias q:='exit'
@@ -277,6 +278,8 @@ function gc() {
 alias gitbranchdates='git for-each-ref --sort=-committerdate --format="%(refname:short) - %(committerdate:relative)" refs/heads/'
 alias gituntrack='git rm --cached '
 alias gits='git status'
+alias gitd='git diff'
+alias gitadd='git add .'
 
 # ---------------------------
 
@@ -292,7 +295,7 @@ setopt correct
 correct_ignore="[_|.]*"
 correct_ignore="[rpm|vim]*"
 # programs missing option autocomplete:
-compdef _gnu_generic fpaste pastel picom lightdm betterlockscreen pw-cli pw-dump dnf diff eza rofi xrandr fzf
+compdef _gnu_generic fpaste pastel picom lightdm betterlockscreen pw-cli pw-dump dnf diff eza rofi xrandr fzf i3bar i3status-rs caligula
 # ----- autocorrect ----- #
 
 # add flags to existing aliases.
