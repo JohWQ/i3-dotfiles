@@ -6,7 +6,7 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 --
 -- Set to true if you have a Nerd Font installed and selected in the terminal
-vim.g.have_nerd_font = true -- jw custom
+vim.g.have_nerd_font = true -- custom
 
 -- [[ Setting options ]]
 -- See `:help vim.o`
@@ -17,7 +17,7 @@ vim.g.have_nerd_font = true -- jw custom
 vim.o.number = true
 -- You can also add relative line numbers, to help with jumping.
 --  Experiment for yourself to see if you like it!
-vim.o.relativenumber = true -- jw custom
+vim.o.relativenumber = true -- custom
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.o.mouse = 'a'
@@ -111,20 +111,20 @@ vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' }
 --  See `:help wincmd` for a list of all window commands
 
 -- whyyyy:
---vim.keymap.set('n', '<C-w>s', '<nil>', { desc = 'which_key_ignore' }) -- jw custom
-vim.keymap.set('n', '<C-w>v', '<:sp<CR>', { desc = 'Split window' }) -- jw custom
-vim.keymap.set('n', '<C-w>g', '<:vs<CR>', { desc = 'Split window vertically' }) -- jw custom
+--vim.keymap.set('n', '<C-w>s', '<nil>', { desc = 'which_key_ignore' }) -- custom
+vim.keymap.set('n', '<C-w>v', '<:sp<CR>', { desc = 'Split window' }) -- custom
+vim.keymap.set('n', '<C-w>g', '<:vs<CR>', { desc = 'Split window vertically' }) -- custom
 
-vim.keymap.set('n', '<M-h>', '<C-w><M-h>', { desc = 'Move focus to the left window' }) -- jw custom
-vim.keymap.set('n', '<M-l>', '<C-w><M-l>', { desc = 'Move focus to the right window' }) -- jw custom
-vim.keymap.set('n', '<M-j>', '<C-w><M-j>', { desc = 'Move focus to the lower window' }) -- jw custom
-vim.keymap.set('n', '<M-k>', '<C-w><M-k>', { desc = 'Move focus to the upper window' }) -- jw custom
+vim.keymap.set('n', '<M-h>', '<C-w><M-h>', { desc = 'Move focus to the left window' }) -- custom
+vim.keymap.set('n', '<M-l>', '<C-w><M-l>', { desc = 'Move focus to the right window' }) -- custom
+vim.keymap.set('n', '<M-j>', '<C-w><M-j>', { desc = 'Move focus to the lower window' }) -- custom
+vim.keymap.set('n', '<M-k>', '<C-w><M-k>', { desc = 'Move focus to the upper window' }) -- custom
 
 -- NOTE: Some terminals have colliding keymaps or are not able to send distinct keycodes
-vim.keymap.set('n', '<M-S-h>', '<C-w>H', { desc = 'Move window to the left' }) -- jw custom
+vim.keymap.set('n', '<M-S-h>', '<C-w>H', { desc = 'Move window to the left' }) -- custom
 vim.keymap.set('n', '<M-S-l>', '<C-w>L', { desc = 'Move window to the right' })
-vim.keymap.set('n', '<M-S-j>', '<C-w>J', { desc = 'Move window to the lower' }) -- jw custom
-vim.keymap.set('n', '<M-S-k>', '<C-w>K', { desc = 'Move window to the upper' }) -- jw custom
+vim.keymap.set('n', '<M-S-j>', '<C-w>J', { desc = 'Move window to the lower' }) -- custom
+vim.keymap.set('n', '<M-S-k>', '<C-w>K', { desc = 'Move window to the upper' }) -- custom
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
@@ -204,7 +204,7 @@ require('lazy').setup({
     opts = {},
   },
   {
-    'brenoprata10/nvim-highlight-colors', -- jw plugin
+    'brenoprata10/nvim-highlight-colors', -- custom plugin
     enabled = true,
     event = { 'BufReadPre', 'BufNewFile' },
     opts = {
@@ -219,7 +219,10 @@ require('lazy').setup({
     },
   },
   {
-    'alexghergh/nvim-tmux-navigation', -- jw plugin
+    'ThePrimeagen/vim-be-good',
+  },
+  {
+    'alexghergh/nvim-tmux-navigation', -- custom plugin
     config = function()
       require('nvim-tmux-navigation').setup {
         disable_when_zoomed = true, -- defaults to false
@@ -258,7 +261,7 @@ require('lazy').setup({
 
   ---@type LazySpec
   {
-    'mikavilpas/yazi.nvim', -- jw plugin
+    'mikavilpas/yazi.nvim', -- custom plugin
     version = '*', -- use the latest stable version
     event = 'VeryLazy',
     dependencies = {

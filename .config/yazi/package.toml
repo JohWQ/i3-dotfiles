@@ -63,5 +63,10 @@ use = "boydaihungst/pref-by-location"
 rev = "882e752"
 hash = "f45cf212024c85b5f0ea0423e27196a"
 
+[[plugin.deps]]
+use = "yazi-rs/plugins:zoom"
+rev = "2301ff8"
+hash = "9dee2bf990ea941ccf67df74bca45468"
+
 [flavor]
 deps = []

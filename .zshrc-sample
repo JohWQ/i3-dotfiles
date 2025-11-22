@@ -35,7 +35,7 @@ zstyle ':z4h:direnv:success' notify 'yes'
 # SSH when connecting to these hosts.
 zstyle ':z4h:ssh:example-hostname1'   enable 'yes'
 
-#jw ssh teleporting
+# custom ssh teleporting
 zstyle ':z4h:ssh:192.168.10.254'   enable 'yes'
 
 #zstyle ':z4h:ssh:*.example-hostname2' enable 'no'
@@ -54,7 +54,7 @@ zstyle ':z4h:ssh:*' send-extra-files '~/.nanorc' '~/.env.zsh'
 z4h install ohmyzsh/ohmyzsh || return
 #z4h install MichaelAquilina/zsh-auto-notify || return
 
-# jw install plugin
+# custom install plugin
 z4h install fdw/yazi-zoxide-zsh || return
 
 # Use additional Git repositories pulled in with `z4h install`.
@@ -62,7 +62,7 @@ z4h install fdw/yazi-zoxide-zsh || return
 # This is just an example that you should delete. It does nothing useful.
 z4h source ohmyzsh/ohmyzsh/lib/diagnostics.zsh  # source an individual file
 
-# jw source plugin
+# custom source plugin
 z4h source fdw/yazi-zoxide-zsh/yazi-zoxide-zsh.plugin.zsh 
 
 z4h load   ohmyzsh/ohmyzsh/plugins/emoji-clock  # load a plugin
@@ -83,7 +83,7 @@ path=(~/bin $path)
 export GPG_TTY=$TTY
 
 
-# ----- jw paths ----- #
+# ----- custom paths ----- #
 eval "$(zoxide init zsh)"
 source <(fzf --zsh)
 
@@ -98,45 +98,57 @@ export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 export PATH="$HOME/.cargo/bin:$PATH"
 . "$HOME/.cargo/env"
 
+# Exclude file paths from fd search in fzf.
+# Customize as you see fit:
 export FZF_DEFAULT_COMMAND='fd -H -t f \
--E "/.snapshots" \
--E "/sys" \
--E "/usr/src" \
--E "/.cache" \
--E "/.terminfo" \
--E "/.mozilla" \
--E "/.rustup" \
--E ".snapshots" \
--E "/home/.snapshots" \
--E ".cache" \
--E ".steam" \
--E ".mozilla" \
--E ".cargo/registry" \
--E ".config/BraveSoftware" \
--E ".config/vesktop/sessionData" \
--E ".config/YouTube Music/Cache" \
--E ".config/YouTube Music/Code Cache" \
--E ".config/YouTube Music/Service Worker" \
--E ".local/share/Steam/appcache" \
--E ".local/share/Steam/controller_base" \
--E ".local/share/Steam/resource" \
--E ".local/share/Steam/graphics" \
--E ".local/share/Steam/steamrt64" \
--E ".local/share/Steam/tenfoot" \
--E ".local/share/Steam/config/avatarcache" \
--E ".local/share/Steam/config/htmlcache" \
--E ".local/share/Steam/ubuntu12_32" \
--E ".local/share/Steam/ubuntu12_64" \
--E ".local/share/Steam/public" \
--E ".local/share/Steam/steam" \
--E ".local/share/Steam/steamui" \
--E ".local/share/Steam/friends" \
--E ".local/share/nvim/lazy" \
--E ".local/share/nvim.bak" \
--E ".local/share/Smart Code ltd" \
--E ".local/state/yazi/packages" \
-
-# ----- paths ----- #
+-E "cache*" \
+-E "Cache*" \
+-E ".cache*" \
+-E "cookies*" \
+-E "Cookies*" \
+-E ".git" \
+-E ".github" \
+-E ".npm" \
+-E "Code Cache" \
+-E "CacheStorage" \
+-E "ScriptCache" \
+-E "Session Storage" \
+-E "sessionData" \
+-E "Service Worker" \
+-E "/sys/" \
+-E "/mnt/" \
+-E "/usr/src/" \
+-E ".snapshots/" \
+-E "home/.snapshots/" \
+-E "home/$USER/.nv/" \
+-E "home/$USER/.terminfo/" \
+-E "home/$USER/.terminfo/" \
+-E "home/$USER/.steam/" \
+-E "home/$USER/.mozilla/" \
+-E "home/$USER/.cargo/registry/" \
+-E "home/$USER/.cargo/git/" \
+-E "home/$USER/.local/state/" \
+-E "home/$USER/.local/lib/" \
+-E "home/$USER/.local/share/Steam/" \
+-E "home/$USER/.local/share/nvim/" \
+-E "home/$USER/.local/share/gvfs-metadata/" \
+-E "home/$USER/.local/share/Smart Code ltd/" \
+-E "home/$USER/JW-SERVER/div/games/ludusavi-backup/" \
+-E ".nv/" \
+-E ".terminfo/" \
+-E ".rustup/" \
+-E ".steam/" \
+-E ".mozilla/" \
+-E ".cargo/registry/" \
+-E ".cargo/git/" \
+-E ".local/state/" \
+-E ".local/lib/" \
+-E ".local/share/Steam/" \
+-E ".local/share/nvim/" \
+-E ".local/share/gvfs-metadata/" \
+-E ".local/share/Smart Code ltd/" \
+-E "JW-SERVER/div/games/ludusavi-backup/"'
+# ------------------------ #
 
 
 # Define key bindings.
@@ -151,12 +163,12 @@ z4h bindkey z4h-cd-forward Alt+Right  # cd into the next directory
 z4h bindkey z4h-cd-up      Alt+Up     # cd into the parent directory
 z4h bindkey z4h-cd-down    Alt+Down   # cd into a child directory
 
-# ----- jw binds ----- #
+# ----- custom binds ----- #
 bindkey -r "\M-C\M-8"
 bindkey -r "\M-C\M-^X"
 z4h bindkey autosuggest-execute Alt+E
 z4h bindkey autosuggest-toggle Alt+T
-# ----- binds ----- #
+# ----------------- #
 
 # Autoload functions.
 autoload -Uz zmv
@@ -171,7 +183,7 @@ compdef _directories md
 # Define aliases.
 alias tree='tree -a -I .git'
 
-# ---------- jw aliases ---------- #
+# ---------- custom aliases ---------- #
 # ---------------------------
 # Navigation / Directories
 # ---------------------------
@@ -213,8 +225,8 @@ alias fdfind='fd -H'
 alias bashrc='nvim ~/.bashrc'
 alias zshrc='nvim ~/.zshrc'
 alias i3config='nvim ~/.config/i3/config'
-alias i3statusconfig1='nvim /home/jw/.config/i3status-rust/config.toml'
-alias i3statusconfig2='nvim /home/jw/.config/i3status-rust/config.toml'
+alias i3statusconfig1='nvim ~/.config/i3status-rust/config.toml'
+alias i3statusconfig2='nvim ~/.config/i3status-rust/config.toml'
 alias picomconfig='nvim ~/.config/picom/picom.conf'
 alias yaziconfig='nvim ~/.config/yazi/yazi.toml'
 
@@ -224,7 +236,7 @@ alias yaziconfig='nvim ~/.config/yazi/yazi.toml'
 alias tmux='tmux -q has-session && tmux attach-session -d || exec tmux new-session'
 alias cls='clear'
 alias clr='clear'
-alias q:='exit'
+alias :q='exit'
 alias zsh='clear; zsh; reset'
 alias bash='clear; bash'
 alias sudo='sudo '
@@ -237,7 +249,7 @@ alias grubupdate='sudo grub2-mkconfig -o /boot/grub2/grub.cfg'
 alias uefiboot='systemctl reboot --firmware-setup'
 alias uefiupdate='sudo fwupdmgr update'
 alias nogui='sudo systemctl set-default multi-user.target && ~/.config/scripts/power/reboot.sh'
-alias yesgui='sudo systemctl set-default graphical.target && systemctl reboot'
+alias yesgui='sudo systemctl set-default graphical.target && systemctl restart lightdm'
 # ---------------------------
 # Package Management (dnf)
 # ---------------------------
@@ -281,10 +293,8 @@ alias gits='git status'
 alias gitd='git diff'
 alias gitadd='git add .'
 
-# ---------------------------
 
-
-# ----- jw autocorrect ----- # autocorrect quirks
+# ----- custom autocorrect ----- #
 # opts to enable
 #setopt correctall
 setopt hash_list_all
@@ -296,7 +306,7 @@ correct_ignore="[_|.]*"
 correct_ignore="[rpm|vim]*"
 # programs missing option autocomplete:
 compdef _gnu_generic fpaste pastel picom lightdm betterlockscreen pw-cli pw-dump dnf diff eza rofi xrandr fzf i3bar i3status-rs caligula
-# ----- autocorrect ----- #
+# ----------------------- #
 
 # add flags to existing aliases.
 #alias ls="${aliases[ls]:-ls} -a"

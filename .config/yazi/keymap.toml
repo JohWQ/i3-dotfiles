@@ -542,7 +542,7 @@ desc = "Move cursor down in the parent directory"
 #run = "plugin augment-command -- enter"
 #desc = "Enter the child directory, or open the file"
 [[mgr.prepend_keymap]]
-on = "<Enter>"
+on = "Enter"
 run = "plugin augment-command -- enter"
 desc = "Enter the child directory, or open the file"
 [[mgr.prepend_keymap]]
@@ -744,3 +744,12 @@ desc = "Sort randomly"
 [[mgr.prepend_keymap]]
 on = "<C-y>"
 run = "plugin system-clipboard"
+# -- zoom -- #
+[[mgr.prepend_keymap]]
+on   = "å"
+run  = "plugin zoom 1"
+desc = "Zoom in hovered file"
+[[mgr.prepend_keymap]]
+on   = "æ"
+run  = "plugin zoom -1"
+desc = "Zoom out hovered file"

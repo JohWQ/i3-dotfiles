@@ -24,81 +24,68 @@ if [ -d ~/.bashrc.d ]; then
 fi
 unset rc
 
-# PATHS:
+# CUSTOM PATHS:
 export SHELL='/usr/local/bin/zsh'
 export TERMINAL='alacritty'
 export BROWSER='firefox'
 export EDITOR='nvim'
 export VISUAL='nvim'
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 export PATH="$HOME/.cargo/bin:$PATH"
 . "$HOME/.cargo/env"
 
+# Exclude file paths from fd search in fzf.
+# Customize as you see fit:
 export FZF_DEFAULT_COMMAND='fd -H -t f \
--E "/.snapshots" \
--E "/sys" \
--E "/usr/src" \
--E "/.cache" \
--E "/.terminfo" \
--E "/.mozilla" \
--E "/.rustup" \
--E ".snapshots" \
--E "/home/.snapshots" \
--E ".cache" \
--E "/home/jw/.cache" \
--E ".steam" \
--E "/home/jw/.steam" \
--E ".mozilla" \
--E "/home/jw/.mozilla" \
--E ".cargo/registry" \
--E "/home/jw/.cargo/registry" \
--E ".config/BraveSoftware" \
--E "/home/jw/.config/BraveSoftware" \
--E ".config/vesktop/sessionData" \
--E "/home/jw/.config/vesktop/sessionData" \
--E ".config/YouTube Music/Cache" \
--E "/home/jw/.config/YouTube Music/Cache" \
--E ".config/YouTube Music/Code Cache" \
--E "/home/jw/.config/YouTube Music/Code Cache" \
--E ".config/YouTube Music/Service Worker/" \
--E "/home/jw/.config/YouTube Music/Service Worker/" \
--E ".local/share/Steam/appcache" \
--E "/home/jw/.local/share/Steam/appcache" \
--E ".local/share/Steam/controller_base" \
--E "/home/jw/.local/share/Steam/controller_base" \
--E ".local/share/Steam/resource" \
--E "/home/jw/.local/share/Steam/resource" \
--E ".local/share/Steam/graphics" \
--E "/home/jw/.local/share/Steam/graphics" \
--E ".local/share/Steam/steamrt64" \
--E "/home/jw/.local/share/Steam/steamrt64" \
--E ".local/share/Steam/tenfoot" \
--E "/home/jw/.local/share/Steam/tenfoot" \
--E ".local/share/Steam/config/avatarcache/" \
--E "/home/jw/.local/share/Steam/config/avatarcache/" \
--E ".local/share/Steam/config/htmlcache" \
--E "/home/jw/.local/share/Steam/config/htmlcache/" \
--E ".local/share/Steam/ubuntu12_32" \
--E "/home/jw/.local/share/Steam/ubuntu12_32" \
--E ".local/share/Steam/ubuntu12_64" \
--E "/home/jw/.local/share/Steam/ubuntu12_64" \
--E ".local/share/Steam/public" \
--E "/home/jw/.local/share/Steam/public" \
--E ".local/share/Steam/steam" \
--E "/home/jw/.local/share/Steam/steam" \
--E ".local/share/Steam/steamui" \
--E "/home/jw/.local/share/Steam/steamui" \
--E ".local/share/Steam/friends" \
--E "/home/jw/.local/share/Steam/friends" \
--E ".local/share/nvim/lazy" \
--E "/home/jw/.local/share/nvim/lazy" \
--E ".local/share/nvim.bak" \
--E "/home/jw/.local/share/nvim.bak" \
--E ".local/share/Smart Code ltd" \
--E "/home/jw/.local/share/Smart Code ltd" \
--E ".local/state/yazi/packages" \
--E "/home/jw/.local/state/yazi/packages"
--E "/mnt/4TB/JW/div/games/ludusavi-backup"
--E "JW/div/games/ludusavi-backup"'
+-E "cache*" \
+-E "Cache*" \
+-E ".cache*" \
+-E "cookies*" \
+-E "Cookies*" \
+-E ".git" \
+-E ".github" \
+-E ".npm" \
+-E "Code Cache" \
+-E "CacheStorage" \
+-E "ScriptCache" \
+-E "Session Storage" \
+-E "sessionData" \
+-E "Service Worker" \
+-E "/sys/" \
+-E "/mnt/" \
+-E "/usr/src/" \
+-E ".snapshots/" \
+-E "home/.snapshots/" \
+-E "home/$USER/.nv/" \
+-E "home/$USER/.terminfo/" \
+-E "home/$USER/.terminfo/" \
+-E "home/$USER/.steam/" \
+-E "home/$USER/.mozilla/" \
+-E "home/$USER/.cargo/registry/" \
+-E "home/$USER/.cargo/git/" \
+-E "home/$USER/.local/state/" \
+-E "home/$USER/.local/lib/" \
+-E "home/$USER/.local/share/Steam/" \
+-E "home/$USER/.local/share/nvim/" \
+-E "home/$USER/.local/share/gvfs-metadata/" \
+-E "home/$USER/.local/share/Smart Code ltd/" \
+-E "home/$USER/JW-SERVER/div/games/ludusavi-backup/" \
+-E ".nv/" \
+-E ".terminfo/" \
+-E ".rustup/" \
+-E ".steam/" \
+-E ".mozilla/" \
+-E ".cargo/registry/" \
+-E ".cargo/git/" \
+-E ".local/state/" \
+-E ".local/lib/" \
+-E ".local/share/Steam/" \
+-E ".local/share/nvim/" \
+-E ".local/share/gvfs-metadata/" \
+-E ".local/share/Smart Code ltd/" \
+-E "JW-SERVER/div/games/ludusavi-backup/"'
+
 
 # ALIAS:
-alias yesgui='sudo systemctl set-default graphical.target && systemctl reboot'
+alias yesgui='sudo systemctl set-default graphical.target && systemctl restart lightdm'
