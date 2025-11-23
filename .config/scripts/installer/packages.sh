@@ -61,6 +61,7 @@ rofi \
 rofi-devel \
 libtool \
 qalculate \
+vim \
 neovim \
 st \
 alacritty \

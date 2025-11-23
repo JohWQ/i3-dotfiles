@@ -25,13 +25,13 @@ mv $HOME/.config/tmux/{,.bak}
 mv $HOME/.config/xdg-desktop-portal/{,.bak}
 mv $HOME/.config/yazi/{,.bak}
 
+mv $HOME/i3-dotfiles/.zshrc-sample $HOME/i3-dotfiles/.zshrc
+mv $HOME/i3-dotfiles/.config/i3/config-sample $HOME/i3-dotfiles/.config/i3/config
+mv $HOME/i3-dotfiles/.config/yazi/init-sample.lua $HOME/i3-dotfiles/.config/yazi/init.lua
+mv $HOME/i3-dotfiles/.config/yazi/init-sample.lua $HOME/i3-dotfiles/.config/yazi/init.lua
+mv $HOME/i3-dotfiles/.config/yazi/theme-sample.toml $HOME/i3-dotfiles/.config/yazi/theme.toml
+
 cd $HOME/i3-dotfiles
 stow .
-
-mv $HOME/.zshrc-sample $HOME/.zshrc
-
-mv $HOME/.config/i3/config-sample $HOME/.config/i3/config
-mv $HOME/.config/yazi/init-sample.lua $HOME/.config/yazi/init.lua
-mv $HOME/.config/yazi/theme-sample.toml $HOME/.config/yazi/theme.toml
 
 sleep 1 && reset
