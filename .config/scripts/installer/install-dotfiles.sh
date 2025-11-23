@@ -39,4 +39,8 @@ mv $HOME/i3-dotfiles/.config/yazi/theme-sample.toml $HOME/i3-dotfiles/.config/ya
 cd $HOME/i3-dotfiles
 stow .
 
+fc-cache -fv
+
 sleep 1 && reset
+
+echo "It is recommended that you reboot after finishing the installation."

@@ -1,14 +1,19 @@
 # Functional i3wm configuration on Fedora 42.
 
 ## Installation script
-WIP
 Follow the instructions of any prompt that might appear on the screen.
+### Install packages:
 ```
 sudo dnf update && sudo dnf install git
 mv $HOME/i3-dotfiles{,.bak}
 git clone https://github.com/JohWQ/i3-dotfiles.git && cd i3-dotfiles/.config/scripts/installer
-./install.sh # or run with elevated priviliges: sudo ./install.sh
+./install-packages.sh
 ```
+### Install dotfiles:
+cd i3-dotfiles/.config/scripts/installer
+./install-dotfiles.sh
+```
+
 
 ## TODO:
 - [ ] Create a better personal Nvim configuration

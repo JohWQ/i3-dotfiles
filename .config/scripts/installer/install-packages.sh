@@ -20,6 +20,7 @@ gcc \
 clang \
 go \
 cmake \
+curl \
 python3 \
 meson \
 make \
@@ -27,6 +28,7 @@ autoconf \
 automake \
 gtk3-devel \
 gtk4-devel \
+dbus-devel \
 jq \
 fontconfig \
 liberation-mono-fonts \
@@ -133,12 +135,8 @@ wget https://github.com/erebe/greenclip/releases/download/v4.2/greenclip && sudo
 
 curl https://raw.githubusercontent.com/GeorgeFilipkin/pulsemixer/master/pulsemixer > pulsemixer && chmod +x pulsemixer && sudo mv pulsemixer /usr/local/bin/
 
-if command -v curl >/dev/null 2>&1; then
-  sh -c "$(curl -fsSL https://raw.githubusercontent.com/romkatv/zsh4humans/v5/install)"
-else
-  sh -c "$(wget -O- https://raw.githubusercontent.com/romkatv/zsh4humans/v5/install)"
-fi
-
 cd $HOME
 sudo rm -rf $HOME/go/
 sudo rm -rf $HOME/JohWQ-i3-dotfiles-install
+
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/romkatv/zsh4humans/v5/install)"
