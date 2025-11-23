@@ -6,7 +6,8 @@ sort_by = "mtime"
 
 [preview]
 wrap            = "yes"
-image_quality   = 60
+max_width       = 700
+max_height      = 1000
 
 [opener]
 edit = [

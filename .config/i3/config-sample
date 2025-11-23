@@ -23,7 +23,7 @@ client.background       #ffffff
 font pango: Liberation Mono 9
 
 # Desktop wallpaper. Replace with the path of your image:
-set $desktopwallpaper ~/Pictures/Gimp/block-pattern.png
+set $desktopwallpaper ~/Pictures/Emperor_penguins.jpeg
 
 # Window style
 title_align center
@@ -225,7 +225,7 @@ bar {
     padding -2px 0 -2px 0
     tray_output none
     #strip_workspace_numbers yes - WS 1 - 10
-    status_command i3status-rs ~/.config/i3status-rust/config.toml
+    status_command i3status-rs ~/.config/i3status-rust/config1.toml
 
     colors {
         background #191f2a

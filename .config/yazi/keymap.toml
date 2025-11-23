@@ -365,7 +365,7 @@ keymap = [
 
 # ----- USER KEYMAPS ----- #
 [[mgr.prepend_keymap]]
-on   = "!"
+on   = "="
 for  = "unix"
 run  = 'shell "$SHELL" --block'
 desc = "Open $SHELL here"
@@ -386,39 +386,39 @@ run  = "plugin confirm-quit"
 desc = "Confirm quit for tabs"
 # -- Relative-motions -- #
 [[mgr.prepend_keymap]]
-on = "<C-1>"
+on = "!"
 run = "plugin relative-motions 1"
 desc = "Move in relative steps"
 [[mgr.prepend_keymap]]
-on = "<C-2>"
+on = '"'
 run = "plugin relative-motions 2"
 desc = "Move in relative steps"
 [[mgr.prepend_keymap]]
-on = "<C-3>"
+on = "#"
 run = "plugin relative-motions 3"
 desc = "Move in relative steps"
 [[mgr.prepend_keymap]]
-on = "<C-4>"
+on = "¤"
 run = "plugin relative-motions 4"
 desc = "Move in relative steps"
 [[mgr.prepend_keymap]]
-on = "<C-5>"
+on = "%"
 run = "plugin relative-motions 5"
 desc = "Move in relative steps"
 [[mgr.prepend_keymap]]
-on = "<C-6>"
+on = "&"
 run = "plugin relative-motions 6"
 desc = "Move in relative steps"
 [[mgr.prepend_keymap]]
-on = "<C-7>"
+on = "/"
 run = "plugin relative-motions 7"
 desc = "Move in relative steps"
 [[mgr.prepend_keymap]]
-on = "<C-8>"
+on = "("
 run = "plugin relative-motions 8"
 desc = "Move in relative steps"
 [[mgr.prepend_keymap]]
-on = "<C-9>"
+on = ")"
 run = "plugin relative-motions 9"
 desc = "Move in relative steps"
 # -- Toggle-pane -- #

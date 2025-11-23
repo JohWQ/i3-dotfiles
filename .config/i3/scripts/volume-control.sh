@@ -61,8 +61,8 @@ case $1 in
         ;;
     
     pactl_volume_7)
-        # Sets volume to 70%
-        pactl set-sink-volume @DEFAULT_SINK@ 70%
+        # Sets volume to 60%
+        pactl set-sink-volume @DEFAULT_SINK@ 60%
         pactl_show_volume_notif
         ;;
     
@@ -103,8 +103,8 @@ case $1 in
         ;;
     
     playerctl_volume_7)
-        # Sets volume to 70%
-        playerctl volume 0.7
+        # Sets volume to 60%
+        playerctl volume 0.6
         playerctl_show_volume_notif
         ;;
     
