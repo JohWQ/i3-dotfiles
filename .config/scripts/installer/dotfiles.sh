@@ -34,4 +34,4 @@ mv $HOME/.config/i3/config-sample $HOME/.config/i3/config
 mv $HOME/.config/yazi/init-sample.lua $HOME/.config/yazi/init.lua
 mv $HOME/.config/yazi/theme-sample.toml $HOME/.config/yazi/theme.toml
 
-reset
+sleep 1 && reset

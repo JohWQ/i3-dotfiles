@@ -122,4 +122,5 @@ else
   sh -c "$(wget -O- https://raw.githubusercontent.com/romkatv/zsh4humans/v5/install)"
 fi
 
+cd $HOME
 sudo rm -rf $HOME/JohWQ-i3-dotfiles-install

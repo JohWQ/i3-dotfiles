@@ -1,6 +1,7 @@
 # Functional i3wm configuration on Fedora 42.
 
 ## Installation script
+WIP
 Follow the instructions of any prompt that might appear on the screen.
 ```
 sudo dnf update && sudo dnf install git
