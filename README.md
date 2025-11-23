@@ -10,6 +10,7 @@ git clone https://github.com/JohWQ/i3-dotfiles.git && cd i3-dotfiles/.config/scr
 ./install-packages.sh
 ```
 ### Install dotfiles:
+```
 cd i3-dotfiles/.config/scripts/installer
 ./install-dotfiles.sh
 ```
