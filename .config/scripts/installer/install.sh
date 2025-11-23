@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
-~/.config/scripts/installer/packages.sh
+$HOME/i3-dotfiles/.config/scripts/installer/packages.sh
 echo "Packages installed, moving configuration files..."
 
-~/.config/scripts/installer/dotfiles.sh
+$HOME/i3-dotfiles/.config/scripts/installer/dotfiles.sh
 echo "Configuration files installed"
 
 echo "Clearing font cache:"
