@@ -1,4 +1,8 @@
 .config/scripts/ping_websites.sh
+.config/mpd/state
+.config/mpd/mpd.log
+.config/mpd/playlists
+.config/mpd/sticker
 .config/i3status-rust/monitor1.toml
 .config/i3status-rust/monitor2.toml
 .config/yazi/theme.toml
@@ -6,7 +10,9 @@
 .config/yazi/pref-by-location
 .zshrc
 .config/gtk-3.0/bookmarks
+.config/i3/scripts/new-workspace.sh
 .config/i3/config
+.config/i3/modes
 .config/nvim/lazy-lock.json
 .config/nvim.astro.old
 .config/org.freedesktop.FileManager1.common/config.bak

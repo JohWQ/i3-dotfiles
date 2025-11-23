@@ -3,6 +3,7 @@
 echo "Updating system:"
 sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm -y && sudo dnf config-manager setopt fedora-cisco-openh264.enabled=1 -y
 sudo dnf copr enable alternateved/i3status-rust -y
+sudo dnf copr enable dturner/eza -y
 sudo dnf update -y
 
 # Rustup:
@@ -14,8 +15,10 @@ echo "Installing packages:"
 sudo dnf group install multimedia "development-tools" -y
 sudo dnf install \
 i3status-rust \
+eza \
 gcc \
 clang \
+go \
 cmake \
 python3 \
 meson \
@@ -28,6 +31,7 @@ jq \
 fontconfig \
 liberation-mono-fonts \
 cascadia-code-nf-fonts \
+fontawesome-fonts-all \
 inih-devel \
 scdoc \
 libev-devel \
@@ -61,8 +65,11 @@ rofi \
 rofi-devel \
 libtool \
 qalculate \
+fastfetch \
 vim \
 neovim \
+mpd \
+mpc \
 st \
 alacritty \
 btop \
@@ -73,6 +80,7 @@ zoxide \
 bat \
 gio \
 flameshot \
+syncthing \
 tesseract \
 obs-studio -y
 
@@ -80,9 +88,17 @@ obs-studio -y
 echo "Cloning directories & installing various programs:"
 mkdir $HOME/JohWQ-i3-dotfiles-install && cd $HOME/JohWQ-i3-dotfiles-install
 
+go install github.com/natsukagami/mpd-mpris/cmd/mpd-mpris@latest
+
+cd $HOME
+
+sudo mv $HOME/go/bin/mpd-mpris /usr/local/bin/
+
 cargo install resvg
 
 cargo install --force --git https://github.com/sxyazi/yazi.git yazi-build
+
+cargo install rmpc --locked
 
 git clone https://github.com/Raymo111/i3lock-color.git && cd i3lock-color && sudo ./install-i3lock-color.sh
 
@@ -124,4 +140,5 @@ else
 fi
 
 cd $HOME
+sudo rm -rf $HOME/go/
 sudo rm -rf $HOME/JohWQ-i3-dotfiles-install

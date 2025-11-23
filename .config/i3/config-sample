@@ -22,8 +22,8 @@ client.background       #ffffff
 
 font pango: Liberation Mono 9
 
-# Desktop wallpaper. Replace with the path of your image:
-set $desktopwallpaper ~/Pictures/Emperor_penguins.jpeg
+# DESKTOP WALLPAPER. REPLACE WITH THE PATH OF YOUR IMAGE:
+#set $desktopwallpaper ~/Pictures/Emperor_penguins.jpeg
 
 # Window style
 title_align center
@@ -101,7 +101,7 @@ bindsym $mod+Mod1+d exec --no-startup-id notify-send -t 600 "Launching Discord" 
 bindsym $mod+Mod1+y exec --no-startup-id notify-send -t 600 "Launching Youtube Music" && youtube-music
 bindsym $mod+Mod1+b exec --no-startup-id thunar
 bindsym $mod+Mod1+o exec --no-startup-id notify-send -t 600 "Launching OBS Studio" && obs
-bindsym $mod+Mod1+t exec --no-startup-id marktext
+bindsym $mod+Mod1+t exec --no-startup-id subl
 bindsym $mod+Mod1+g exec --no-startup-id notify-send -t 600 "Launching Gimp" && gimp
 
 
@@ -109,12 +109,14 @@ bindsym $mod+Mod1+g exec --no-startup-id notify-send -t 600 "Launching Gimp" && 
 set $mod Mod4
 floating_modifier $mod
 workspace_auto_back_and_forth yes
-set $monitor1 DP-2
-set $monitor2 DP-4
-# Removes border resize + Titlebar grab with Mouse1:
+# SET YOUR MONITOR:
+#set $monitor1 DP-2
+#set $monitor2 DP-4
+# Removes border resize + Titlebar grab with Mouse1 (optional):
 #bindsym --border button1 nop
 
-bindsym $mod+Shift+ctrl+r exec --no-startup-id xrandr --output $monitor1 --primary --mode 1920x1080 --rate 144.00 --pos 0x420 --output $monitor2 --mode 1920x1080 --rate 144.00 --pos 1920x0 --rotate left && sleep 2 && notify-send -t 2000 "Resolution reset"
+# SET YOUR XRANDR COMMAND (optional):
+#bindsym $mod+Shift+ctrl+r exec --no-startup-id xrandr --output $monitor1 --primary --mode 1920x1080 --rate 144.00 --pos 0x420 --output $monitor2 --mode 1920x1080 --rate 144.00 --pos 1920x0 --rotate left && sleep 2 && notify-send -t 2000 "Resolution reset"
 
 # split in horizontal orientation
 bindsym $mod+g exec --no-startup-id i3-msg split h && notify-send -t 800 "Horizontal ← →"
@@ -173,7 +175,8 @@ exec --no-startup-id mpd
 
 # Resolution for monitor 1 & 2
 exec --no-startup-id xset s 3600 0
-exec --no-startup-id xrandr --output $monitor1 --primary --mode 1920x1080 --rate 144.00 --pos 0x420 --output $monitor2 --mode 1920x1080 --rate 144.00 --pos 1920x0 --rotate left
+# SET YOUR XRANDR COMMAND:
+#exec --no-startup-id xrandr --output $monitor1 --primary --mode 1920x1080 --rate 144.00 --pos 0x420 --output $monitor2 --mode 1920x1080 --rate 144.00 --pos 1920x0 --rotate left
 
 
 ## ---------------------- SCRATCHPADS ---------------------- ##
@@ -219,7 +222,8 @@ exec_always --no-startup-id pgrep -f "^(alacritty -t $scratchpadwindowtitle4)" |
 # Removed stripping of WS to retain compatability with scripts.
 # Monitor 1 - i3status-rust
 bar {
-    output $monitor1
+#    USE 'monitor1' VARIABLE, RECOMMENDED IF USING MULTIPLE MONITORS:
+#    output $monitor1
     font pango:CaskaydiaCove Nerd Font 16
     position top
     padding -2px 0 -2px 0
@@ -238,27 +242,28 @@ bar {
     }
 }
 
-# Monitor 2 - i3status-rust
-bar {
-    output $monitor2
-    font pango:CaskaydiaCove Nerd Font 12.9
-    position top
-    padding -2px 0 -2px 0
-    tray_output $monitor2
-    tray_padding 2
-    #strip_workspace_numbers yes - WS: 11 - 20
-    status_command i3status-rs ~/.config/i3status-rust/config2.toml
-
-    colors {
-        background #191f2a
-#                          outline fill    text
-    	urgent_workspace   #87ceeb #87ceeb #104b63
-        focused_workspace  #0377ce #0377ce #ffffff
-#       inactive but active:
-        active_workspace   #313f4e #313f4e #999999
-        inactive_workspace #191f2a #191f2a #777777
-    }
-}
+##### OPTIONAL:
+## Monitor 2 - i3status-rust
+#bar {
+#    output $monitor2
+#    font pango:CaskaydiaCove Nerd Font 12.9
+#    position top
+#    padding -2px 0 -2px 0
+#    tray_output $monitor2
+#    tray_padding 2
+#    #strip_workspace_numbers yes - WS: 11 - 20
+#    status_command i3status-rs ~/.config/i3status-rust/config2.toml
+#
+#    colors {
+#        background #191f2a
+##                          outline fill    text
+#    	urgent_workspace   #87ceeb #87ceeb #104b63
+#        focused_workspace  #0377ce #0377ce #ffffff
+##       inactive but active:
+#        active_workspace   #313f4e #313f4e #999999
+#        inactive_workspace #191f2a #191f2a #777777
+#    }
+#}
 
 
 ## ---------------------- MONITOR WORKSPACE SETTINGS ---------------------- ##
@@ -287,29 +292,30 @@ set $ws18 "18"
 set $ws19 "19"
 set $ws20 "20"
 
+# SET YOUR WORKSPACE OUTPUTS
 # Workspace outputs
-workspace $ws1 output $monitor1
-workspace $ws2 output $monitor1
-workspace $ws3 output $monitor1
-workspace $ws4 output $monitor1
-workspace $ws5 output $monitor1
-workspace $ws6 output $monitor1
-workspace $ws7 output $monitor1
-workspace $ws8 output $monitor1
-workspace $ws9 output $monitor1
-workspace $ws10 output $monitor1
-workspace $ws100 output $monitor1
+#workspace $ws1 output $monitor1
+#workspace $ws2 output $monitor1
+#workspace $ws3 output $monitor1
+#workspace $ws4 output $monitor1
+#workspace $ws5 output $monitor1
+#workspace $ws6 output $monitor1
+#workspace $ws7 output $monitor1
+#workspace $ws8 output $monitor1
+#workspace $ws9 output $monitor1
+#workspace $ws10 output $monitor1
+#workspace $ws100 output $monitor1
 
-workspace $ws11 output $monitor2
-workspace $ws12 output $monitor2
-workspace $ws13 output $monitor2
-workspace $ws14 output $monitor2
-workspace $ws15 output $monitor2
-workspace $ws16 output $monitor2
-workspace $ws17 output $monitor2
-workspace $ws18 output $monitor2
-workspace $ws19 output $monitor2
-workspace $ws20 output $monitor2
+#workspace $ws11 output $monitor2
+#workspace $ws12 output $monitor2
+#workspace $ws13 output $monitor2
+#workspace $ws14 output $monitor2
+#workspace $ws15 output $monitor2
+#workspace $ws16 output $monitor2
+#workspace $ws17 output $monitor2
+#workspace $ws18 output $monitor2
+#workspace $ws19 output $monitor2
+#workspace $ws20 output $monitor2
 
 
 ## ---------------------- WINDOW MANIPULATION ---------------------- ##
@@ -339,8 +345,9 @@ bindsym $mod+ctrl+Down exec --no-startup-id $i3_resize down
 
 
 # Go to workspace
-bindsym $mod+o exec --no-startup-id i3-msg workspace number $(~/.config/i3/scripts/new-workspace.sh), workspace number $_
-bindsym $mod+x focus output DP-4 DP-2
+bindsym $mod+o exec --no-startup-id i3-msg workspace number $(~/.config/i3/scripts/new-workspace-sample.sh), workspace number $_
+# REPLACE "DP-2" AND "DP-4" WITH YOUR MONITORS:
+#bindsym $mod+x focus output DP-4 DP-2
 bindsym $mod+p workspace prev
 bindsym $mod+n workspace next
 bindsym $mod+1 workspace $ws1
@@ -359,8 +366,9 @@ bindsym $mod+F3 workspace $ws13
 bindsym $mod+F4 workspace $ws14
 
 # Move focused container to workspace and go to workspace
-bindsym $mod+Shift+o exec --no-startup-id i3-msg move container to workspace $(~/.config/i3/scripts/new-workspace.sh) && i3-msg workspace number $_
-bindsym $mod+Shift+x move container to output DP-4 DP-2, focus output DP-4 DP-2
+bindsym $mod+Shift+o exec --no-startup-id i3-msg move container to workspace $(~/.config/i3/scripts/new-workspace-sample.sh) && i3-msg workspace number $_
+# REPLACE "DP-2" AND "DP-4" WITH YOUR MONITORS:
+#bindsym $mod+Shift+x move container to output DP-4 DP-2, focus output DP-4 DP-2
 bindsym $mod+Shift+p move container to workspace prev, workspace prev
 bindsym $mod+Shift+n move container to workspace next, workspace next
 bindsym $mod+Shift+1 move container to workspace $ws1, workspace $ws1
@@ -380,7 +388,8 @@ bindsym $mod+Shift+F4 move container to workspace $ws14, workspace $ws14
 
 # Move focused container to workspace
 bindsym $mod+ctrl+o exec --no-startup-id i3-msg move container to workspace $(~/.config/i3/scripts/new-workspace.sh)
-bindsym $mod+ctrl+x move container to output DP-4 DP-2
+# REPLACE "DP-2" AND "DP-4" WITH YOUR MONITORS:
+#bindsym $mod+ctrl+x move container to output DP-4 DP-2
 bindsym $mod+ctrl+p move container to workspace prev
 bindsym $mod+ctrl+n move container to workspace next
 bindsym $mod+ctrl+1 move container to workspace $ws1
