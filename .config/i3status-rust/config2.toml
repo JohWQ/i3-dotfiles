@@ -120,14 +120,20 @@ cmd = "blueman-manager"
 [block.theme_overrides]
 idle_bg = "#171d27"
 
-#[[block]]
-#block = "menu"
-#text = " "
-#[[block.items]]
-#display = " &gt; # &lt;"
-#cmd = ":"
-#[block.theme_overrides]
-#idle_bg = "#171d27"
+[[block]]
+block = "menu"
+text = " 󰹯 "
+[[block.items]]
+display = " &gt; Empty workspace &lt;"
+cmd = "i3-msg workspace number $(~/.config/i3/scripts/new-workspace-monitor2.py)"
+[[block.items]]
+display = " &gt; Resize mode &lt;"
+cmd = "i3-msg mode 'Resize mode'"
+[[block.items]]
+display = " &gt; Cursor mode &lt;"
+cmd = "i3-msg mode 'Cursor mode'"
+[block.theme_overrides]
+idle_bg = "#171d27"
 
 [[block]]
 block = "menu"

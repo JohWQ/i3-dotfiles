@@ -19,19 +19,9 @@ extract = [
 ]
 
 [plugin]
-prepend_preloaders = [
-  # Office Documents
-  { mime = "application/openxmlformats-officedocument*", run = "office" },
-  { mime = "application/oasis.opendocument.*", run = "office" },
-  { mime = "application/ms-*", run = "office" },
-  { mime = "application/msword", run = "office" },
-]
+#prepend_preloaders = [
+#]
 prepend_previewers = [
   # audio metadata
   { mime = "audio/*",   run = "exifaudio"},
-  # Office Documents
-  { mime = "application/openxmlformats-officedocument*", run = "office" },
-  { mime = "application/oasis.opendocument.*", run = "office" },
-  { mime = "application/ms-*", run = "office" },
-  { mime = "application/msword", run = "office" },
 ]

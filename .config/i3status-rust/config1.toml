@@ -121,9 +121,6 @@ text = " 󰵆 "
 display = " &gt; Clipboard &lt;"
 cmd = "rofi -config ~/.config/rofi/launchers/type-1/style-05.rasi -modi 'clipboard:greenclip print' -show clipboard -run-command '{cmd}'"
 [[block.items]]
-display = " &gt; Empty workspace &lt;"
-cmd = "i3-msg workspace number $(~/.config/i3/scripts/new-workspace-monitor1.py)"
-[[block.items]]
 display = " &gt; Apps &lt;"
 cmd = "rofi -config ~/.config/rofi/launchers/type-1/style-5.rasi -show drun"
 [[block.items]]
@@ -132,14 +129,20 @@ cmd = "blueman-manager"
 [block.theme_overrides]
 idle_bg = "#171d27"
 
-#[[block]]
-#block = "menu"
-#text = " "
-#[[block.items]]
-#display = " &gt; # &lt;"
-#cmd = ":"
-#[block.theme_overrides]
-#idle_bg = "#171d27"
+[[block]]
+block = "menu"
+text = " 󰹯 "
+[[block.items]]
+display = " &gt; Empty workspace &lt;"
+cmd = "i3-msg workspace number $(~/.config/i3/scripts/new-workspace-monitor1.py)"
+[[block.items]]
+display = " &gt; Resize mode &lt;"
+cmd = "i3-msg mode 'Resize mode'"
+[[block.items]]
+display = " &gt; Cursor mode &lt;"
+cmd = "i3-msg mode 'Cursor mode'"
+[block.theme_overrides]
+idle_bg = "#171d27"
 
 [[block]]
 block = "menu"
