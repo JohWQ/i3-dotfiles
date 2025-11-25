@@ -33,7 +33,6 @@ mv $HOME/i3-dotfiles/.config/i3/scripts/new-workspace-sample.sh $HOME/i3-dotfile
 mv $HOME/i3-dotfiles/.config/i3/modes-sample.conf $HOME/i3-dotfiles/.config/i3/modes.conf
 mv $HOME/i3-dotfiles/.config/i3/config-sample $HOME/i3-dotfiles/.config/i3/config
 mv $HOME/i3-dotfiles/.config/yazi/init-sample.lua $HOME/i3-dotfiles/.config/yazi/init.lua
-mv $HOME/i3-dotfiles/.config/yazi/init-sample.lua $HOME/i3-dotfiles/.config/yazi/init.lua
 mv $HOME/i3-dotfiles/.config/yazi/theme-sample.toml $HOME/i3-dotfiles/.config/yazi/theme.toml
 
 cd $HOME/i3-dotfiles
