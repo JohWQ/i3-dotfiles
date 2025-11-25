@@ -132,6 +132,9 @@ idle_bg = "#171d27"
 [[block]]
 block = "menu"
 text = " 󰹯 "
+[[block.click]]
+button = "right"
+cmd = "i3-msg mode 'default'"
 [[block.items]]
 display = " &gt; Empty workspace &lt;"
 cmd = "i3-msg workspace number $(~/.config/i3/scripts/new-workspace-monitor1.py)"
