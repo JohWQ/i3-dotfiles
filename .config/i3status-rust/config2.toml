@@ -47,6 +47,8 @@ max_vol = 200
 [[block.click]]
 button = "left"
 cmd = "pavucontrol"
+[block.icons_overrides]
+volume_muted = "\ueee8"
 [block.theme_overrides]
 idle_bg = "#2f394f"
 
