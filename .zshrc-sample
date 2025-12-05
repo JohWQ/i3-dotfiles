@@ -292,7 +292,7 @@ alias gituntrack='git rm --cached '
 alias gits='git status'
 alias gcm='git commit -m'
 alias gitd='git diff'
-alias gitadd='git add .'
+alias gita='git add .'
 
 
 # ----- custom autocorrect ----- #
