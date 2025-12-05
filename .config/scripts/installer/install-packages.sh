@@ -131,7 +131,7 @@ cd $HOME/JohWQ-i3-dotfiles-install
 
 wget https://raw.githubusercontent.com/betterlockscreen/betterlockscreen/main/install.sh -O - -q | sudo bash -s system
 
-wget https://github.com/erebe/greenclip/releases/download/v4.2/greenclip && sudo mv greenclip /usr/local/bin/
+wget https://github.com/erebe/greenclip/releases/download/v4.2/greenclip && chmod +x greenclip && sudo mv greenclip /usr/local/bin/
 
 curl https://raw.githubusercontent.com/GeorgeFilipkin/pulsemixer/master/pulsemixer > pulsemixer && chmod +x pulsemixer && sudo mv pulsemixer /usr/local/bin/
 

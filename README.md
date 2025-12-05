@@ -2,7 +2,10 @@
 
 ## Installation script
 Follow the instructions of any prompt that might appear on the screen.
+
 ### Install packages:
+#### Note:
+Some cargo programs might not be installed. Run: "cargo install --list" to check.
 ```
 sudo dnf update && sudo dnf install git
 mv $HOME/i3-dotfiles{,.bak}
@@ -10,7 +13,7 @@ git clone https://github.com/JohWQ/i3-dotfiles.git && cd i3-dotfiles/.config/scr
 ./install-packages.sh
 ```
 ### Install dotfiles:
-Note:
+#### Note:
 - on F43:
   -  the font in alacritty might be broken.
   -  Picom might break things.
