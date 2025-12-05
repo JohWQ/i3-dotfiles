@@ -48,11 +48,13 @@ bindsym $mod+ctrl+Return exec st
 
 # Screenshot
 bindsym Print exec --no-startup-id flameshot gui
+bindsym ctrl+Print exec --no-startup-id flameshot gui -p ~/Pictures/screenshots/
+bindsym Shift+Print exec --no-startup-id flameshot gui -p ~/Pictures/screenshots/
 bindsym $mod+Print --release exec --no-startup-id flameshot screen
 
 # OTD tablet button keybinds:
-bindsym ctrl+Mod1+Shift+Insert workspace $:::ws100; exec --no-startup-id gimp
-bindsym ctrl+Mod1+Shift+Delete exec --no-startup-id ~/.config/scripts/toggle_display_wacom.sh
+#bindsym ctrl+Mod1+Shift+Insert workspace $ws100; exec --no-startup-id gimp
+#bindsym ctrl+Mod1+Shift+Delete exec --no-startup-id ~/.config/scripts/toggle_display_wacom.sh
 
 # Master volume controls
 set $i3_volume-control ~/.config/i3/scripts/volume-control.sh
@@ -227,7 +229,8 @@ bar {
     font pango:CaskaydiaCove Nerd Font 16
     position top
     padding -2px 0 -2px 0
-    tray_output none
+#    tray_output none
+#    tray_output $monitor1
     #strip_workspace_numbers yes - WS 1 - 10
     status_command i3status-rs ~/.config/i3status-rust/config1.toml
 
@@ -279,18 +282,17 @@ set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
-set $ws100 "100"
-# Monitor 2:
-set $ws11 "11"
-set $ws12 "12"
-set $ws13 "13"
-set $ws14 "14"
-set $ws15 "15"
-set $ws16 "16"
-set $ws17 "17"
-set $ws18 "18"
-set $ws19 "19"
-set $ws20 "20"
+#set $ws100 "100"
+#set $ws11 "11"
+#set $ws12 "12"
+#set $ws13 "13"
+#set $ws14 "14"
+#set $ws15 "15"
+#set $ws16 "16"
+#set $ws17 "17"
+#set $ws18 "18"
+#set $ws19 "19"
+#set $ws20 "20"
 
 # SET YOUR WORKSPACE OUTPUTS
 # Workspace outputs
