@@ -21,7 +21,7 @@ cd $HOME/i3-dotfiles/.config/scripts/installer
 
 
 ## TODO:
-- [] Create a better personal Nvim configuration
+- [ ] Create a better personal Nvim configuration
 - [x] Set per-directory viewing configuration in yazi
 - [ ] Have a more consistent theme (instead of having a different dark theme for GTK and QT applications)
 - [x] Create a proper installation script
