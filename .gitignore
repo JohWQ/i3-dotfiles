@@ -12,7 +12,7 @@
 .config/gtk-3.0/bookmarks
 .config/i3/scripts/new-workspace.sh
 .config/i3/config
-.config/i3/modes
+.config/i3/modes.conf
 .config/nvim/lazy-lock.json
 .config/nvim.astro.old
 .config/org.freedesktop.FileManager1.common/config.bak
