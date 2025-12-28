@@ -15,7 +15,6 @@ git clone https://github.com/JohWQ/i3-dotfiles.git && cd i3-dotfiles/.config/scr
 ### Install dotfiles:
 #### Note:
 - on F43:
-  -  the font in alacritty might be broken.
   -  Picom might break things.
 ```
 cd $HOME/i3-dotfiles/.config/scripts/installer

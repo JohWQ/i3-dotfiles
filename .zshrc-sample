@@ -250,6 +250,10 @@ alias uefiboot='systemctl reboot --firmware-setup'
 alias uefiupdate='sudo fwupdmgr update'
 alias nogui='sudo systemctl set-default multi-user.target && ~/.config/scripts/power/reboot.sh'
 alias yesgui='sudo systemctl set-default graphical.target && systemctl restart lightdm'
+alias guistatus='printf "GUI:\n"
+systemctl is-active graphical.target
+printf "TTY:\n"
+systemctl is-active multi-user.target'
 # ---------------------------
 # Package Management (dnf)
 # ---------------------------

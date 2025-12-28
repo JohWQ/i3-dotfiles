@@ -32,7 +32,6 @@ dbus-devel \
 jq \
 fontconfig \
 liberation-mono-fonts \
-cascadia-code-nf-fonts \
 fontawesome-fonts-all \
 inih-devel \
 scdoc \
@@ -84,7 +83,12 @@ gio \
 flameshot \
 syncthing \
 tesseract \
-obs-studio -y
+obs-studio \
+-y
+
+sudo dnf remove \
+volumeicon \
+-y
 
 
 echo "Cloning directories & installing various programs:"
@@ -131,6 +135,8 @@ cd $HOME/JohWQ-i3-dotfiles-install
 
 wget https://raw.githubusercontent.com/betterlockscreen/betterlockscreen/main/install.sh -O - -q | sudo bash -s system
 
+wget https://github.com/ryanoasis/nerd-fonts/releases/latest/download/CascadiaCode.zip && unzip CascadiaCode.zip -d CascadiaCode && find CascadiaCode -type f ! -name 'CaskaydiaCoveNerdFont-Regular.ttf' -delete && sudo mv CascadiaCode /usr/share/fonts/
+
 wget https://github.com/erebe/greenclip/releases/download/v4.2/greenclip && chmod +x greenclip && sudo mv greenclip /usr/local/bin/
 
 curl https://raw.githubusercontent.com/GeorgeFilipkin/pulsemixer/master/pulsemixer > pulsemixer && chmod +x pulsemixer && sudo mv pulsemixer /usr/local/bin/
@@ -138,5 +144,7 @@ curl https://raw.githubusercontent.com/GeorgeFilipkin/pulsemixer/master/pulsemix
 cd $HOME
 sudo rm -rf $HOME/go/
 sudo rm -rf $HOME/JohWQ-i3-dotfiles-install
+
+sudo rm -rf $HOME/.config/volumeicon
 
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/romkatv/zsh4humans/v5/install)"
