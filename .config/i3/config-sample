@@ -105,6 +105,7 @@ bindsym $mod+Mod1+b exec --no-startup-id thunar
 bindsym $mod+Mod1+o exec --no-startup-id notify-send -t 600 "Launching OBS Studio" && obs
 bindsym $mod+Mod1+t exec --no-startup-id subl
 bindsym $mod+Mod1+g exec --no-startup-id notify-send -t 600 "Launching Gimp" && gimp
+bindsym $mod+Mod1+s exec --no-startup-id syncthing
 
 
 ## ---------------------- GENERAL SETTINGS ---------------------- ##
@@ -173,7 +174,10 @@ exec --no-startup-id $greenclip daemon
 exec --no-startup-id picom --daemon --config ~/.config/picom/picom.conf
 
 # Mpd
-exec --no-startup-id mpd
+#problematic for unmounting SMB share. exec --no-startup-id mpd
+
+# Syncthing
+exec --no-startup-id syncthing
 
 # Resolution for monitor 1 & 2
 exec --no-startup-id xset s 3600 0
@@ -349,7 +353,7 @@ bindsym $mod+ctrl+Down exec --no-startup-id $i3_resize down
 # Go to workspace
 bindsym $mod+o exec --no-startup-id i3-msg workspace number $(~/.config/i3/scripts/new-workspace-sample.sh), workspace number $_
 # REPLACE "DP-2" AND "DP-4" WITH YOUR MONITORS:
-#bindsym $mod+x focus output DP-4 DP-2
+#bindsym $mod+x focus output $monitor2 $monitor1
 bindsym $mod+p workspace prev
 bindsym $mod+n workspace next
 bindsym $mod+1 workspace $ws1
@@ -370,7 +374,7 @@ bindsym $mod+F4 workspace $ws14
 # Move focused container to workspace and go to workspace
 bindsym $mod+Shift+o exec --no-startup-id i3-msg move container to workspace $(~/.config/i3/scripts/new-workspace-sample.sh) && i3-msg workspace number $_
 # REPLACE "DP-2" AND "DP-4" WITH YOUR MONITORS:
-#bindsym $mod+Shift+x move container to output DP-4 DP-2, focus output DP-4 DP-2
+#bindsym $mod+Shift+x move container to output $monitor2 $monitor1, focus output $monitor2 $monitor1
 bindsym $mod+Shift+p move container to workspace prev, workspace prev
 bindsym $mod+Shift+n move container to workspace next, workspace next
 bindsym $mod+Shift+1 move container to workspace $ws1, workspace $ws1
@@ -391,7 +395,7 @@ bindsym $mod+Shift+F4 move container to workspace $ws14, workspace $ws14
 # Move focused container to workspace
 bindsym $mod+ctrl+o exec --no-startup-id i3-msg move container to workspace $(~/.config/i3/scripts/new-workspace.sh)
 # REPLACE "DP-2" AND "DP-4" WITH YOUR MONITORS:
-#bindsym $mod+ctrl+x move container to output DP-4 DP-2
+#bindsym $mod+ctrl+x move container to output $monitor2 $monitor1
 bindsym $mod+ctrl+p move container to workspace prev
 bindsym $mod+ctrl+n move container to workspace next
 bindsym $mod+ctrl+1 move container to workspace $ws1

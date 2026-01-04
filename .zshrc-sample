@@ -36,7 +36,7 @@ zstyle ':z4h:direnv:success' notify 'yes'
 zstyle ':z4h:ssh:example-hostname1'   enable 'yes'
 
 # custom ssh teleporting
-zstyle ':z4h:ssh:192.168.10.254'   enable 'yes'
+zstyle ':z4h:ssh:192.168.10.254'   enable 'no'
 
 #zstyle ':z4h:ssh:*.example-hostname2' enable 'no'
 # The default value if none of the overrides above match the hostname.
@@ -285,7 +285,6 @@ alias songrecord='songrec listen -d "alsa_output.pci-0000_00_1f.3.analog-stereo.
 alias localsend='sudo systemctl stop firewalld; localsend; systemctl start firewalld'
 alias ocr='~/.config/scripts/ocr.sh'
 alias showfont='fc-list : family | rg --ignore-case '
-alias pk='pkill '
 alias xpropinfo='xprop | rg -e WM_CLASS -e WM_NAME -e WM_NORMAL_HINTS'
 alias rmpc='mpd-mpris -host 127.0.0.1 > /dev/null 2>&1 & ~/.cargo/bin/rmpc; pkill mpd-mpris'
 function gc() {
@@ -294,7 +293,7 @@ function gc() {
 alias gitbranchdates='git for-each-ref --sort=-committerdate --format="%(refname:short) - %(committerdate:relative)" refs/heads/'
 alias gituntrack='git rm --cached '
 alias gits='git status'
-alias gcm='git commit -m'
+alias gitc='git commit -m'
 alias gitd='git diff'
 alias gita='git add .'
 

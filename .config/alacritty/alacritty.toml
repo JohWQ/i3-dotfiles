@@ -22,6 +22,9 @@ size = 16.0
     draw_bold_text_with_bright_colors = true
     
 
+    [colors.primary]
+        background   = "#1a1b26"
+
     [colors.bright]
         black   = "#625e4c"
         blue    = "#5b8eff"    # Slightly brighter blue
