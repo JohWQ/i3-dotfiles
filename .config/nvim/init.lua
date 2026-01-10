@@ -1,12 +1,13 @@
-vim.cmd.language 'en_US'
-vim.opt.tabstop = 4
-vim.opt.shiftwidth = 4
+vim.cmd.language 'en_US' -- custom
+vim.opt.tabstop = 4 -- custom
+vim.opt.shiftwidth = 4 -- custom
+vim.opt.termguicolors = true -- custom
 -- Set <space> as the leader key
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
---
+
 -- Set to true if you have a Nerd Font installed and selected in the terminal
 vim.g.have_nerd_font = true -- custom
 
@@ -111,12 +112,8 @@ vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' }
 --  Use CTRL+<hjkl> to switch between windows
 --
 --  See `:help wincmd` for a list of all window commands
-
--- whyyyy:
---vim.keymap.set('n', '<C-w>s', '<nil>', { desc = 'which_key_ignore' }) -- custom
 vim.keymap.set('n', '<C-w>v', '<:sp<CR>', { desc = 'Split window' }) -- custom
 vim.keymap.set('n', '<C-w>g', '<:vs<CR>', { desc = 'Split window vertically' }) -- custom
-
 vim.keymap.set('n', '<M-h>', '<C-w><M-h>', { desc = 'Move focus to the left window' }) -- custom
 vim.keymap.set('n', '<M-l>', '<C-w><M-l>', { desc = 'Move focus to the right window' }) -- custom
 vim.keymap.set('n', '<M-j>', '<C-w><M-j>', { desc = 'Move focus to the lower window' }) -- custom
@@ -124,7 +121,7 @@ vim.keymap.set('n', '<M-k>', '<C-w><M-k>', { desc = 'Move focus to the upper win
 
 -- NOTE: Some terminals have colliding keymaps or are not able to send distinct keycodes
 vim.keymap.set('n', '<M-S-h>', '<C-w>H', { desc = 'Move window to the left' }) -- custom
-vim.keymap.set('n', '<M-S-l>', '<C-w>L', { desc = 'Move window to the right' })
+vim.keymap.set('n', '<M-S-l>', '<C-w>L', { desc = 'Move window to the right' }) -- custom
 vim.keymap.set('n', '<M-S-j>', '<C-w>J', { desc = 'Move window to the lower' }) -- custom
 vim.keymap.set('n', '<M-S-k>', '<C-w>K', { desc = 'Move window to the upper' }) -- custom
 
@@ -167,8 +164,6 @@ rtp:prepend(lazypath)
 --  To update plugins you can run
 --    :Lazy update
 --
-vim.opt.termguicolors = true
-
 -- NOTE: Here is where you install your plugins.
 require('lazy').setup({
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
@@ -196,119 +191,6 @@ require('lazy').setup({
   -- options to `gitsigns.nvim`.
   --
   -- See `:help gitsigns` to understand what the configuration keys do
-  {
-    'MeanderingProgrammer/render-markdown.nvim',
-    dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-mini/mini.nvim' }, -- if you use the mini.nvim suite
-    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-mini/mini.icons' },        -- if you use standalone mini plugins
-    -- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
-    ---@module 'render-markdown'
-    ---@type render.md.UserConfig
-    opts = {},
-  },
-  {
-    'brenoprata10/nvim-highlight-colors', -- custom plugin
-    enabled = true,
-    event = { 'BufReadPre', 'BufNewFile' },
-    opts = {
-      render = 'background',
-      enable_hex = true,
-      enable_short_hex = true,
-      enable_rgb = true,
-      enable_hsl = true,
-      enable_var_usage = true,
-      enable_named_colors = true,
-      enable_tailwind = true,
-    },
-  },
-  {
-    'ThePrimeagen/vim-be-good',
-  },
-  {
-    'alexghergh/nvim-tmux-navigation', -- custom plugin
-    config = function()
-      require('nvim-tmux-navigation').setup {
-        disable_when_zoomed = true, -- defaults to false
-        keybindings = {
-          left = '<M-h>',
-          down = '<M-j>',
-          up = '<M-k>',
-          right = '<M-l>',
-          last_active = '<M-\\>',
-          next = '<M-Space>',
-        },
-      }
-
-      local function tmux_command(command)
-        local tmux_socket = vim.fn.split(vim.env.TMUX, ',')[1]
-        return vim.fn.system('tmux -S ' .. tmux_socket .. ' ' .. command)
-      end
-
-      local nvim_tmux_nav_group = vim.api.nvim_create_augroup('NvimTmuxNavigation', {})
-
-      vim.api.nvim_create_autocmd({ 'VimEnter', 'VimResume' }, {
-        group = nvim_tmux_nav_group,
-        callback = function()
-          tmux_command 'set-option -p @is_vim yes'
-        end,
-      })
-
-      vim.api.nvim_create_autocmd({ 'VimLeave', 'VimSuspend' }, {
-        group = nvim_tmux_nav_group,
-        callback = function()
-          tmux_command 'set-option -p -u @is_vim'
-        end,
-      })
-    end,
-  },
-
-  ---@type LazySpec
-  {
-    'mikavilpas/yazi.nvim', -- custom plugin
-    version = '*', -- use the latest stable version
-    event = 'VeryLazy',
-    dependencies = {
-      { 'nvim-lua/plenary.nvim', lazy = true },
-    },
-    keys = {
-      -- 👇 in this section, choose your own keymappings!
-      {
-        '<leader>-',
-        mode = { 'n', 'v' },
-        '<cmd>Yazi<cr>',
-        desc = 'Open yazi at the current file',
-      },
-      {
-        -- Open in the current working directory
-        '<leader>cw',
-        '<cmd>Yazi cwd<cr>',
-        desc = "Open the file manager in nvim's working directory",
-      },
-      {
-        '<c-up>',
-        '<cmd>Yazi toggle<cr>',
-        desc = 'Resume the last yazi session',
-      },
-    },
-    ---@type YaziConfig | {}
-    opts = {
-      -- if you want to open yazi instead of netrw, see below for more info
-      open_for_directories = false,
-      keymaps = {
-        show_help = '<f1>',
-        open_file_in_vertical_split = '<c-g>',
-        open_file_in_horizontal_split = '<c-v>',
-        replace_in_directory = '<c-x>',
-      },
-    },
-    -- 👇 if you use `open_for_directories=true`, this is recommended
-    init = function()
-      -- mark netrw as loaded so it's not loaded at all.
-      --
-      -- More details: https://github.com/mikavilpas/yazi.nvim/issues/802
-      vim.g.loaded_netrwPlugin = 1
-    end,
-  },
-
   { -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
     opts = {
@@ -346,7 +228,6 @@ require('lazy').setup({
       icons = {
         -- set icon mappings to true if you have a Nerd Font
         mappings = vim.g.have_nerd_font,
-        -- brah
         -- If you are using a Nerd Font: set icons.keys to an empty table which will use the
         -- default which-key.nvim defined Nerd Font icons, otherwise define a string table
         keys = vim.g.have_nerd_font and {} or {
@@ -1023,7 +904,7 @@ require('lazy').setup({
   --    This is the easiest way to modularize your config.
   --
   --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
-  -- { import = 'custom.plugins' },
+  { import = 'custom.plugins' }, -- custom
   --
   -- For additional information with loading, sourcing and examples see `:help lazy.nvim-🔌-plugin-spec`
   -- Or use telescope!
