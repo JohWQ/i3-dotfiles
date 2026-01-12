@@ -21,3 +21,4 @@
 .config/org
 .stow-local-ignore
 .stfolder
+.stignore

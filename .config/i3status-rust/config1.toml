@@ -1,3 +1,5 @@
+# https://docs.rs/i3status-rs/latest/i3status_rs/
+
 icons_format = "{icon}"
 
 [theme]
@@ -74,7 +76,7 @@ button = "right"
 action = "toggle_format"
 [block.service]
 name = "metno"
-coordinates = ["59.9125115", "10.747012"] # Oslo
+coordinates = ["", ""]
 lang = "nb"
 [block.icons_overrides]
 weather_fog = "\ue313"

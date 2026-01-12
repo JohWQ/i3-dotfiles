@@ -100,6 +100,8 @@ cd $HOME
 
 sudo mv $HOME/go/bin/mpd-mpris /usr/local/bin/
 
+sleep 1 && reset
+
 cargo install resvg
 
 cargo install --force --git https://github.com/sxyazi/yazi.git yazi-build

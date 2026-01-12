@@ -112,7 +112,7 @@ bindsym $mod+Mod1+s exec --no-startup-id syncthing
 set $mod Mod4
 floating_modifier $mod
 workspace_auto_back_and_forth yes
-# SET YOUR MONITOR:
+# SET YOUR MONITOR(S):
 #set $monitor1 DP-2
 #set $monitor2 DP-4
 # Removes border resize + Titlebar grab with Mouse1 (optional):
@@ -249,7 +249,6 @@ bar {
     }
 }
 
-##### OPTIONAL:
 ## Monitor 2 - i3status-rust
 #bar {
 #    output $monitor2
@@ -287,6 +286,7 @@ set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
 #set $ws100 "100"
+# Monitor 2:
 #set $ws11 "11"
 #set $ws12 "12"
 #set $ws13 "13"
@@ -373,7 +373,6 @@ bindsym $mod+F4 workspace $ws14
 
 # Move focused container to workspace and go to workspace
 bindsym $mod+Shift+o exec --no-startup-id i3-msg move container to workspace $(~/.config/i3/scripts/new-workspace-sample.sh) && i3-msg workspace number $_
-# REPLACE "DP-2" AND "DP-4" WITH YOUR MONITORS:
 #bindsym $mod+Shift+x move container to output $monitor2 $monitor1, focus output $monitor2 $monitor1
 bindsym $mod+Shift+p move container to workspace prev, workspace prev
 bindsym $mod+Shift+n move container to workspace next, workspace next
@@ -394,7 +393,6 @@ bindsym $mod+Shift+F4 move container to workspace $ws14, workspace $ws14
 
 # Move focused container to workspace
 bindsym $mod+ctrl+o exec --no-startup-id i3-msg move container to workspace $(~/.config/i3/scripts/new-workspace.sh)
-# REPLACE "DP-2" AND "DP-4" WITH YOUR MONITORS:
 #bindsym $mod+ctrl+x move container to output $monitor2 $monitor1
 bindsym $mod+ctrl+p move container to workspace prev
 bindsym $mod+ctrl+n move container to workspace next
