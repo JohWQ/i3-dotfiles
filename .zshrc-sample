@@ -241,6 +241,16 @@ alias zsh='clear; zsh; reset'
 alias bash='clear; bash'
 alias sudo='sudo '
 alias trash='gio trash'
+function gc() {
+    git clone "$1" && cd "$(basename "$1" .git)" || return
+}
+alias gitbranchdates='git for-each-ref --sort=-committerdate --format="%(refname:short) - %(committerdate:relative)" refs/heads/'
+alias gituntrack='git rm --cached '
+alias gits='git status'
+alias gitc='git commit -m'
+alias gitd='git diff'
+alias gita='git add .'
+alias gitsearch='git ls-files | rg'
 
 # ---------------------------
 # System / Boot
@@ -287,15 +297,6 @@ alias ocr='~/.config/scripts/ocr.sh'
 alias showfont='fc-list : family | rg --ignore-case '
 alias xpropinfo='xprop | rg -e WM_CLASS -e WM_NAME -e WM_NORMAL_HINTS'
 alias rmpc='mpd-mpris -host 127.0.0.1 > /dev/null 2>&1 & ~/.cargo/bin/rmpc; pkill mpd-mpris'
-function gc() {
-    git clone "$1" && cd "$(basename "$1" .git)" || return
-}
-alias gitbranchdates='git for-each-ref --sort=-committerdate --format="%(refname:short) - %(committerdate:relative)" refs/heads/'
-alias gituntrack='git rm --cached '
-alias gits='git status'
-alias gitc='git commit -m'
-alias gitd='git diff'
-alias gita='git add .'
 
 
 # ----- custom autocorrect ----- #

@@ -351,7 +351,8 @@ bindsym $mod+ctrl+Down exec --no-startup-id $i3_resize down
 
 
 # Go to workspace
-bindsym $mod+o exec --no-startup-id i3-msg workspace number $(~/.config/i3/scripts/new-workspace-sample.sh), workspace number $_
+bindsym $mod+o exec --no-startup-id i3-msg workspace number $(~/.config/i3/scripts/new-workspace.sh), workspace number $_
+# or file: new-workspace-monitor1.py if using 1 monitor
 # REPLACE "DP-2" AND "DP-4" WITH YOUR MONITORS:
 #bindsym $mod+x focus output $monitor2 $monitor1
 bindsym $mod+p workspace prev

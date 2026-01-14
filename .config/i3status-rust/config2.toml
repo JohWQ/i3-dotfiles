@@ -98,13 +98,21 @@ idle_bg = "#232b3b"
 block = "time"
 interval = 60
 format = " $icon $timestamp.datetime(f:'%d/%m - %R') "
-[[block.click]]
-button = "left"
-cmd = "firefox --no-remote --class cleanwebappfirefoxc2 -profile ~/.mozilla/firefox/pb5pvlut.webapp-calendar calendar.google.com"
+# OPTIONAL:
+#[[block.click]]
+#button = "left"
+#cmd = "firefox --no-remote --class cleanwebappfirefoxc2 -profile ~/.mozilla/firefox/pb5pvlut.webapp-calendar calendar.google.com"
 [block.icons_overrides]
 time = "󰥔"
 [block.theme_overrides]
 idle_bg = "#1d2431"
+
+# OPTIONAL:
+#[[block]]
+#block = "battery"
+#format = " $icon $percentage "
+#[block.theme_overrides]
+#idle_bg = "#171d27"
 
 [[block]]
 block = "menu"
