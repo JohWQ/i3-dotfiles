@@ -103,7 +103,6 @@ bindsym $mod+Mod1+d exec --no-startup-id notify-send -t 600 "Launching Discord" 
 bindsym $mod+Mod1+y exec --no-startup-id notify-send -t 600 "Launching Youtube Music" && youtube-music
 bindsym $mod+Mod1+b exec --no-startup-id thunar
 bindsym $mod+Mod1+o exec --no-startup-id notify-send -t 600 "Launching OBS Studio" && obs
-bindsym $mod+Mod1+t exec --no-startup-id subl
 bindsym $mod+Mod1+g exec --no-startup-id notify-send -t 600 "Launching Gimp" && gimp
 bindsym $mod+Mod1+s exec --no-startup-id syncthing
 

@@ -2,6 +2,36 @@ vim.cmd.language 'en_US' -- custom
 vim.opt.tabstop = 4 -- custom
 vim.opt.shiftwidth = 4 -- custom
 vim.opt.termguicolors = true -- custom
+
+-- Move current line up/down with Ctrl+j / Ctrl+k
+vim.keymap.set('n', '<C-j>', ':m .+1<CR>==', { desc = 'Move line down' })
+vim.keymap.set('n', '<C-k>', ':m .-2<CR>==', { desc = 'Move line up' })
+
+-- Move selected lines up/down in visual mode
+vim.keymap.set('v', '<C-j>', ":m '>+1<CR>gv=gv", { desc = 'Move selection down' })
+vim.keymap.set('v', '<C-k>', ":m '<-2<CR>gv=gv", { desc = 'Move selection up' })
+
+-- gippity: remove swapfile if older than 1 day
+vim.api.nvim_create_autocmd('SwapExists', {
+  callback = function()
+    local file = vim.fn.expand '<afile>'
+    local swap = vim.v.swapname
+
+    if vim.fn.filereadable(file) == 0 or vim.fn.filereadable(swap) == 0 then
+      return
+    end
+
+    local file_mtime = vim.fn.getftime(file)
+    local swap_mtime = vim.fn.getftime(swap)
+
+    -- 1 day = 86400 seconds
+    if file_mtime - swap_mtime >= 86400 then
+      -- Automatically open file and delete swap
+      vim.v.swapchoice = 'e'
+    end
+  end,
+})
+
 -- Set <space> as the leader key
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)

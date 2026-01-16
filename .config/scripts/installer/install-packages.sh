@@ -3,7 +3,7 @@
 echo "Updating system:"
 sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm -y && sudo dnf config-manager setopt fedora-cisco-openh264.enabled=1 -y
 sudo dnf copr enable alternateved/i3status-rust -y
-sudo dnf copr enable dturner/eza -y
+sudo dnf copr enable alternateved/eza -y
 sudo dnf update -y
 
 # Rustup:
