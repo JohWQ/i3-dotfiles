@@ -1,4 +1,4 @@
-# Functional i3wm configuration on Fedora 42.
+# Functional i3wm configuration on Fedora 42 & 43.
 
 ## Installation script
 Follow the instructions of any prompt that might appear on the screen.
@@ -13,9 +13,6 @@ git clone https://github.com/JohWQ/i3-dotfiles.git && cd i3-dotfiles/.config/scr
 ./install-packages.sh
 ```
 ### Install dotfiles:
-#### Note:
-- on F43:
-  -  Picom might break things.
 ```
 cd $HOME/i3-dotfiles/.config/scripts/installer
 ./install-dotfiles.sh
@@ -27,4 +24,5 @@ cd $HOME/i3-dotfiles/.config/scripts/installer
 - [x] Set per-directory viewing configuration in yazi
 - [ ] Have a more consistent theme (instead of having a different dark theme for GTK and QT applications)
 - [x] Create a proper installation script
+- [] Fix minor bugs after using installation script
 - [ ] Create configuration for rmpc
