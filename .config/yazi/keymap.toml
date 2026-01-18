@@ -371,8 +371,8 @@ run  = 'shell "$SHELL" --block'
 desc = "Open $SHELL here"
 [[mgr.prepend_keymap]]
 on   = "<C-Enter>"
-run  = "shell --orphan --confirm 'thunar .'"
-desc = "Open the current directory in Thunar"
+run  = "shell --orphan --confirm 'nemo .'"
+desc = "Open the current directory in Nemo"
 # --- PLUGINS --- #
 # -- Smart-filter -- #
 [[mgr.prepend_keymap]]
