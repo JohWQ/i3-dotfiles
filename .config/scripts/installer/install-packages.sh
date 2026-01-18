@@ -25,6 +25,7 @@ stow \
 python3 \
 meson \
 make \
+fuse \
 fuse3-devel \
 fuse-libs \
 autoconf \
@@ -69,6 +70,7 @@ playerctl \
 dnf-utils \
 cifs-utils-devel \
 rofi \
+blueman \
 rofi-devel \
 tldr \
 wireguard-tools \

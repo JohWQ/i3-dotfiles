@@ -57,8 +57,11 @@ bindsym $mod+Print --release exec --no-startup-id flameshot screen
 #bindsym ctrl+Mod1+Shift+Delete exec --no-startup-id ~/.config/scripts/toggle_display_wacom.sh
 
 # Master volume controls
+# Alternate binds:
+#bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +1% #increase sound volume
+#bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -1% #decrease sound volume
+#bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
 set $i3_volume-control ~/.config/i3/scripts/volume-control.sh
-#set $i3_volume-player ~/.config/i3/scripts/volume-player.sh
 bindsym $mod+Prior exec --no-startup-id $i3_volume-control pactl_volume_up
 bindsym $mod+Next exec --no-startup-id $i3_volume-control pactl_volume_down
 bindsym $mod+Home exec --no-startup-id $i3_volume-control pactl_volume_full

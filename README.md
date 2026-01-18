@@ -24,5 +24,5 @@ cd $HOME/i3-dotfiles/.config/scripts/installer
 - [x] Set per-directory viewing configuration in yazi
 - [ ] Have a more consistent theme (instead of having a different dark theme for GTK and QT applications)
 - [x] Create a proper installation script
-- [] Fix minor bugs after using installation script
+- [ ] Fix minor bugs after using installation script
 - [ ] Create configuration for rmpc
