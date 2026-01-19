@@ -41,6 +41,8 @@ stow .
 
 sleep 1 && reset
 
+# locale (set your own):
+#sudo localectl set-locale LANG=nb_NO
 fc-cache -fv
 
 clear

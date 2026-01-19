@@ -25,6 +25,7 @@ fi
 unset rc
 
 # CUSTOM PATHS:
+#export LANG="nb_NO"
 export SHELL='/usr/local/bin/zsh'
 export TERMINAL='alacritty'
 export BROWSER='firefox'

@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+echo "Removing some packages:"
+sudo dnf remove \
+volumeicon \
+Thunar \
+-y
+
 echo "Updating system:"
 sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm -y && sudo dnf config-manager setopt fedora-cisco-openh264.enabled=1 -y
 sudo dnf copr enable alternateved/i3status-rust -y
@@ -97,11 +103,6 @@ tesseract \
 obs-studio \
 -y
 
-sudo dnf remove \
-volumeicon \
-Thunar \
--y
-
 
 echo "Cloning directories & installing various programs:"
 mkdir $HOME/JohWQ-i3-dotfiles-install && cd $HOME/JohWQ-i3-dotfiles-install
@@ -119,6 +120,8 @@ cargo install resvg
 cargo install --force --git https://github.com/sxyazi/yazi.git yazi-build
 
 cargo install rmpc --locked
+
+sleep 1 && reset
 
 cd $HOME/JohWQ-i3-dotfiles-install
 
@@ -156,6 +159,9 @@ git clone https://github.com/adi1090x/rofi.git && cd rofi
 cp -rf fonts/* "$HOME/.local/share/fonts"
 
 cd $HOME/JohWQ-i3-dotfiles-install
+
+sudo ln -s ~/.cargo/bin/ya /usr/local/bin/
+sudo ln -s ~/.cargo/bin/yazi /usr/local/bin/
 
 wget -qO- https://git.io/papirus-icon-theme-install | sh
 
