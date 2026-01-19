@@ -24,6 +24,7 @@ curl \
 stow \
 python3 \
 meson \
+musl-devel \
 make \
 fuse \
 fuse3-devel \
@@ -69,6 +70,7 @@ playerctl \
 7zip \
 dnf-utils \
 cifs-utils-devel \
+nemo \
 rofi \
 blueman \
 rofi-devel \
@@ -97,6 +99,7 @@ obs-studio \
 
 sudo dnf remove \
 volumeicon \
+Thunar \
 -y
 
 
@@ -117,6 +120,8 @@ cargo install --force --git https://github.com/sxyazi/yazi.git yazi-build
 
 cargo install rmpc --locked
 
+cd $HOME/JohWQ-i3-dotfiles-install
+
 git clone https://github.com/Raymo111/i3lock-color.git && cd i3lock-color && sudo ./install-i3lock-color.sh
 
 cd $HOME/JohWQ-i3-dotfiles-install
@@ -133,8 +138,10 @@ sudo meson install
 
 cd $HOME/JohWQ-i3-dotfiles-install
 
-git clone https://github.com/GermainZ/xdg-desktop-portal-termfilechooser.git && cd xdg-desktop-portal-termfilechooser
-meson build && sudo ninja -C build install
+git clone https://github.com/hunkyburrito/xdg-desktop-portal-termfilechooser && cd xdg-desktop-portal-termfilechooser
+meson build
+sudo ninja -C build install
+sudo mv /usr/local/share/xdg-desktop-portal/portals/termfilechooser.portal /usr/share/xdg-desktop-portal/portals/
 
 cd $HOME/JohWQ-i3-dotfiles-install
 
@@ -143,6 +150,14 @@ meson setup build --reconfigure
 sudo ninja -C build install
 
 cd $HOME/JohWQ-i3-dotfiles-install
+
+mkdir -p $HOME/.local/share/fonts
+git clone https://github.com/adi1090x/rofi.git && cd rofi
+cp -rf fonts/* "$HOME/.local/share/fonts"
+
+cd $HOME/JohWQ-i3-dotfiles-install
+
+wget -qO- https://git.io/papirus-icon-theme-install | sh
 
 wget https://raw.githubusercontent.com/betterlockscreen/betterlockscreen/main/install.sh -O - -q | sudo bash -s system
 
@@ -157,5 +172,6 @@ sudo rm -rf $HOME/go/
 sudo rm -rf $HOME/JohWQ-i3-dotfiles-install
 
 sudo rm -rf $HOME/.config/volumeicon
+sudo rm -rf $HOME/.config/azote
 
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/romkatv/zsh4humans/v5/install)"

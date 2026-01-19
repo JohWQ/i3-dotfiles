@@ -15,24 +15,24 @@ save="$3"
 path="$4"
 out="$5"
 
-cmd="nnn"
-termcmd="${TERMCMD:-kitty --title 'termfilechooser'}"
+cmd="yazi"
+termcmd="${TERMCMD:-alacritty -t 'File chooser'}"
 
 if [ "$save" = "1" ]; then
     # save a file
-    set -- -p "$out" "$path"
+    set -- --chooser-file="$out" "$path"
 elif [ "$directory" = "1" ]; then
     # upload files from a directory
-    set -- -p "$out" "$path"
+    set -- --chooser-file="$out" --cwd-file="$out"".1" "$path"
 elif [ "$multiple" = "1" ]; then
     # upload multiple files
-    set -- -p "$out" "$path"
+    set -- --chooser-file="$out" "$path"
 else
     # upload only 1 file
-    set -- -p "$out" "$path"
+    set -- --chooser-file="$out" "$path"
 fi
 
-command="$termcmd $cmd"
+command="$termcmd -e $cmd"
 for arg in "$@"; do
     # escape double quotes
     escaped=$(printf "%s" "$arg" | sed 's/"/\\"/g')
@@ -40,15 +40,13 @@ for arg in "$@"; do
     command="$command \"$escaped\""
 done
 
-if [ "$directory" = "1" ]; then
-    sh -c "env NNN_TMPFILE=\"$out\" $command"
-else
-    sh -c "$command"
-fi
+sh -c "$command"
 
-if [ "$directory" = "1" ] && [ -s "$out" ]; then
-    # select on quit; file data will be `cd '/dir/path'`
-    if [ "$(cut -c -2 "$out")" = "cd" ]; then
-        sed -i "s/^cd '\(.*\)'/\1/" "$out"
+if [ "$directory" = "1" ]; then
+    if [ ! -s "$out" ] && [ -s "$out"".1" ]; then
+        cat "$out"".1" > "$out"
+        rm "$out"".1"
+    else
+        rm "$out"".1"
     fi
 fi
