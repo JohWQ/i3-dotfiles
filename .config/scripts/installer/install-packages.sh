@@ -10,6 +10,7 @@ echo "Updating system:"
 sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm -y && sudo dnf config-manager setopt fedora-cisco-openh264.enabled=1 -y
 sudo dnf copr enable alternateved/i3status-rust -y
 sudo dnf copr enable alternateved/eza -y
+sudo dnf copr enable tokariew/i3lock-color
 sudo dnf update -y
 
 # Rustup:
@@ -22,6 +23,7 @@ sudo dnf group install multimedia "development-tools" -y
 sudo dnf install \
 i3status-rust \
 eza \
+i3lock-color \
 gcc \
 clang \
 go \
@@ -122,10 +124,6 @@ cargo install --force --git https://github.com/sxyazi/yazi.git yazi-build
 cargo install rmpc --locked
 
 sleep 1 && reset
-
-cd $HOME/JohWQ-i3-dotfiles-install
-
-git clone https://github.com/Raymo111/i3lock-color.git && cd i3lock-color && sudo ./install-i3lock-color.sh
 
 cd $HOME/JohWQ-i3-dotfiles-install
 
