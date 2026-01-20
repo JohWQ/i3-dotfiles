@@ -80,12 +80,15 @@ bindsym ctrl+Mod1+Down exec --no-startup-id playerctl stop
 bindsym ctrl+Mod1+Left exec --no-startup-id playerctl previous
 bindsym ctrl+Mod1+Right exec --no-startup-id playerctl next
 
+# fzf Recently modified files
+bindsym $mod+d exec --no-startup-id "alacritty -t 'Recent files' -e ~/.config/i3/scripts/recent-files-home.sh"
+
+# fzf browser bookmarks
+bindsym $mod+z exec --no-startup-id "alacritty -t 'Browser bookmarks' -e ~/.config/i3/scripts/launch-firefox-bookmarks.sh"
+
 # Rofi Power menu
 bindsym $mod+bar exec --no-startup-id ~/.config/rofi/powermenu/type-1/powermenu.sh
 bindsym $mod+Shift+Escape exec --no-startup-id ~/.config/rofi/powermenu/type-1/powermenu.sh
-
-# Rofi recently modified files
-bindsym $mod+d exec --no-startup-id "fd -t f . --exec-batch ls -t . ~ | rofi -config ~/.config/rofi/launchers/type-1/style-05.rasi -dmenu -i -p recent_home | xargs -I {} ~/.config/rofi/file_actions.sh {}"
 
 # Rofi run modi command:
 bindsym $mod+Shift+Tab exec --no-startup-id "rofi -config ~/.config/rofi/launchers/type-1/style-5.rasi -show run"
