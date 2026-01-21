@@ -79,9 +79,11 @@ playerctl \
 dnf-utils \
 cifs-utils-devel \
 nemo \
+sqlite \
 rofi \
 blueman \
 rofi-devel \
+mpv \
 tldr \
 wireguard-tools \
 qalculate \

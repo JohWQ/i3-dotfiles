@@ -87,6 +87,7 @@ export GPG_TTY=$TTY
 eval "$(zoxide init zsh)"
 source <(fzf --zsh)
 
+#export LANG="nb_NO"
 export SHELL='/usr/local/bin/zsh'
 export TERMINAL='alacritty'
 export TERM="xterm-256color"
