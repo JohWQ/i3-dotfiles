@@ -107,7 +107,7 @@ bindsym $mod+Mod1+f exec --no-startup-id firefox
 bindsym $mod+Mod1+n exec --no-startup-id ~/.config/scripts/freshrss-webapp.sh
 bindsym $mod+Mod1+d exec --no-startup-id notify-send -t 600 "Launching Discord" && vesktop
 bindsym $mod+Mod1+y exec --no-startup-id notify-send -t 600 "Launching Youtube Music" && youtube-music
-bindsym $mod+Mod1+b exec --no-startup-id thunar
+bindsym $mod+Mod1+b exec --no-startup-id nemo
 bindsym $mod+Mod1+o exec --no-startup-id notify-send -t 600 "Launching OBS Studio" && obs
 bindsym $mod+Mod1+g exec --no-startup-id notify-send -t 600 "Launching Gimp" && gimp
 bindsym $mod+Mod1+s exec --no-startup-id syncthing
@@ -125,6 +125,7 @@ workspace_auto_back_and_forth yes
 
 # SET YOUR XRANDR COMMAND (optional):
 #bindsym $mod+Shift+ctrl+r exec --no-startup-id xrandr --output $monitor1 --primary --mode 1920x1080 --rate 144.00 --pos 0x420 --output $monitor2 --mode 1920x1080 --rate 144.00 --pos 1920x0 --rotate left && sleep 2 && notify-send -t 2000 "Resolution reset"
+#bindsym $mod+Shift+ctrl+r exec --no-startup-id xrandr --output $monitor1 --primary --mode 1920x1080 --rate 144.00 --pos 0x420 && sleep 2 && notify-send -t 2000 "Resolution reset"
 
 # split in horizontal orientation
 bindsym $mod+g exec --no-startup-id i3-msg split h && notify-send -t 800 "Horizontal ← →"
@@ -178,6 +179,8 @@ exec --no-startup-id $greenclip daemon
 # Picom daemon
 exec --no-startup-id picom --daemon --config ~/.config/picom/picom.conf
 
+exec --no-startup-id firefox
+
 # Mpd
 #problematic for unmounting SMB share. exec --no-startup-id mpd
 
@@ -188,6 +191,7 @@ exec --no-startup-id syncthing
 exec --no-startup-id xset s 3600 0
 # SET YOUR XRANDR COMMAND:
 #exec --no-startup-id xrandr --output $monitor1 --primary --mode 1920x1080 --rate 144.00 --pos 0x420 --output $monitor2 --mode 1920x1080 --rate 144.00 --pos 1920x0 --rotate left
+#exec --no-startup-id xrandr --output $monitor1 --primary --mode 1920x1080 --rate 144.00 --pos 0x420
 
 
 ## ---------------------- SCRATCHPADS ---------------------- ##
@@ -356,9 +360,9 @@ bindsym $mod+ctrl+Down exec --no-startup-id $i3_resize down
 
 
 # Go to workspace
-bindsym $mod+o exec --no-startup-id i3-msg workspace number $(~/.config/i3/scripts/new-workspace.sh), workspace number $_
+#bindsym $mod+o exec --no-startup-id i3-msg workspace number $(~/.config/i3/scripts/new-workspace.sh), workspace number $_
+bindsym $mod+o exec --no-startup-id i3-msg workspace number $(~/.config/i3/scripts/new-workspace-monitor1.py), workspace number $_
 # or file: new-workspace-monitor1.py if using 1 monitor
-# REPLACE "DP-2" AND "DP-4" WITH YOUR MONITORS:
 #bindsym $mod+x focus output $monitor2 $monitor1
 bindsym $mod+p workspace prev
 bindsym $mod+n workspace next

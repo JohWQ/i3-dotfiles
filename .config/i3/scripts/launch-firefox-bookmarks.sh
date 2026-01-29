@@ -1,5 +1,4 @@
 #!/usr/bin/env sh
-
 # menu (dmenu, rofi, fzf, etc.)
 #menu_cmd='dmenu -i -p Bookmark'
 menu_cmd='fzf'

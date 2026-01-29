@@ -106,7 +106,20 @@ syncthing \
 tesseract \
 obs-studio \
 -y
-
+#glow \
+#ripgrep \
+#feh \
+#mpv \
+#xev \
+#tesseract \
+#vesktop \
+#pastel \
+#songrec \
+#snapper \
+#btrfs-assistant \
+#steam \
+#gimp \
+#ffmpeg \
 
 echo "Cloning directories & installing various programs:"
 mkdir $HOME/JohWQ-i3-dotfiles-install && cd $HOME/JohWQ-i3-dotfiles-install
