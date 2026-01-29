@@ -106,6 +106,7 @@ syncthing \
 tesseract \
 obs-studio \
 -y
+
 #glow \
 #ripgrep \
 #feh \
@@ -120,6 +121,7 @@ obs-studio \
 #steam \
 #gimp \
 #ffmpeg \
+
 
 echo "Cloning directories & installing various programs:"
 mkdir $HOME/JohWQ-i3-dotfiles-install && cd $HOME/JohWQ-i3-dotfiles-install
