@@ -2,28 +2,30 @@
 
 echo "Removing some packages:"
 sudo dnf remove \
+azote \
 volumeicon \
 Thunar \
 -y
 
+sleep 1 && reset
 echo "Updating system:"
 sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm -y && sudo dnf config-manager setopt fedora-cisco-openh264.enabled=1 -y
 sudo dnf copr enable alternateved/i3status-rust -y
 sudo dnf copr enable alternateved/eza -y
-sudo dnf copr enable tokariew/i3lock-color
 sudo dnf update -y
 
 # Rustup:
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 sleep 1 && reset
 rustup update
+sleep 1 && reset
+
 # Packages from repos:
 echo "Installing packages:"
 sudo dnf group install multimedia "development-tools" -y
 sudo dnf install \
 i3status-rust \
 eza \
-i3lock-color \
 gcc \
 clang \
 go \
@@ -78,6 +80,8 @@ playerctl \
 7zip \
 dnf-utils \
 cifs-utils-devel \
+gvfs-smb \
+gparted \
 nemo \
 sqlite \
 rofi \
@@ -88,7 +92,10 @@ tldr \
 wireguard-tools \
 qalculate \
 fastfetch \
+glow \
+xev \
 vim \
+luarocks \
 neovim \
 mpd \
 mpc \
@@ -99,6 +106,8 @@ fzf \
 fd-find \
 p7zip \
 zoxide \
+gpick \
+pastel \
 bat \
 gio \
 flameshot \
@@ -107,32 +116,22 @@ tesseract \
 obs-studio \
 -y
 
-#glow \
-#ripgrep \
-#feh \
-#mpv \
-#xev \
-#tesseract \
 #vesktop \
-#pastel \
 #songrec \
-#snapper \
-#btrfs-assistant \
 #steam \
 #gimp \
-#ffmpeg \
 
 
 echo "Cloning directories & installing various programs:"
 mkdir $HOME/JohWQ-i3-dotfiles-install && cd $HOME/JohWQ-i3-dotfiles-install
 
+sleep 1 && reset
 go install github.com/natsukagami/mpd-mpris/cmd/mpd-mpris@latest
 
 cd $HOME
 
 sudo mv $HOME/go/bin/mpd-mpris /usr/local/bin/
 
-sleep 1 && reset
 
 cargo install resvg
 

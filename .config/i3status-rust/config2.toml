@@ -23,13 +23,13 @@ action = "play_pause"
 button = "right"
 action = "toggle_format"
 [block.theme_overrides]
-idle_bg = "#3f4d64"
+idle_bg = "#3f4c69"
 
 [[block]]
 block = "focused_window"
 [block.format]
-full = " $title.str(max_w:12) |"
-short = " $title.str(max_w:6) |"
+full = " $title.str(max_w:23) |"
+short = " $title.str(max_w:11) |"
 [[block.click]]
 button = "middle"
 cmd = "i3-msg 'floating toggle; [tiling con_id=__focused__] border pixel 3; [floating con_id=__focused__] border normal'"
@@ -52,35 +52,46 @@ cmd = "pavucontrol"
 [block.icons_overrides]
 volume_muted = "\ueee8"
 [block.theme_overrides]
-idle_bg = "#2f394f"
+idle_bg = "#354059"
 
 [[block]]
-block = "weather"
-format = " $icon  $temp $wind m/s "
-format_alt = "$icon  om 12 timer: {$temp_favg ({$temp_fmin}-{$temp_fmax})|Unavailable} "
+block = "net"
+interval = 5
+format = " $icon ↓:$speed_down.eng(prefix:K)↑:$speed_up.eng(prefix:K) "
 [[block.click]]
 button = "left"
-action = "None"
-[[block.click]]
-button = "right"
-action = "toggle_format"
-[block.service]
-name = "metno"
-coordinates = ["", ""]
-lang = "nb"
-[block.icons_overrides]
-weather_fog = "\ue313"
-weather_rain = "\uef1c"
-#weather_clouds_night = "\ueeef"
-weather_clouds_night = "\uf0c2"
-weather_rain_night = "\uef1c"
-weather_sun = "\ueef0"
-weather_fog_night = "\ue346"
-weather_snow = "\uf2dc"
-weather_thunder_night = "\ue32a"
-weather_thunder = "\ue31d"
+cmd = "nm-connection-editor"
 [block.theme_overrides]
-idle_bg = "#293245"
+idle_bg = "#2f394f"
+
+# [[block]]
+# block = "weather"
+# format = " $icon  $temp $wind m/s "
+# format_alt = "$icon  om 12 timer: {$temp_favg ({$temp_fmin}-{$temp_fmax})|Unavailable} "
+# [[block.click]]
+# button = "left"
+# action = "None"
+# [[block.click]]
+# button = "right"
+# action = "toggle_format"
+# [block.service]
+# name = "metno"
+# # SET YOUR COORDINATES FOR WEATHER WIDGET (If inserted, put file in .gitignore):
+# coordinates = ["", ""]
+# lang = "nb"
+# [block.icons_overrides]
+# weather_fog = "\ue313"
+# weather_rain = "\uef1c"
+# #weather_clouds_night = "\ueeef"
+# weather_clouds_night = "\uf0c2"
+# weather_rain_night = "\uef1c"
+# weather_sun = "\ueef0"
+# weather_fog_night = "\ue346"
+# weather_snow = "\uf2dc"
+# weather_thunder_night = "\ue32a"
+# weather_thunder = "\ue31d"
+# [block.theme_overrides]
+# idle_bg = "#293245"
 
 [[block]]
 block = "notify"
@@ -101,7 +112,7 @@ format = " $icon $timestamp.datetime(f:'%d/%m - %R') "
 # OPTIONAL:
 #[[block.click]]
 #button = "left"
-#cmd = "firefox --no-remote --class cleanwebappfirefoxc2 -profile ~/.mozilla/firefox/pb5pvlut.webapp-calendar calendar.google.com"
+#cmd = "firefox --no-remote --class cleanwebappfirefoxc1 -profile ~/.mozilla/firefox/pb5pvlut.webapp-calendar calendar.google.com"
 [block.icons_overrides]
 time = "󰥔"
 [block.theme_overrides]
@@ -137,7 +148,7 @@ button = "middle"
 cmd = "i3-msg mode 'default'"
 [[block.items]]
 display = " &gt; Empty workspace &lt;"
-cmd = "i3-msg workspace number $(~/.config/i3/scripts/new-workspace-monitor2.py)"
+cmd = "i3-msg workspace number $(~/.config/i3/scripts/new-workspace-monitor1.py)"
 [[block.items]]
 display = " &gt; Resize mode &lt;"
 cmd = "i3-msg mode 'Resize mode'"

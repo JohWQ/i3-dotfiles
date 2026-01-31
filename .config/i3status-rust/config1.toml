@@ -64,33 +64,34 @@ cmd = "nm-connection-editor"
 [block.theme_overrides]
 idle_bg = "#2f394f"
 
-[[block]]
-block = "weather"
-format = " $icon  $temp $wind m/s "
-format_alt = "$icon  om 12 timer: {$temp_favg ({$temp_fmin}-{$temp_fmax})|Unavailable} "
-[[block.click]]
-button = "left"
-action = "None"
-[[block.click]]
-button = "right"
-action = "toggle_format"
-[block.service]
-name = "metno"
-coordinates = ["", ""]
-lang = "nb"
-[block.icons_overrides]
-weather_fog = "\ue313"
-weather_rain = "\uef1c"
-#weather_clouds_night = "\ueeef"
-weather_clouds_night = "\uf0c2"
-weather_rain_night = "\uef1c"
-weather_sun = "\ueef0"
-weather_fog_night = "\ue346"
-weather_snow = "\uf2dc"
-weather_thunder_night = "\ue32a"
-weather_thunder = "\ue31d"
-[block.theme_overrides]
-idle_bg = "#293245"
+# [[block]]
+# block = "weather"
+# format = " $icon  $temp $wind m/s "
+# format_alt = "$icon  om 12 timer: {$temp_favg ({$temp_fmin}-{$temp_fmax})|Unavailable} "
+# [[block.click]]
+# button = "left"
+# action = "None"
+# [[block.click]]
+# button = "right"
+# action = "toggle_format"
+# [block.service]
+# name = "metno"
+# # SET YOUR COORDINATES FOR WEATHER WIDGET (If inserted, put file in .gitignore):
+# coordinates = ["", ""]
+# lang = "nb"
+# [block.icons_overrides]
+# weather_fog = "\ue313"
+# weather_rain = "\uef1c"
+# #weather_clouds_night = "\ueeef"
+# weather_clouds_night = "\uf0c2"
+# weather_rain_night = "\uef1c"
+# weather_sun = "\ueef0"
+# weather_fog_night = "\ue346"
+# weather_snow = "\uf2dc"
+# weather_thunder_night = "\ue32a"
+# weather_thunder = "\ue31d"
+# [block.theme_overrides]
+# idle_bg = "#293245"
 
 [[block]]
 block = "notify"
