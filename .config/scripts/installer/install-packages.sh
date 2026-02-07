@@ -70,6 +70,8 @@ lm_sensors \
 lm_sensors-devel \
 notmuch-devel \
 pipewire-libs \
+libayatana-appindicator-gtk3 \
+potrace \
 pandoc \
 xclip \
 xsel \
@@ -87,8 +89,16 @@ sqlite \
 rofi \
 blueman \
 rofi-devel \
+lxappearance \
 mpv \
 tldr \
+json-devel \
+cli11-devel \
+tbb-devel \
+libsixel-devel \
+chafa-devel \
+range-v3-devel \
+vips-devel \
 wireguard-tools \
 qalculate \
 fastfetch \
@@ -115,6 +125,7 @@ syncthing \
 tesseract \
 obs-studio \
 -y
+sudo dnf install opencv-devel --setopt=install_weak_deps=False -y
 
 #vesktop \
 #songrec \
@@ -148,6 +159,15 @@ sudo ./install.sh
 
 cd $HOME/JohWQ-i3-dotfiles-install
 
+git clone https://github.com/jstkdng/ueberzugpp.git
+cd ueberzugpp
+mkdir build && cd build
+cmake -DCMAKE_BUILD_TYPE=Release ..
+cmake --build .
+sudo cp ueberzugpp /usr/local/bin/
+
+cd $HOME/JohWQ-i3-dotfiles-install
+
 git clone https://github.com/svenstaro/rofi-calc.git && cd rofi-calc
 meson setup build
 meson compile -C build && cd build
@@ -176,6 +196,7 @@ cd $HOME/JohWQ-i3-dotfiles-install
 
 sudo ln -s ~/.cargo/bin/ya /usr/local/bin/
 sudo ln -s ~/.cargo/bin/yazi /usr/local/bin/
+sudo ln -s ~/.cargo/bin/yazi-build /usr/local/bin/
 
 wget -qO- https://git.io/papirus-icon-theme-install | sh
 

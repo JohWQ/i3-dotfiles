@@ -245,6 +245,7 @@ bar {
 #    tray_output none
 #    tray_output $monitor1
     #strip_workspace_numbers yes - WS 1 - 10
+#    CHANGE IF USING OWN FILE:
     status_command i3status-rs ~/.config/i3status-rust/config1.toml
 
     colors {
@@ -362,7 +363,7 @@ bindsym $mod+ctrl+Down exec --no-startup-id $i3_resize down
 # Go to workspace
 #bindsym $mod+o exec --no-startup-id i3-msg workspace number $(~/.config/i3/scripts/new-workspace.sh), workspace number $_
 bindsym $mod+o exec --no-startup-id i3-msg workspace number $(~/.config/i3/scripts/new-workspace-monitor1.py), workspace number $_
-# or file: new-workspace-monitor1.py if using 1 monitor
+# or file: new-workspace.sh if using 2 monitors
 #bindsym $mod+x focus output $monitor2 $monitor1
 bindsym $mod+p workspace prev
 bindsym $mod+n workspace next
@@ -382,7 +383,7 @@ bindsym $mod+F3 workspace $ws13
 bindsym $mod+F4 workspace $ws14
 
 # Move focused container to workspace and go to workspace
-bindsym $mod+Shift+o exec --no-startup-id i3-msg move container to workspace $(~/.config/i3/scripts/new-workspace-sample.sh) && i3-msg workspace number $_
+bindsym $mod+Shift+o exec --no-startup-id i3-msg move container to workspace $(~/.config/i3/scripts/new-workspace-monitor1.py) && i3-msg workspace number $_
 #bindsym $mod+Shift+x move container to output $monitor2 $monitor1, focus output $monitor2 $monitor1
 bindsym $mod+Shift+p move container to workspace prev, workspace prev
 bindsym $mod+Shift+n move container to workspace next, workspace next
@@ -402,7 +403,7 @@ bindsym $mod+Shift+F3 move container to workspace $ws13, workspace $ws13
 bindsym $mod+Shift+F4 move container to workspace $ws14, workspace $ws14
 
 # Move focused container to workspace
-bindsym $mod+ctrl+o exec --no-startup-id i3-msg move container to workspace $(~/.config/i3/scripts/new-workspace.sh)
+bindsym $mod+ctrl+o exec --no-startup-id i3-msg move container to workspace $(~/.config/i3/scripts/new-workspace-monitor1.py)
 #bindsym $mod+ctrl+x move container to output $monitor2 $monitor1
 bindsym $mod+ctrl+p move container to workspace prev
 bindsym $mod+ctrl+n move container to workspace next

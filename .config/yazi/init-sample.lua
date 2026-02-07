@@ -69,6 +69,7 @@ require("bunny"):setup({
 		{ key = { "s", "s" }, path = "~/.config/scripts", desc = "scripts" },
 		{ key = "y", path = "~/.config/yazi", desc = "Yazi config" },
 		{ key = "c", path = "~/.config", desc = "Config files" },
+		{ key = "f", path = "~/i3-dotfiles", desc = "dotfiles" },
 		{ key = { "s", "m" }, path = "~/Music", desc = "Music" },
 		{ key = "d", path = "~/Downloads", desc = "Downloads" },
 		{ key = "D", path = "~/Documents", desc = "Documents" },
