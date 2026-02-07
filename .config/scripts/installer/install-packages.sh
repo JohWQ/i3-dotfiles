@@ -2,6 +2,7 @@
 
 echo "Removing some packages:"
 sudo dnf remove \
+i3lock \
 azote \
 volumeicon \
 Thunar \
@@ -11,6 +12,7 @@ sleep 1 && reset
 echo "Updating system:"
 sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm -y && sudo dnf config-manager setopt fedora-cisco-openh264.enabled=1 -y
 sudo dnf copr enable alternateved/i3status-rust -y
+sudo dnf copr enable tokariew/i3lock-color -y
 sudo dnf copr enable alternateved/eza -y
 sudo dnf update -y
 
@@ -25,6 +27,7 @@ echo "Installing packages:"
 sudo dnf group install multimedia "development-tools" -y
 sudo dnf install \
 i3status-rust \
+i3lock-color \
 eza \
 gcc \
 clang \
@@ -62,8 +65,8 @@ totem-video-thumbnailer \
 ffmpegthumbnailer \
 xdpyinfo \
 pkgconf \
-xcb-util-image-devel \
 xcb-util-xrm-devel \
+xcb-util-image-devel \
 openssl \
 openssl-devel \
 lm_sensors \
