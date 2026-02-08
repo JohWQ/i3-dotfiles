@@ -22,8 +22,9 @@ client.background       #ffffff
 
 font pango: Liberation Mono 9
 
-# DESKTOP WALLPAPER. REPLACE WITH THE PATH OF YOUR IMAGE:
-#set $desktopwallpaper ~/Pictures/Emperor_penguins.jpeg
+# DESKTOP & LOCKSCREEN WALLPAPER. REPLACE WITH THE PATH OF YOUR IMAGE:
+#set $desktopwallpaper ~/Pictures/Wallpapers/wall.png
+#set $lockwallpaper ~/Pictures/Wallpapers/lock.png
 
 # Window style
 title_align center
@@ -47,6 +48,7 @@ bindsym $mod+Return exec --no-startup-id alacritty --config-file ~/.config/alacr
 bindsym $mod+ctrl+Return exec st
 
 # Screenshot
+bindsym $mod+Shift+s exec --no-startup-id flameshot gui
 bindsym Print exec --no-startup-id flameshot gui
 bindsym ctrl+Print exec --no-startup-id flameshot gui -p ~/Pictures/screenshots/
 bindsym Shift+Print exec --no-startup-id flameshot gui -p ~/Pictures/screenshots/
@@ -167,6 +169,7 @@ bindsym $mod+q focus child
 
 ## ---------------------- AUTOSTART ---------------------- ##
 exec_always --no-startup-id sleep 1; feh --bg-fill $desktopwallpaper
+exec_always --no-startup-id betterlockscreen -u $lockwallpaper
 
 # XDG autostart .desktop files in /etc/xdg/autostart & ~/.config/autostart 
 exec --no-startup-id dex-autostart --autostart --environment i3
