@@ -4,15 +4,17 @@ vim.opt.shiftwidth = 4 -- custom
 vim.opt.termguicolors = true -- custom
 
 -- Move current line up/down with Ctrl+j / Ctrl+k
-vim.keymap.set('n', '<C-j>', ':m .+1<CR>==', { desc = 'Move line down' })
-vim.keymap.set('n', '<C-k>', ':m .-2<CR>==', { desc = 'Move line up' })
+vim.keymap.set('n', '<C-j>', ':m .+1<CR>==', { desc = 'Move line down' }) -- custom
+vim.keymap.set('n', '<C-k>', ':m .-2<CR>==', { desc = 'Move line up' }) -- custom
 
 -- Move selected lines up/down in visual mode
-vim.keymap.set('v', '<C-j>', ":m '>+1<CR>gv=gv", { desc = 'Move selection down' })
-vim.keymap.set('v', '<C-k>', ":m '<-2<CR>gv=gv", { desc = 'Move selection up' })
+vim.keymap.set('v', '<C-j>', ":m '>+1<CR>gv=gv", { desc = 'Move selection down' }) -- custom
+vim.keymap.set('v', '<C-k>', ":m '<-2<CR>gv=gv", { desc = 'Move selection up' }) -- custom
 
 vim.keymap.set('n', '<C-w>v', '<:sp<CR>', { desc = 'Split window' }) -- custom
 vim.keymap.set('n', '<C-w>g', '<:vs<CR>', { desc = 'Split window vertically' }) -- custom
+
+vim.keymap.set('n', 'S', '<Nop>') -- custom
 
 -- gippity: remove swapfile if older than 1 day
 vim.api.nvim_create_autocmd('SwapExists', {
@@ -33,6 +35,7 @@ vim.api.nvim_create_autocmd('SwapExists', {
   end,
 })
 
+-- continue normal config:
 -- Set <space> as the leader key
 -- See `:help mapleader`
 --  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
@@ -147,10 +150,10 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
 -- TIP: Disable arrow keys in normal mode
--- vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
--- vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
--- vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
--- vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
+vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>') -- custom
+vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>') -- custom
+vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>') -- custom
+vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>') -- custom
 
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
@@ -431,7 +434,7 @@ require('lazy').setup({
       -- NOTE: `opts = {}` is the same as calling `require('mason').setup({})`
       { 'mason-org/mason.nvim', opts = {} },
       'WhoIsSethDaniel/mason-tool-installer.nvim',
-      { "mason-org/mason-lspconfig.nvim", opts = {} },
+      { 'mason-org/mason-lspconfig.nvim', opts = {} },
 
       -- Useful status updates for LSP.
       { 'j-hui/fidget.nvim', opts = {} },

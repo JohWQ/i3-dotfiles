@@ -212,6 +212,9 @@ wget https://github.com/erebe/greenclip/releases/download/v4.2/greenclip && chmo
 curl https://raw.githubusercontent.com/GeorgeFilipkin/pulsemixer/master/pulsemixer > pulsemixer && chmod +x pulsemixer && sudo mv pulsemixer /usr/local/bin/
 
 cd $HOME
+
+mkdir -p $HOME/Pictures/Screenshots
+
 sudo rm -rf $HOME/go/
 sudo rm -rf $HOME/JohWQ-i3-dotfiles-install
 

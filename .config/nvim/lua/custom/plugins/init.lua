@@ -14,8 +14,26 @@ return {
   },
   {
     'goolord/alpha-nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
     config = function()
-      require('alpha').setup(require('alpha.themes.dashboard').config)
+      local alpha = require 'alpha'
+      local dashboard = require 'alpha.themes.dashboard'
+
+      dashboard.section.header.val = {
+        [[   N E O V I M   ]],
+      }
+
+      dashboard.section.buttons.val = {
+        dashboard.button('f', '󰱼  Find file (~)', ':Telescope find_files<CR>'),
+        dashboard.button('r', '  Recent', ':Telescope oldfiles<CR>'),
+        dashboard.button('q', '󰗼  Quit', ':qa<CR>'),
+      }
+
+      dashboard.section.footer.val = 'leat fingies'
+
+      dashboard.config.opts.noautocmd = true
+
+      alpha.setup(dashboard.config)
     end,
   },
   {
@@ -60,16 +78,12 @@ return {
 
       vim.api.nvim_create_autocmd({ 'VimEnter', 'VimResume' }, {
         group = nvim_tmux_nav_group,
-        callback = function()
-          tmux_command 'set-option -p @is_vim yes'
-        end,
+        callback = function() tmux_command 'set-option -p @is_vim yes' end,
       })
 
       vim.api.nvim_create_autocmd({ 'VimLeave', 'VimSuspend' }, {
         group = nvim_tmux_nav_group,
-        callback = function()
-          tmux_command 'set-option -p -u @is_vim'
-        end,
+        callback = function() tmux_command 'set-option -p -u @is_vim' end,
       })
     end,
   },
