@@ -466,21 +466,22 @@ run = "plugin bunny"
 on  = "M"
 run = "plugin mount"
 # -- Sudo -- #
-# sudo cp/mv
+# sudo paste
 [[mgr.prepend_keymap]]
 on = ["R", "p", "p"]
 run = "plugin sudo -- paste"
 desc = "sudo paste"
-# sudo cp/mv --force
+# sudo paste
 [[mgr.prepend_keymap]]
 on = ["R", "P"]
 run = "plugin sudo -- paste --force"
 desc = "sudo paste"
-# sudo mv
+# sudo open
 [[mgr.prepend_keymap]]
 on = ["R", "o"]
 run = "plugin sudo -- open"
 desc = "sudo open editor"
+# sudo rename
 [[mgr.prepend_keymap]]
 on = ["R", "r"]
 run = "plugin sudo -- rename"
@@ -505,7 +506,7 @@ desc = "sudo hardlink"
 on = ["R", "a"]
 run = "plugin sudo -- create"
 desc = "sudo create"
-# sudo trash
+# sudo trash (simulate)
 [[mgr.prepend_keymap]]
 on = ["R", "d"]
 run = "plugin sudo -- remove"
@@ -520,11 +521,6 @@ desc = "sudo delete"
 on = [ "i", "d" ]
 run  = "plugin diff"
 desc = "Diff the selected with the hovered file"
-# -- what-size -- #
-[[mgr.prepend_keymap]]
-on = [ "i", "s" ]
-run  = "plugin what-size"
-desc = "Calc size of selection or cwd"
 # -- augment-command -- #
 #[[mgr.prepend_keymap]]
 #on = "k"
