@@ -50,13 +50,18 @@ def hardlink(paths):
         os.link(src, dest)
         print(f"Hardlinked {src} to {dest}")
 
-def rm(paths):
+def rm(paths, permanent=False):
     for path in paths:
+        if permanent:
             if os.path.isdir(path):
                 shutil.rmtree(path)
             else:
                 os.remove(path)
             print(f"Permanently removed {path}")
+        else:
+            # A more robust solution would use a trash library
+            print(f"Moved {path} to trash (simulation)")
+
 
 def main():
     parser = argparse.ArgumentParser(description="Sudo file operations")
@@ -79,6 +84,7 @@ def main():
 
     rm_parser = subparsers.add_parser("rm")
     rm_parser.add_argument("paths", nargs="+")
+    rm_parser.add_argument("--permanent", action="store_true")
 
     args = parser.parse_args()
 
@@ -91,7 +97,7 @@ def main():
     elif args.command == "hardlink":
         hardlink(args.paths)
     elif args.command == "rm":
-        rm(args.paths)
+        rm(args.paths, args.permanent)
 
 if __name__ == "__main__":
     main()

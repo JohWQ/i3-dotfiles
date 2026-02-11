@@ -505,6 +505,11 @@ desc = "sudo hardlink"
 on = ["R", "a"]
 run = "plugin sudo -- create"
 desc = "sudo create"
+# sudo trash
+[[mgr.prepend_keymap]]
+on = ["R", "d"]
+run = "plugin sudo -- remove"
+desc = "sudo trash"
 # sudo delete
 [[mgr.prepend_keymap]]
 on = ["R", "D"]

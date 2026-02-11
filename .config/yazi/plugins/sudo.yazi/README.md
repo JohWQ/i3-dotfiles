@@ -1,12 +1,11 @@
 # sudo.yazi
-Forked from https://github.com/iandol/sudo.yazi, which is a fork from https://github.com/TD-Sky/sudo.yazi.
 
 Call `sudo` in yazi. This fork replaces the NuShell dependency in the original https://github.com/TD-Sky/sudo.yazi with Ruby or Python which are more commonly installed. Made using [Gemini CLI](https://geminicli.com).
 
 ## Installation
 
 ```bash
-$ ya pkg add JohWQ/sudo
+$ ya pack -a iandol/sudo
 ```
 
 ## Requirements
@@ -24,8 +23,8 @@ $ ya pkg add JohWQ/sudo
 - [x] create relative-path symbolic links
 - [x] create hard links
 - [x] touch new file
-- [x] open file in $editor
 - [x] make new directory
+- [x] change files' mode bits
 
 > You can use [conceal](https://github.com/TD-Sky/conceal) to browse and restore trashed files
 
@@ -35,56 +34,62 @@ Here are my own keymap for reference only:
 
 ```toml
 # sudo cp/mv
-[[manager.keymap]]
+[[mgr.prepend_keymap]]
 on = ["R", "p", "p"]
 run = "plugin sudo -- paste"
 desc = "sudo paste"
 
 # sudo cp/mv --force
-[[manager.keymap]]
+[[mgr.prepend_keymap]]
 on = ["R", "P"]
 run = "plugin sudo -- paste --force"
 desc = "sudo paste"
 
-# sudo open editor
-[[mgr.prepend_keymap]]
-on = ["R", "o"]
-run = "plugin sudo -- open"
-desc = "sudo open editor"
-
 # sudo mv
-[[manager.keymap]]
+[[mgr.prepend_keymap]]
 on = ["R", "r"]
 run = "plugin sudo -- rename"
 desc = "sudo rename"
 
 # sudo ln -s (absolute-path)
-[[manager.keymap]]
+[[mgr.prepend_keymap]]
 on = ["R", "p", "l"]
 run = "plugin sudo -- link"
 desc = "sudo link"
 
 # sudo ln -s (relative-path)
-[[manager.keymap]]
+[[mgr.prepend_keymap]]
 on = ["R", "p", "r"]
 run = "plugin sudo -- link --relative"
 desc = "sudo link relative path"
 
 # sudo ln
-[[manager.keymap]]
+[[mgr.prepend_keymap]]
 on = ["R", "p", "L"]
 run = "plugin sudo -- hardlink"
 desc = "sudo hardlink"
 
 # sudo touch/mkdir
-[[manager.keymap]]
+[[mgr.prepend_keymap]]
 on = ["R", "a"]
 run = "plugin sudo -- create"
 desc = "sudo create"
 
+# sudo trash
+[[mgr.prepend_keymap]]
+on = ["R", "d"]
+run = "plugin sudo -- remove"
+desc = "sudo trash"
+
 # sudo delete
-[[manager.keymap]]
+[[mgr.prepend_keymap]]
 on = ["R", "D"]
 run = "plugin sudo -- remove --permanently"
 desc = "sudo delete"
+
+# sudo chmod
+[[mgr.prepend_keymap]]
+on = ["R", "m"]
+run = "plugin sudo -- chmod"
+desc = "sudo chmod"
 ```

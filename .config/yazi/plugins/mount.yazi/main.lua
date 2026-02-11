@@ -1,4 +1,4 @@
---- @since 25.5.31
+--- @since 25.12.29
 
 local toggle_ui = ya.sync(function(self)
 	if self.children then
@@ -7,35 +7,21 @@ local toggle_ui = ya.sync(function(self)
 	else
 		self.children = Modal:children_add(self, 10)
 	end
-	-- TODO: remove this
-	if ui.render then
-		ui.render()
-	else
-		ya.render()
-	end
+	ui.render()
 end)
 
 local subscribe = ya.sync(function(self)
 	ps.unsub("mount")
-	ps.sub("mount", function()
-		ya.emit("plugin", { self._id, "refresh" })
-	end)
+	ps.sub("mount", function() ya.emit("plugin", { self._id, "refresh" }) end)
 end)
 
 local update_partitions = ya.sync(function(self, partitions)
 	self.partitions = partitions
 	self.cursor = math.max(0, math.min(self.cursor or 0, #self.partitions - 1))
-	-- TODO: remove this
-	if ui.render then
-		ui.render()
-	else
-		ya.render()
-	end
+	ui.render()
 end)
 
-local active_partition = ya.sync(function(self)
-	return self.partitions[self.cursor + 1]
-end)
+local active_partition = ya.sync(function(self) return self.partitions[self.cursor + 1] end)
 
 local update_cursor = ya.sync(function(self, cursor)
 	if #self.partitions == 0 then
@@ -43,12 +29,7 @@ local update_cursor = ya.sync(function(self, cursor)
 	else
 		self.cursor = ya.clamp(0, self.cursor + cursor, #self.partitions - 1)
 	end
-	-- TODO: remove this
-	if ui.render then
-		ui.render()
-	else
-		ya.render()
-	end
+	ui.render()
 end)
 
 local M = {
@@ -59,10 +40,6 @@ local M = {
 
 		{ on = "k", run = "up" },
 		{ on = "j", run = "down" },
-		{ on = "K", run = "largeup" },
-		{ on = "J", run = "largedown" },
-		{ on = "<C-u>", run = "extralargeup" },
-		{ on = "<C-d>", run = "extralargedown" },
 		{ on = "l", run = { "enter", "quit" } },
 
 		{ on = "<Up>", run = "up" },
@@ -114,7 +91,7 @@ function M:entry(job)
 	local tx2, rx2 = ya.chan("mpsc")
 	function producer()
 		while true do
-			local cand = self.keys[ya.which({ cands = self.keys, silent = true })] or { run = {} }
+			local cand = self.keys[ya.which { cands = self.keys, silent = true }] or { run = {} }
 			for _, r in ipairs(type(cand.run) == "table" and cand.run or { cand.run }) do
 				tx1:send(r)
 				if r == "quit" then
@@ -135,14 +112,6 @@ function M:entry(job)
 				update_cursor(-1)
 			elseif run == "down" then
 				update_cursor(1)
-			elseif run == "largeup" then
-				update_cursor(-5)
-			elseif run == "largedown" then
-				update_cursor(5)
-			elseif run == "extralargeup" then
-				update_cursor(-15)
-			elseif run == "extralargedown" then
-				update_cursor(15)
 			elseif run == "enter" then
 				local active = active_partition()
 				if active and active.dist then
@@ -160,11 +129,11 @@ function M:entry(job)
 			if run == "quit" then
 				break
 			elseif run == "mount" then
-				self.operate("mount")
+				require(".cross").operate("mount", active_partition())
 			elseif run == "unmount" then
-				self.operate("unmount")
+				require(".cross").operate("unmount", active_partition())
 			elseif run == "eject" then
-				self.operate("eject")
+				require(".cross").operate("eject", active_partition())
 			end
 		until not run
 	end
@@ -172,19 +141,17 @@ function M:entry(job)
 	ya.join(producer, consumer1, consumer2)
 end
 
-function M:reflow()
-	return { self }
-end
+function M:reflow() return { self } end
 
 function M:redraw()
 	local rows = {}
 	for _, p in ipairs(self.partitions or {}) do
 		if not p.sub then
-			rows[#rows + 1] = ui.Row({ p.main })
+			rows[#rows + 1] = ui.Row { p.main }
 		elseif p.sub == "" then
-			rows[#rows + 1] = ui.Row({ p.main, p.label or "", p.dist or "", p.fstype or "" })
+			rows[#rows + 1] = ui.Row { p.main, p.label or "", p.dist or "", p.fstype or "" }
 		else
-			rows[#rows + 1] = ui.Row({ "  " .. p.sub, p.label or "", p.dist or "", p.fstype or "" })
+			rows[#rows + 1] = ui.Row { "  " .. p.sub, p.label or "", p.dist or "", p.fstype or "" }
 		end
 	end
 
@@ -200,12 +167,12 @@ function M:redraw()
 			:header(ui.Row({ "Src", "Label", "Dist", "FSType" }):style(ui.Style():bold()))
 			:row(self.cursor)
 			:row_style(ui.Style():fg("blue"):underline())
-			:widths({
+			:widths {
 				ui.Constraint.Length(20),
 				ui.Constraint.Length(20),
 				ui.Constraint.Percentage(70),
 				ui.Constraint.Length(10),
-			}),
+			},
 	}
 end
 
@@ -280,41 +247,6 @@ function M.fillin(tbl)
 		tbl[indices[p.name]].fstype = p.fstype
 	end
 	return tbl
-end
-
-function M.operate(type)
-	local active = active_partition()
-	if not active then
-		return
-	elseif not active.sub then
-		return -- TODO: mount/unmount main disk
-	end
-
-	local output, err
-	if ya.target_os() == "macos" then
-		output, err = Command("diskutil"):arg({ type, active.src }):output()
-	end
-	if ya.target_os() == "linux" then
-		if type == "eject" and active.src:match("^/dev/sr%d+") then
-			Command("udisksctl"):arg({ "unmount", "-b", active.src }):status()
-			output, err = Command("eject"):arg({ "--traytoggle", active.src }):output()
-		elseif type == "eject" then
-			Command("udisksctl"):arg({ "unmount", "-b", active.src }):status()
-			output, err = Command("udisksctl"):arg({ "power-off", "-b", active.src }):output()
-		else
-			output, err = Command("udisksctl"):arg({ type, "-b", active.src }):output()
-		end
-	end
-
-	if not output then
-		M.fail("Failed to %s `%s`: %s", type, active.src, err)
-	elseif not output.status.success then
-		M.fail("Failed to %s `%s`: %s", type, active.src, output.stderr)
-	end
-end
-
-function M.fail(...)
-	ya.notify({ title = "Mount", content = string.format(...), timeout = 10, level = "error" })
 end
 
 function M:click() end

@@ -21,13 +21,13 @@ This is a bookmark plugin for [yazi](https://github.com/sxyazi/yazi) which augme
 ### With `git`
 
 ```sh
-git clone https://github.com/JohWQ/bunny.yazi ~/.config/yazi/plugins/bunny.yazi
+git clone https://github.com/stelcodes/bunny.yazi ~/.config/yazi/plugins/bunny.yazi
 ```
 
 ### With `yapack`
 
 ```sh
-ya pkg add JohWQ/bunny
+ya pack -a stelcodes/bunny
 ```
 
 ### With Nix (Home Manager + flakes)
@@ -36,7 +36,7 @@ ya pkg add JohWQ/bunny
 ```nix
 inputs = {
   bunny-yazi = {
-    url = "github:JohWQ/bunny.yazi";
+    url = "github:stelcodes/bunny.yazi";
     flake = false;
   };
 };
