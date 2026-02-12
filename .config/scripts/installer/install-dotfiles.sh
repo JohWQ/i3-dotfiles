@@ -9,7 +9,10 @@ mv $HOME/.zshrc $HOME/.zshrc.bak
 mv $HOME/.tmux $HOME/.tmux.bak
 mv $HOME/xdg-desktop-portal-termfilechooser $HOME/xdg-desktop-portal-termfilechooser.bak
 
+mv $HOME/.local/share/icons $HOME/.local/share/icons.bak
+
 mv $HOME/.config/pulsemixer.cfg $HOME/.config/pulsemixer.cfg.bak
+mv $HOME/.config/autostart $HOME/.config/autostart.bak
 mv $HOME/.config/alacritty $HOME/.config/alacritty.bak
 mv $HOME/.config/betterlockscreen $HOME/.config/betterlockscreen.bak
 mv $HOME/.config/dunst $HOME/.config/dunst.bak
@@ -23,9 +26,11 @@ mv $HOME/.config/nvim $HOME/.config/nvim.bak
 mv $HOME/.config/org.freedesktop.FileManager1.common $HOME/.config/org.freedesktop.FileManager1.common.bak
 mv $HOME/.config/picom $HOME/.config/picom.bak
 mv $HOME/.config/rmpc $HOME/.config/rmpc.bak
+mv $HOME/.config/rofi $HOME/.config/rofi.bak
 mv $HOME/.config/scripts $HOME/.config/scripts.bak
 mv $HOME/.config/tmux $HOME/.config/tmux.bak
 mv $HOME/.config/xdg-desktop-portal $HOME/.config/xdg-desktop-portal.bak
+mv $HOME/.config/xdg-desktop-portal-termfilechooser $HOME/.config/xdg-desktop-portal-termfilechooser.bak
 mv $HOME/.config/yazi $HOME/.config/yazi.bak
 
 mv $HOME/i3-dotfiles/.zshrc-sample $HOME/i3-dotfiles/.zshrc
