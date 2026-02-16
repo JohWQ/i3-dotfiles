@@ -181,6 +181,8 @@ set $greenclip /usr/local/bin/greenclip
 exec --no-startup-id $greenclip daemon
 # Picom daemon
 exec --no-startup-id picom --daemon --config ~/.config/picom/picom.conf
+# Optional compositor:
+exec -startup-id fastcompmgr
 
 exec --no-startup-id firefox
 
@@ -188,7 +190,7 @@ exec --no-startup-id firefox
 #problematic for unmounting SMB share. exec --no-startup-id mpd
 
 # Syncthing
-exec --no-startup-id syncthing
+#exec --no-startup-id syncthing
 
 # Resolution for monitor 1 & 2
 exec --no-startup-id xset s 3600 0

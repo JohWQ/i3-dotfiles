@@ -189,6 +189,9 @@ git clone https://github.com/boydaihungst/org.freedesktop.FileManager1.common &&
 meson setup build --reconfigure
 sudo ninja -C build install
 
+git clone https://github.com/mwh/dragon.git && cd dragon
+sudo make PREFIX=/usr/local install
+
 cd $HOME/JohWQ-i3-dotfiles-install
 
 mkdir -p $HOME/.local/share/fonts
@@ -214,6 +217,9 @@ curl https://raw.githubusercontent.com/GeorgeFilipkin/pulsemixer/master/pulsemix
 cd $HOME
 
 mkdir -p $HOME/Pictures/Screenshots
+mkdir -p $HOME/.local/state/mpd
+
+touch $HOME/.local/state/mpd/mpd.log
 
 sudo rm -rf $HOME/go/
 sudo rm -rf $HOME/JohWQ-i3-dotfiles-install
