@@ -26,6 +26,14 @@ return {
       dashboard.section.buttons.val = {
         dashboard.button('f', '󰱼  Find file (~)', ':Telescope find_files<CR>'),
         dashboard.button('r', '  Recent', ':Telescope oldfiles<CR>'),
+
+        dashboard.button('t', '󰈔  Notes (Yazi)', function() -- gippity
+          local path = vim.fn.expand '~/ServerSync/Documents/notes'
+          vim.cmd('lcd ' .. path)
+          vim.cmd 'Yazi'
+        end),
+        dashboard.button('-', '  Open Yazi', ':Yazi<CR>'),
+
         dashboard.button('q', '󰗼  Quit', ':qa<CR>'),
       }
 

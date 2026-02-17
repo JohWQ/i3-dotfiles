@@ -24,7 +24,8 @@ font pango: Liberation Mono 9
 
 # DESKTOP & LOCKSCREEN WALLPAPER. REPLACE WITH THE PATH OF YOUR IMAGE:
 #set $desktopwallpaper ~/Pictures/Wallpapers/wall.png
-#set $lockwallpaper ~/Pictures/Wallpapers/lock.png
+# Run following command to change lockscreen:
+# betterlockscreen -u ~/Pictures/Wallpapers/lock.png
 
 # Window style
 title_align center
@@ -50,9 +51,13 @@ bindsym $mod+ctrl+Return exec st
 # Screenshot
 bindsym $mod+Shift+s exec --no-startup-id flameshot gui
 bindsym Print exec --no-startup-id flameshot gui
-bindsym ctrl+Print exec --no-startup-id flameshot gui -p ~/Pictures/screenshots/
+
 bindsym Shift+Print exec --no-startup-id flameshot gui -p ~/Pictures/screenshots/
+
 bindsym $mod+Print --release exec --no-startup-id flameshot screen
+
+bindsym $mod+Shift+t exec sh -c 'flameshot gui --raw | tesseract stdin stdout | xclip -in -selection clipboard'
+bindsym ctrl+Print exec sh -c 'flameshot gui --raw | tesseract stdin stdout | xclip -in -selection clipboard'
 
 # OTD tablet button keybinds:
 #bindsym ctrl+Mod1+Shift+Insert workspace $ws100; exec --no-startup-id gimp
@@ -135,6 +140,7 @@ bindsym $mod+g exec --no-startup-id i3-msg split h && notify-send -t 800 "Horizo
 bindsym $mod+v exec --no-startup-id i3-msg split v && notify-send -t 800 "Vertical ↑ ↓"
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
+bindsym --whole-window $mod+Mod1+button2 fullscreen toggle
 # Make container stick to screen (floating only)
 bindsym $mod+t exec --no-startup-id ~/.config/i3/scripts/toggle-sticky.sh
 # change container layout (stacked, tabbed, toggle split)
@@ -159,7 +165,7 @@ bindsym $mod+Shift+Home move position center
 
 # Change size of current floating container
 bindsym $mod+Shift+End exec --no-startup-id ~/.config/i3/scripts/cycle-window-size.sh
-bindsym --whole-window $mod+ctrl+button1 exec --no-startup-id ~/.config/i3/scripts/cycle-window-size.sh
+bindsym --whole-window $mod+Mod1+button3 exec --no-startup-id ~/.config/i3/scripts/cycle-window-size.sh
 
 # Focus the parent container
 bindsym $mod+a focus parent
@@ -169,7 +175,6 @@ bindsym $mod+q focus child
 
 ## ---------------------- AUTOSTART ---------------------- ##
 exec_always --no-startup-id sleep 1; feh --bg-fill $desktopwallpaper
-exec_always --no-startup-id betterlockscreen -u $lockwallpaper
 
 # XDG autostart .desktop files in /etc/xdg/autostart & ~/.config/autostart 
 exec --no-startup-id dex-autostart --autostart --environment i3
@@ -182,7 +187,7 @@ exec --no-startup-id $greenclip daemon
 # Picom daemon
 exec --no-startup-id picom --daemon --config ~/.config/picom/picom.conf
 # Optional compositor:
-exec -startup-id fastcompmgr
+#exec --no-startup-id fastcompmgr
 
 exec --no-startup-id firefox
 
@@ -215,7 +220,7 @@ bindsym $mod+Shift+minus exec --no-startup-id i3-msg "move scratchpad" && notify
 
 # Show "other" scratchpads that are not set to launch with i3 on startup
 bindsym $mod+minus [title="^(?!$scratchpadwindowtitle1|$scratchpadwindowtitle2|$scratchpadwindowtitle3|$scratchpadwindowtitle4|$scratchpadwindowtitle5).*"] scratchpad show; move position center; [tiling con_id=__focused__] border $configborderstyle; [floating con_id=__focused__] border normal
-# Swap with previous bindsym to retain cycling through window functionality:
+# Swap with bindsym above to retain cycling through window functionality:
 #bindsym $mod+minus scratchpad show; move position center
 
 # Window keybinds
@@ -249,7 +254,7 @@ bar {
     padding -2px 0 -2px 0
 #    tray_output none
 #    tray_output $monitor1
-    #strip_workspace_numbers yes - WS 1 - 10
+    #strip_workspace_numbers yes # WS 1 - 10
 #    CHANGE IF USING OWN FILE:
     status_command i3status-rs ~/.config/i3status-rust/config1.toml
 
@@ -371,7 +376,9 @@ bindsym $mod+o exec --no-startup-id i3-msg workspace number $(~/.config/i3/scrip
 # or file: new-workspace.sh if using 2 monitors
 #bindsym $mod+x focus output $monitor2 $monitor1
 bindsym $mod+p workspace prev
+bindsym --whole-window $mod+button8 workspace prev
 bindsym $mod+n workspace next
+bindsym --whole-window $mod+button9 workspace next
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
 bindsym $mod+3 workspace $ws3
