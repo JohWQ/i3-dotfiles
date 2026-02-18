@@ -64,6 +64,7 @@ ImageMagick \
 totem-video-thumbnailer \
 ffmpegthumbnailer \
 xdpyinfo \
+xdotool \
 pkgconf \
 xcb-util-xrm-devel \
 xcb-util-image-devel \
@@ -226,5 +227,9 @@ sudo rm -rf $HOME/JohWQ-i3-dotfiles-install
 
 sudo rm -rf $HOME/.config/volumeicon
 sudo rm -rf $HOME/.config/azote
+
+# locale (set your own):
+#sudo localectl set-locale LANG=nb_NO
+fc-cache -fv
 
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/romkatv/zsh4humans/v5/install)"

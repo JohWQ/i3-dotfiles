@@ -13,16 +13,23 @@ git clone https://github.com/JohWQ/i3-dotfiles.git && cd i3-dotfiles/.config/scr
 ./install-packages.sh
 ```
 ### Install dotfiles:
+Backup any of your personal configuration files, then run:
 ```
-cd $HOME/i3-dotfiles/.config/scripts/installer
-./install-dotfiles.sh
+cd $HOME/i3-dotfiles
+stow .
+```
+To update from this existing repo run:
+```
+cd $HOME/i3-dotfiles
+stow --restow .
+find . -type f -name '*-sample' -exec bash -c 'for f; do cp -- "$f" "${f%-sample}"; done' _ {} +
 ```
 
 
 ## TODO:
-- [ ] Create a better personal Nvim configuration
+- [x] Create a better personal Nvim configuration
 - [x] Set per-directory viewing configuration in yazi
 - [ ] Have a more consistent theme (instead of having a different dark theme for GTK and QT applications)
 - [x] Create a proper installation script
-- [ ] Fix minor bugs after using installation script
+- [x] Fix minor bugs after using installation script
 - [ ] Create configuration for rmpc
