@@ -17,6 +17,7 @@ git clone https://github.com/JohWQ/i3-dotfiles.git && cd i3-dotfiles/.config/scr
 ```
 cd $HOME/i3-dotfiles
 stow .
+find . -type f -name '*-sample' -exec bash -c 'for f; do cp -- "$f" "${f%-sample}"; done' _ {} +
 ```
 To update from this existing repo run:
 ```
