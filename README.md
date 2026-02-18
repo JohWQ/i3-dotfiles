@@ -21,6 +21,7 @@ stow .
 To update from this existing repo run:
 ```
 cd $HOME/i3-dotfiles
+git pull
 stow --restow .
 find . -type f -name '*-sample' -exec bash -c 'for f; do cp -- "$f" "${f%-sample}"; done' _ {} +
 ```
