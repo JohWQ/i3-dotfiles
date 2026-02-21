@@ -123,10 +123,8 @@ bat \
 gio \
 flameshot \
 tesseract \
-## OPTIONAL:
 obs-studio \
 syncthing \
-syncthingtray \
 tldr \
 gpick \
 pastel \
@@ -137,8 +135,6 @@ mpc \
 cifs-utils-devel \
 gvfs-smb \
 xev \
-#steam \
-#gimp \
 -y
 sudo dnf install opencv-devel --setopt=install_weak_deps=False -y
 
