@@ -1,5 +1,13 @@
 #!/usr/bin/env bash
 
+# Compatibility:
+set -euo pipefail
+IFS=$'\n\t'
+if ! command -v dnf >/dev/null; then
+  echo "This script requires Fedora (dnf)."
+  exit 1
+fi
+
 echo "Removing some packages:"
 sudo dnf remove \
 i3lock \
@@ -8,7 +16,6 @@ volumeicon \
 Thunar \
 -y
 
-sleep 1 && reset
 echo "Updating system:"
 sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm -y && sudo dnf config-manager setopt fedora-cisco-openh264.enabled=1 -y
 sudo dnf copr enable alternateved/i3status-rust -y
@@ -149,7 +156,6 @@ cargo install --force --git https://github.com/sxyazi/yazi.git yazi-build
 
 cargo install rmpc --locked
 
-sleep 1 && reset
 cd "$HOME/JohWQ-i3-dotfiles-install"
 
 git clone https://github.com/yeyushengfan258/Polarnight-Cursors.git && cd Polarnight-Cursors
