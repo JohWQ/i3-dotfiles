@@ -85,9 +85,6 @@ picom \
 playerctl \
 7zip \
 dnf-utils \
-cifs-utils-devel \
-gvfs-smb \
-gparted \
 nemo \
 sqlite \
 rofi \
@@ -95,7 +92,6 @@ blueman \
 rofi-devel \
 lxappearance \
 mpv \
-tldr \
 json-devel \
 cli11-devel \
 tbb-devel \
@@ -103,16 +99,12 @@ libsixel-devel \
 chafa-devel \
 range-v3-devel \
 vips-devel \
-wireguard-tools \
 qalculate \
 fastfetch \
 glow \
-xev \
 vim \
 luarocks \
 neovim \
-mpd \
-mpc \
 st \
 alacritty \
 btop \
@@ -120,33 +112,36 @@ fzf \
 fd-find \
 p7zip \
 zoxide \
-gpick \
-pastel \
 bat \
 gio \
 flameshot \
-syncthing \
 tesseract \
+## OPTIONAL:
 obs-studio \
+syncthing \
+syncthingtray \
+tldr \
+gpick \
+pastel \
+gparted \
+wireguard-tools \
+mpd \
+mpc \
+cifs-utils-devel \
+gvfs-smb \
+xev \
+#steam \
+#gimp \
 -y
 sudo dnf install opencv-devel --setopt=install_weak_deps=False -y
 
-#vesktop \
-#songrec \
-#steam \
-#gimp \
-
-
 echo "Cloning directories & installing various programs:"
-mkdir $HOME/JohWQ-i3-dotfiles-install && cd $HOME/JohWQ-i3-dotfiles-install
+mkdir "$HOME/JohWQ-i3-dotfiles-install" && cd "$HOME/JohWQ-i3-dotfiles-install"
 
 sleep 1 && reset
 go install github.com/natsukagami/mpd-mpris/cmd/mpd-mpris@latest
-
-cd $HOME
-
-sudo mv $HOME/go/bin/mpd-mpris /usr/local/bin/
-
+cd "$HOME"
+sudo mv "$HOME/go/bin/mpd-mpris" /usr/local/bin/
 
 cargo install resvg
 
@@ -155,13 +150,12 @@ cargo install --force --git https://github.com/sxyazi/yazi.git yazi-build
 cargo install rmpc --locked
 
 sleep 1 && reset
-
-cd $HOME/JohWQ-i3-dotfiles-install
+cd "$HOME/JohWQ-i3-dotfiles-install"
 
 git clone https://github.com/yeyushengfan258/Polarnight-Cursors.git && cd Polarnight-Cursors
 sudo ./install.sh
 
-cd $HOME/JohWQ-i3-dotfiles-install
+cd "$HOME/JohWQ-i3-dotfiles-install"
 
 git clone https://github.com/jstkdng/ueberzugpp.git
 cd ueberzugpp
@@ -170,21 +164,21 @@ cmake -DCMAKE_BUILD_TYPE=Release ..
 cmake --build .
 sudo cp ueberzugpp /usr/local/bin/
 
-cd $HOME/JohWQ-i3-dotfiles-install
+cd "$HOME/JohWQ-i3-dotfiles-install"
 
 git clone https://github.com/svenstaro/rofi-calc.git && cd rofi-calc
 meson setup build
 meson compile -C build && cd build
 sudo meson install
 
-cd $HOME/JohWQ-i3-dotfiles-install
+cd "$HOME/JohWQ-i3-dotfiles-install"
 
 git clone https://github.com/hunkyburrito/xdg-desktop-portal-termfilechooser && cd xdg-desktop-portal-termfilechooser
 meson build
 sudo ninja -C build install
 sudo mv /usr/local/share/xdg-desktop-portal/portals/termfilechooser.portal /usr/share/xdg-desktop-portal/portals/
 
-cd $HOME/JohWQ-i3-dotfiles-install
+cd "$HOME/JohWQ-i3-dotfiles-install"
 
 git clone https://github.com/boydaihungst/org.freedesktop.FileManager1.common && cd org.freedesktop.FileManager1.common
 meson setup build --reconfigure
@@ -193,17 +187,17 @@ sudo ninja -C build install
 git clone https://github.com/mwh/dragon.git && cd dragon
 sudo make PREFIX=/usr/local install
 
-cd $HOME/JohWQ-i3-dotfiles-install
+cd "$HOME/JohWQ-i3-dotfiles-install"
 
-mkdir -p $HOME/.local/share/fonts
+mkdir -p "$HOME/.local/share/fonts"
 git clone https://github.com/adi1090x/rofi.git && cd rofi
 cp -rf fonts/* "$HOME/.local/share/fonts"
 
-cd $HOME/JohWQ-i3-dotfiles-install
+cd "$HOME/JohWQ-i3-dotfiles-install"
 
-sudo ln -s ~/.cargo/bin/ya /usr/local/bin/
-sudo ln -s ~/.cargo/bin/yazi /usr/local/bin/
-sudo ln -s ~/.cargo/bin/yazi-build /usr/local/bin/
+sudo ln -s "$HOME/.cargo/bin/ya" /usr/local/bin/
+sudo ln -s "$HOME/.cargo/bin/yazi" /usr/local/bin/
+sudo ln -s "$HOME/.cargo/bin/yazi-build" /usr/local/bin/
 
 wget -qO- https://git.io/papirus-icon-theme-install | sh
 
@@ -215,18 +209,17 @@ wget https://github.com/erebe/greenclip/releases/download/v4.2/greenclip && chmo
 
 curl https://raw.githubusercontent.com/GeorgeFilipkin/pulsemixer/master/pulsemixer > pulsemixer && chmod +x pulsemixer && sudo mv pulsemixer /usr/local/bin/
 
-cd $HOME
+cd "$HOME"
 
-mkdir -p $HOME/Pictures/Screenshots
-mkdir -p $HOME/.local/state/mpd
+mkdir -p "$HOME/Pictures/Screenshots"
+mkdir -p "$HOME/.local/state/mpd"
 
-touch $HOME/.local/state/mpd/mpd.log
+touch "$HOME/.local/state/mpd/mpd.log"
 
-sudo rm -rf $HOME/go/
-sudo rm -rf $HOME/JohWQ-i3-dotfiles-install
-
-sudo rm -rf $HOME/.config/volumeicon
-sudo rm -rf $HOME/.config/azote
+sudo rm -rf "$HOME/go"
+sudo rm -rf "$HOME/JohWQ-i3-dotfiles-install"
+sudo rm -rf "$HOME/.config/volumeicon"
+sudo rm -rf "$HOME/.config/azote"
 
 # locale (set your own):
 #sudo localectl set-locale LANG=nb_NO

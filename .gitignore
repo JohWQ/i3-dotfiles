@@ -1,3 +1,4 @@
+.config/autostart/syncthingtray.desktop
 .config/scripts/ping_websites.sh
 .config/mpd/state
 .config/mpd/mpd.log
@@ -15,8 +16,8 @@
 .config/i3/scripts/new-workspace.sh
 .config/i3/config
 .config/i3/modes.conf
+.config/nvim/lua/custom/plugins/init.lua
 .config/nvim/lazy-lock.json
-.config/nvim.astro.old
 .config/org.freedesktop.FileManager1.common/config.bak
 .config/org
 .stow-local-ignore
