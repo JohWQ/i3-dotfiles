@@ -377,9 +377,9 @@ bindsym $mod+o exec --no-startup-id i3-msg workspace number $(~/.config/i3/scrip
 # or file: new-workspace.sh if using 2 monitors
 #bindsym $mod+x focus output $monitor2 $monitor1
 bindsym $mod+p workspace prev
-bindsym --whole-window $mod+button8 workspace prev
+bindsym --whole-window $mod+button4 workspace prev
 bindsym $mod+n workspace next
-bindsym --whole-window $mod+button9 workspace next
+bindsym --whole-window $mod+button5 workspace next
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
 bindsym $mod+3 workspace $ws3

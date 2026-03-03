@@ -16,7 +16,8 @@ git clone https://github.com/JohWQ/i3-dotfiles.git && cd i3-dotfiles/.config/scr
 ⚠️ Backup any of your personal configuration files, then run:
 ```
 cd $HOME/i3-dotfiles
-stow .
+stow --adopt .
+
 find . -type f -name '*-sample' -exec bash -c 'for f; do cp -- "$f" "${f%-sample}"; done' _ {} +
 ```
 To update from this existing repo run:

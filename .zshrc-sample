@@ -13,11 +13,8 @@ zstyle ':z4h:' auto-update-days '28'
 # Keyboard type: 'mac' or 'pc'.
 zstyle ':z4h:bindkey' keyboard  'pc'
 
-# Don't start tmux.
-zstyle ':z4h:' start-tmux       no
-
 # Mark up shell's output with semantic information.
-zstyle ':z4h:' term-shell-integration 'yes'
+zstyle ':z4h:' term-shell-integration 'no'
 
 # Right-arrow key accepts one character ('partial-accept') from
 # command autosuggestions or the whole thing ('accept')?
@@ -250,7 +247,9 @@ alias gituntrack='git rm --cached '
 alias gits='git status'
 alias gitc='git commit -m'
 alias gitd='git diff'
+alias gitdo='git diff origin'
 alias gita='git add .'
+alias gitf='git fetch'
 alias gitsearch='git ls-files | rg'
 
 # ---------------------------

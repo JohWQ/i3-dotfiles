@@ -25,9 +25,8 @@ sudo dnf update -y
 
 # Rustup:
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-sleep 1 && reset
+source ~/.bash
 rustup update
-sleep 1 && reset
 
 # Packages from repos:
 echo "Installing packages:"
@@ -93,6 +92,7 @@ playerctl \
 7zip \
 dnf-utils \
 nemo \
+nemo-fileroller \
 sqlite \
 rofi \
 blueman \
@@ -141,7 +141,6 @@ sudo dnf install opencv-devel --setopt=install_weak_deps=False -y
 echo "Cloning directories & installing various programs:"
 mkdir "$HOME/JohWQ-i3-dotfiles-install" && cd "$HOME/JohWQ-i3-dotfiles-install"
 
-sleep 1 && reset
 go install github.com/natsukagami/mpd-mpris/cmd/mpd-mpris@latest
 cd "$HOME"
 sudo mv "$HOME/go/bin/mpd-mpris" /usr/local/bin/
