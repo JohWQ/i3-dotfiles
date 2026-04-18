@@ -25,6 +25,7 @@ keymap = [
 	{ on = "<PageDown>",   run = "arrow 100%",  desc = "Move cursor down one page" },
 
 	{ on = [ "g", "g" ], run = "arrow top", desc = "Go to top" },
+	{ on = [ "g", "G" ], run = "arrow bot", desc = "Go to bottom" },
 	{ on = "G",          run = "arrow bot", desc = "Go to bottom" },
 
 	# Navigation
@@ -123,7 +124,7 @@ keymap = [
 	#	{ on = [ "g", "h" ],       run = "cd ~",             desc = "Go home" },
 	#	{ on = [ "g", "c" ],       run = "cd ~/.config",     desc = "Go ~/.config" },
 	#	{ on = [ "g", "d" ],       run = "cd ~/Downloads",   desc = "Go ~/Downloads" },
-	{ on = [ "g", "<Space>" ], run = "cd --interactive", desc = "Jump interactively" },
+	{ on = [ "e" ], run = "cd --interactive", desc = "Jump interactively" },
 	#{ on = [ "g", "f" ],       run = "follow",           desc = "Follow hovered symlink" },
 
 	# Tabs
@@ -450,7 +451,7 @@ desc = "Jump to char"
 # -- dragon -- #
 [[mgr.prepend_keymap]]
 on  = "<C-n>"
-run = 'shell -- dragon -x -i -T "$@"'
+run = 'shell -- dragon -a -x -i -T "$@"'
 # -- bunny-hop -- #
 [[mgr.prepend_keymap]]
 desc = "Start bunny.yazi"
@@ -507,34 +508,33 @@ on = ["R", "a"]
 run = "plugin sudo -- create"
 desc = "sudo create"
 # sudo trash (simulate)
-[[mgr.prepend_keymap]]
-on = ["R", "d"]
-run = "plugin sudo -- remove"
-desc = "sudo trash"
+#[[mgr.prepend_keymap]]
+#on = ["R", "d"]
+#run = "plugin sudo -- remove"
+#desc = "sudo trash"
 # sudo delete
 [[mgr.prepend_keymap]]
 on = ["R", "D"]
 run = "plugin sudo -- remove --permanently"
 desc = "sudo delete"
+[[mgr.prepend_keymap]]
+on = ["R", "c"]
+run = "plugin sudo -- chmod"
+desc = "sudo chmod"
 # -- diff -- #
 [[mgr.prepend_keymap]]
 on = [ "i", "d" ]
 run  = "plugin diff"
 desc = "Diff the selected with the hovered file"
-# -- what-size -- #
-[[mgr.prepend_keymap]]
-on = [ "i", "s" ]
-run  = "plugin what-size"
-desc = "Calc size of selection or cwd"
 # -- augment-command -- #
-#[[mgr.prepend_keymap]]
-#on = "k"
-#run = "plugin augment-command -- arrow -1"
-#desc = "Move cursor up"
-#[[mgr.prepend_keymap]]
-#on = "j"
-#run = "plugin augment-command -- arrow 1"
-#desc = "Move cursor down"
+[[mgr.prepend_keymap]]
+on = "k"
+run = "plugin augment-command -- arrow -1"
+desc = "Move cursor up"
+[[mgr.prepend_keymap]]
+on = "j"
+run = "plugin augment-command -- arrow 1"
+desc = "Move cursor down"
 [[mgr.prepend_keymap]]
 on = "<C-k>"
 run = "plugin augment-command -- parent_arrow -1"
@@ -543,10 +543,10 @@ desc = "Move cursor up in the parent directory"
 on = "<C-j>"
 run = "plugin augment-command -- parent_arrow 1"
 desc = "Move cursor down in the parent directory"
-#[[mgr.prepend_keymap]]
-#on = "l"
-#run = "plugin augment-command -- enter"
-#desc = "Enter the child directory, or open the file"
+[[mgr.prepend_keymap]]
+on = "l"
+run = "plugin augment-command -- enter"
+desc = "Enter the child directory, or open the file"
 [[mgr.prepend_keymap]]
 on = "Enter"
 run = "plugin augment-command -- enter"

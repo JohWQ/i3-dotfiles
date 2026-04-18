@@ -101,13 +101,6 @@ local get_state = ya.sync(function(_, cmd)
 				hovered = tostring(cx.active.current.hovered.url),
 			},
 		}
-	elseif cmd == "open" and #cx.active.selected == 0 then
-		return {
-			kind = cmd,
-			value = {
-				hovered = tostring(cx.active.current.hovered.url),
-			},
-		}
 	elseif cmd == "chmod" then
 		local selected = {}
 
@@ -123,6 +116,13 @@ local get_state = ya.sync(function(_, cmd)
 			kind = cmd,
 			value = {
 				selected = selected,
+			},
+		}
+	elseif cmd == "open" and #cx.active.selected == 0 then
+		return {
+			kind = cmd,
+			value = {
+				hovered = tostring(cx.active.current.hovered.url),
 			},
 		}
 	else
@@ -292,10 +292,10 @@ return {
 			sudo_remove(state.value)
 		elseif state.kind == "rename" then
 			sudo_rename(state.value)
-		elseif state.kind == "open" then
-			sudo_open(state.value)
 		elseif state.kind == "chmod" then
 			sudo_chmod(state.value)
+		elseif state.kind == "open" then
+			sudo_open(state.value)
 		end
 	end,
 }
